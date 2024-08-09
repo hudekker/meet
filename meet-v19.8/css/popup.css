@@ -80,6 +80,13 @@
   --settings-background-text: black;
 }
 
+a.href-help:hover {
+  color: var(--dracula-yellow) !important;
+}
+.rooms-url-code-nickname {
+  margin-bottom: 10px
+}
+
 .btn-inset {
   border: 1px solid black !important;
   box-shadow: 1px 1px 1px grey !important;
@@ -105,8 +112,8 @@
   color: var(--dracula-red);
 }
 [data-msg-nickname-helplink] {
-  background-color: var(--dracula-red);
-  color: var(--dracula-white) !important;
+  /* background-color: var(--dracula-red); */
+  color: var(--dracula-red) !important;
 }
 div[data-assign-ppts-hook],
 div[data-assign-rooms-hook] {
@@ -263,7 +270,10 @@ input[data-type="link"] {
 [data-mute-part]:hover,
 [data-remove-part]:hover {
   color: black !important;
-  background-color: var(--dracula-green) !important;
+  /* background-color: var(--dracula-green) !important; */
+  /* background-color: #98FF98 !important; */
+  background-color: #90EE90 !important;
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -537,12 +547,15 @@ input[type="text"] {
   color: var(--dracula-dark-black);
   background-color: #bf5700;
   background-color: var(--dracula-orange);
+  background-color: var(--dracula-green);
   border-color: grey;
 }
 
 .btn[data-meet-assign]:hover {
   background-color: #333f48;
-  color: white;
+  background-color: #39FF14;
+  background-color: #98FF98;
+  color: black;
 }
 
 .btn.dropdown-color {
@@ -1126,6 +1139,7 @@ span.span-course {
 [data-msg-code] {
   /* font-weight: 200; */
   background-color: var(--dracula-light-blue);
+  background-color: var(--dracula-yellow);
   color: black;
 }
 [data-msg-url] {
@@ -1190,4 +1204,47 @@ span.span-course {
   background-color: #343a40 !important; /* Bootstrap dark */
   border-color: #343a40 !important;
   color: #fff;
+}
+
+/* new stuff */
+
+#fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* High z-index to cover everything */
+  transition: opacity 0.5s ease-in-out; /* Transition for smooth fading */
+
+}
+
+#fullscreen-overlay.visible {
+  opacity: 1; /* Fully visible when the class 'visible' is added */
+}
+
+#meet-main-assign-hook{
+  display: flex;
+  justify-content: space-between;
+}
+#overlay-content {
+  position: relative;
+  text-align: center;
+}
+
+#overlay img {
+  max-width: 80%;
+  height: auto;
+}
+
+.no-display {
+  display: none !important;
+}
+
+.white {
+  color: white;
 }

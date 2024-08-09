@@ -1,7 +1,5 @@
 const buildMeetMainPptListing = async () => {
   let hook = document.querySelector("#meet-main-ppt-hook");
-  // let mainUrl = document.querySelector("[data-meet-main-link]").dataset
-  //   .meetMainLink;
   let ppt;
 
   let mainUrl = document.querySelector("#list-rooms-hook input[data-link-fetched-url]").dataset.linkFetchedUrl;
@@ -9,7 +7,14 @@ const buildMeetMainPptListing = async () => {
   hook.innerHTML = "";
 
   let tabId = document.querySelector("#slider-title").dataset.tabId;
-  let rooms = await chromeAllOpenRooms((boolOpen = true), tabId);
+
+  // Define the values directly
+  let boolOpen = false;
+  let boolFilter = true;
+  let boolGetReferrer = false;
+  let boolExpand = true;
+
+  let rooms = await chromeAllOpenRooms(boolOpen, tabId, boolFilter, boolGetReferrer, boolExpand);
   rooms = filterExtensionRooms(rooms);
   rooms = sortRoomsTabOrder(rooms);
 
@@ -34,6 +39,13 @@ const buildMeetMainPptListing = async () => {
     }
   }
 
+  // Sort pptAll by name
+  pptAll.sort((a, b) => {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  });
+
   // Get rid of me
   pptAll = pptAll.filter((el) => {
     let bool = true;
@@ -46,7 +58,9 @@ const buildMeetMainPptListing = async () => {
   });
 
   // Get just the uniques
-  ppt = pptAll.filter((el, index, self) => index === self.findIndex((t) => t.name === el.name && t.id === el.id && t.url === el.url));
+  ppt = pptAll.filter(
+    (el, index, self) => index === self.findIndex((t) => t.name === el.name && t.id === el.id && t.url === el.url)
+  );
   // End 09/13/2020
 
   // Filter on the main url
@@ -55,16 +69,16 @@ const buildMeetMainPptListing = async () => {
   // ppt = rooms.length > 0 ? rooms[0].ppt : [];
 
   hook.innerHTML = `<button  id="btn-copy-ppt" type="button" 
-  class="offset-2 col-1 mb-n4 pr-0 text-right btn btn-default btn-ppt" data-type="clip" 
+  class="offset-2 col-1 pr-0 text-right btn btn-default btn-ppt" data-type="clip" 
   data-toggle="tooltip" data-placement="top" title="Copy Students to clipboard">
-    <i class="far fa-copy"></i> </button>`;
+    <i class="fas fa-copy white"></i> </button>`;
 
   hook.innerHTML =
     hook.innerHTML +
-    `<button  id="btn-copy-assigned" type="button" class="offset-8 mb-n4 col-1 pr-0 text-right btn btn-default 
+    `<button  id="btn-copy-assigned" type="button" class="offset-8 col-1 pr-0 text-right btn btn-default 
     btn-assigned" data-type="clip" data-toggle="tooltip" 
     data-placement="top" title="Copy Breakout Assignments to clipboard">
-    <i class="far fa-copy"></i> </button>`;
+    <i class="fas fa-copy white"></i> </button>`;
 
   hook.innerHTML =
     hook.innerHTML +
@@ -127,14 +141,17 @@ const buildBreakoutListing = async (ppt) => {
     return;
   }
 
-  hook.innerHTML = `<button id="btn-copy-breakout-groups" type="button" class="offset-10 col-1 mb-n4 pr-0 text-right btn btn-default btn-groups" data-type="clip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copy Breakout Groups to clipboard">
-    <i class="far fa-copy"></i> </button>`;
+  hook.innerHTML = `<button id="btn-copy-breakout-groups" type="button" class="offset-10 col-1 pr-0 text-right btn btn-default btn-groups" data-type="clip" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copy Breakout Groups to clipboard">
+    <i class="fas fa-copy" style="color: white"></i> </button>`;
 
   hook.innerHTML =
     hook.innerHTML +
-    ` <button class="col-4 mb-2 btn" 
-      id="assign-random" data-meet-assign="" data-msg-btn-random>Randomly Assign</button>
-      <h5 class="offset-2 col-6 mt-1 sub-title" data-msg-lbl-breakout-rooms>Breakout Rooms</h5>
+    `<button class="col-4 mb-2 btn" id="assign-random" data-meet-assign=""data-msg-btn-random>
+    Randomly Assign</button>
+
+      <button class="col-1 mb-2 btn btn-warning" id="assign-reset"><i class="fas fa-recycle"></i></button>
+
+      <h5 class="col-5 mt-1 sub-title" data-msg-lbl-breakout-rooms>Breakouts</h5>
 
       <div class="form-group col-12 d-none">
         <input type="checkbox" id="assign-exclude-self" checked>
@@ -177,10 +194,16 @@ const buildBreakoutListing = async (ppt) => {
   //   };
   // });
 
-  rooms = rooms.filter((el) => !(el.dataset.link.startsWith("https://") && !el.dataset.link.startsWith("https://meet.google.com/")));
+  rooms = rooms.filter(
+    (el) => !(el.dataset.link.startsWith("https://") && !el.dataset.link.startsWith("https://meet.google.com/"))
+  );
 
   for (let i = 0; i < rooms.length; i++) {
-    rightHook.innerHTML = rightHook.innerHTML + `<h6 class="breakout-rooms mt-2 btn-sm text-left" style="height: 30px;"data-assign-room=${i + 1}>${rooms[i].innerText.trim()}</h6>`;
+    rightHook.innerHTML =
+      rightHook.innerHTML +
+      `<h6 class="breakout-rooms mt-2 btn-sm text-left" style="height: 30px;"data-assign-room=${i + 1}>${rooms[
+        i
+      ].innerText.trim()}</h6>`;
   }
 
   await sleep(1);
@@ -223,6 +246,9 @@ const buildBreakoutListing = async (ppt) => {
 
   document.querySelector("#assign-random").removeEventListener("click", handleAssignRandom2);
   document.querySelector("#assign-random").addEventListener("click", handleAssignRandom2);
+
+  document.querySelector("#assign-reset").removeEventListener("click", handleAssignReset);
+  document.querySelector("#assign-reset").addEventListener("click", handleAssignReset);
 
   document.querySelectorAll("[data-assign-ppt]").forEach((el) => {
     el.addEventListener("dragend", (evt) => updateAssignedListing());
@@ -293,6 +319,51 @@ const handleExcludePptClick = (event) => {
     name.style.color = rs.getPropertyValue(alertText);
     event.currentTarget.dataset.pptExcl = "true";
   }
+};
+
+const handleAssignReset = () => {
+  // Clear out both sides
+  let hookPpts = document.querySelector("[data-assign-ppts-hook]");
+  let hookRooms = document.querySelector("[data-assign-rooms-hook]");
+  let ppt = [...document.querySelectorAll("[data-assign-ppt]")];
+
+  hookPpts.innerHTML = "";
+  // hookRooms.innerHTML = "";
+
+  debugger;
+
+  ppt.sort((a, b) => {
+    const nameA = a.getAttribute("data-ppt-name").toUpperCase(); // Ignore case
+    const nameB = b.getAttribute("data-ppt-name").toUpperCase(); // Ignore case
+
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+
+  if (ppt.length > 0) {
+    for (let i = 0; i < ppt.length; i++) {
+      hookPpts.appendChild(ppt[i]);
+    }
+  }
+
+  // Append the rooms back (in case they were also shuffled)
+  // originalPptOrder.forEach((el) => {
+  //   hookPpts.appendChild(el);
+  // });
+
+  // Optionally, reset the rooms to their original order as well
+  // let rooms = [...document.querySelectorAll("[data-assign-room]")];
+  // rooms.forEach((el) => {
+  //   hookRooms.appendChild(el);
+  // });
+
+  // Update the assigned breakouts
+  // updateAssignedListing();
 };
 
 const handleAssignRandom2 = async (event) => {
@@ -414,7 +485,9 @@ const buildMeetClassDropdown = (meetClassName, classes = []) => {
     if (el.name == meetClassName) {
       flagActive = "active";
     }
-    hook.innerHTML = hook.innerHTML + `<a class="dropdown-item ${flagActive}"  href="#" data-class-name-key="${el.name}">${el.name}</a>`;
+    hook.innerHTML =
+      hook.innerHTML +
+      `<a class="dropdown-item ${flagActive}"  href="#" data-class-name-key="${el.name}">${el.name}</a>`;
   });
 
   // Change this !!! from here on down....
@@ -584,7 +657,7 @@ const buildMeetRoomList = (numRooms, rooms) => {
 
   hookMain.innerHTML = `<button type="button" class="btn btn-default btn-clipboard2" data-type="clip" 
   data-toggle="tooltip" id="btn-copy-main"
-  data-placement="top" title="Copy Main Room link to clipboard"><i class="far fa-copy"></i> </button>`;
+  data-placement="top" title="Copy Main Room link to clipboard"><i class="fas fa-copy" style= "color: white"></i> </button>`;
 
   if (rooms[0]) {
     hookMain.innerHTML =
@@ -763,7 +836,9 @@ const handleMeetOpenAllRooms = async (evt) => {
         }
 
         await sleep(100);
-        let msgMainSync = chrome.i18n.getMessage("msgMainSync") ? chrome.i18n.getMessage("msgMainSync") : "Main room synced";
+        let msgMainSync = chrome.i18n.getMessage("msgMainSync")
+          ? chrome.i18n.getMessage("msgMainSync")
+          : "Main room synced";
         return alert(msgMainSync);
 
         // document.querySelector("#slider-right").click();
@@ -789,7 +864,9 @@ const handleMeetOpenAllRooms = async (evt) => {
         await sleep(100);
         document.querySelector("#slider-left").click();
         await sleep(100);
-        let msgBreakoutSync = chrome.i18n.getMessage("msgBreakoutSync") ? chrome.i18n.getMessage("msgBreakoutSync") : "Breakout room synced";
+        let msgBreakoutSync = chrome.i18n.getMessage("msgBreakoutSync")
+          ? chrome.i18n.getMessage("msgBreakoutSync")
+          : "Breakout room synced";
         return alert(msgBreakoutSync);
       }
       break;
@@ -812,7 +889,9 @@ const handleMeetOpenAllRooms = async (evt) => {
         await sleep(100);
         document.querySelector("#slider-left").click();
         await sleep(100);
-        let msgAllSync = chrome.i18n.getMessage("msgAllSync") ? chrome.i18n.getMessage("msgAllSync") : "All rooms synced";
+        let msgAllSync = chrome.i18n.getMessage("msgAllSync")
+          ? chrome.i18n.getMessage("msgAllSync")
+          : "All rooms synced";
         return alert(msgAllSync);
         // return alert();
         // `Main room and ${numRooms} Breakout rooms already all open`

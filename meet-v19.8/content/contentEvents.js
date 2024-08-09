@@ -33,9 +33,10 @@ const waitForJoinButton = setInterval(() => {
 
   if (btnPresent) {
     // btnJoin = btnPresent.previousSibling;
-    btnJoin = btnPresent;
-    console.log("btnJoin = ");
-    console.log(btnJoin);
+    // btnJoin = btnPresent;
+    btnJoin = document.querySelector("[data-is-touch-wrapper] button[data-idom-class][data-promo-anchor-id]");
+
+    console.log("btnJoin = ", btnJoin);
   } else {
     btnJoin = false;
   }
@@ -89,21 +90,11 @@ document.body.addEventListener("dom-changed", (evt) => {
         let { breakout: test } = await chromeStorageLocalGet("breakout");
         myBreakout = test;
         g_myBreakout = myBreakout;
-        // await sleep(10);
       })();
     }
 
     // If haven't initialized...
     if (!g_joinedFlag && g_myBreakout) {
-      // // Make sure that you are inside the opened meet, not waiting
-      // let myElement2 = [...document.querySelectorAll("i")].filter((el) => el.innerText.includes("call_end"));
-      // let btn = myElement2[0]?.parentElement;
-
-      // if (!btn) {
-      //   console.log("not opened yet");
-      //   break;
-      // }
-
       // Open the meets in muted video and mic mode
       let btns = document.querySelectorAll('[role="button"][data-is-muted]');
       if (btns.length > 1) {
@@ -122,6 +113,7 @@ document.body.addEventListener("dom-changed", (evt) => {
       // Give yourself some time before trying to initialize
       (async () => {
         await sleep(5000);
+
         oneTimeClick();
       })();
 

@@ -25,6 +25,13 @@
 
   <div class="container">
 
+    <!-- Test this out -->
+    <div id="fullscreen-overlay" class="no-display">
+      <div id="overlay-content">
+        <img src="img/please-wait.jpg" alt="Overlay Image">
+      </div>
+    </div>
+
     <div class="row justify-content-betwen">
       <h4 class="mt-2 col-8 flex-fill d-inline" style="text-shadow: 0.25px 0.25px 0.5px grey" data-msg-title><img
           class="ml-1 mr-1 pb-2" src="img/icon512.png" style="width: 32px;" alt="">
@@ -581,50 +588,50 @@
             <div class="col-12 pt-2 pb-2 copy-all-pre" data-mute-part>
               <button id="mute-all-main" class="col-12 btn av av-mute copy-all-pre">
                 <i class="av fas fa-microphone-slash"></i>
-              </button>&nbsp <span data-msg-mute-all-main>Mute All in Main</span>
+              </button>&nbsp <span data-msg-mute-all-main>Mute all: Main room</span>
             </div>
             <div class="col-12 pt-2 pb-2 copy-all-pre" data-mute-part>
               <button id="mute-all-this" class="col-12 btn av av-mute copy-all-pre">
                 <i class="av fas fa-microphone-slash"></i>
-              </button>&nbsp <span data-msg-mute-all-this>Mute All in this Room Only (Based on Slider)</span>
+              </button>&nbsp <span data-msg-mute-all-this>Mute all: This Room (slider)</span>
             </div>
             <div class="col-12 pt-2 pb-2 copy-all-pre" data-mute-part>
               <button id="mute-all-breakouts" class="col-12 btn av av-mute copy-all-pre">
                 <i class="av fas fa-microphone-slash"></i>
-              </button>&nbsp <span data-msg-mute-all-breakouts>Mute All in All Breakouts</span>
+              </button>&nbsp <span data-msg-mute-all-breakouts>Mute all: All Breakout Rooms</span>
             </div>
             <div class="col-12 pt-2 pb-2 copy-all-pre" data-mute-part>
               <button id="mute-all-all" class="col-12 btn av av-mute copy-all-pre">
                 <i class="av fas fa-microphone-slash"></i>
-              </button>&nbsp <span data-msg-mute-all-rooms>Mute All in All Rooms (Main + All Breakouts)</span>
+              </button>&nbsp <span data-msg-mute-all-rooms>Mute All: Main and all Breakout Rooms</span>
             </div>
 
 
             <div class="col-12 pt-2 pb-2" data-remove-part>
               <button id="remove-all-this" class="col-12 btn av av-mute copy-all-pre">
                 <i class="av fas fa-ban"></i>
-              </button>&nbsp <span data-msg-remove-all-this>Remove All from this Room Only (Based on Slider)</span>
+              </button>&nbsp <span data-msg-remove-all-this>Remove all: This Room (Slider)</span>
             </div>
             <div class="col-12 pt-2 pb-2" data-remove-part>
               <button id="remove-all-breakouts" class="col-12 btn av av-mute copy-all-pre">
                 <i class="av fas fa-ban"></i>
-              </button>&nbsp <span data-msg-remove-breakouts>*** Breakouts Over: Remove All from All
-                Breakouts</span>
-            </div>
-            <div class="col-12 pt-2 pb-2" data-remove-part>
-              <button id="hangup-all-breakouts" class="col-12 btn av av-mute copy-all-pre">
-                <i class="av fas fa-ban"></i>
-              </button>&nbsp <span data-msg-hangup-breakouts>*** Breakouts Over: Hangup All Breakouts</span>
+              </button>&nbsp <span data-msg-remove-breakouts>Remove all: All
+                Breakout Rooms</span>
             </div>
             <div class="col-12 pt-2 pb-2" data-remove-part>
               <button id="remove-all-main" class="col-12 btn av av-mute copy-all-pre">
                 <i class="av fas fa-ban"></i>
-              </button>&nbsp <span data-msg-remove-main>*** Class Over: Remove All from the Main room</span>
+              </button>&nbsp <span data-msg-remove-main>Remove All: Main room</span>
+            </div>
+            <div class="col-12 pt-2 pb-2" data-remove-part>
+              <button id="hangup-all-breakouts" class="col-12 btn av av-mute copy-all-pre">
+                <i class="av fas fa-ban"></i>
+              </button>&nbsp <span data-msg-hangup-breakouts>Close all Breakout Rooms</span>
             </div>
             <div class="col-12 pt-2 pb-2" data-remove-part>
               <button id="hangup-main" class="col-12 btn av av-mute copy-all-pre">
                 <i class="av fas fa-ban"></i>
-              </button>&nbsp <span data-msg-hangup-main>*** Class Over: Hangup Main room</span>
+              </button>&nbsp <span data-msg-hangup-main>Close the Main room</span>
             </div>
             <div class="d-none col-12 mr-0 pr-0" data-close-part>
               <button id="close-room" class="col-12 btn av av-mute copy-all-pre">
@@ -730,19 +737,24 @@
             data-toggle="tooltip" title="Add">
             <i class="fas fa-plus-circle"></i>
           </button>
-          <button type="submit" id="btn-rooms-save" class="col-1 btn btn-primary btn-inset btn-rooms" data-toggle="tooltip" title="Save and Create Links">
+          <button type="submit" id="btn-rooms-save" class="col-1 btn btn-primary btn-inset btn-rooms" data-toggle="tooltip"
+            title="Save and Create Links">
             <i class="fas fa-save"></i>
           </button>
-          <button type="submit" id="btn-rooms-recycle" class="col-1 btn btn-warning btn-inset btn-rooms" data-toggle="tooltip" title="Clear Links">
+          <button type="submit" id="btn-rooms-recycle" class="col-1 btn btn-warning btn-inset btn-rooms" data-toggle="tooltip"
+            title="Clear Links">
             <i class="fas fa-recycle"></i>
           </button>
-          <button type="submit" id="btn-rooms-undo" class="col-1 btn btn-info btn-inset btn-rooms" data-toggle="tooltip" title="Undo">
+          <button type="submit" id="btn-rooms-undo" class="col-1 btn btn-info btn-inset btn-rooms" data-toggle="tooltip"
+            title="Undo">
             <i class="fas fa-undo"></i>
           </button>
-          <button type="submit" id="btn-rooms-delete" class="col-1 btn btn-danger btn-inset btn-rooms" data-toggle="tooltip" title="Delete">
+          <button type="submit" id="btn-rooms-delete" class="col-1 btn btn-danger btn-inset btn-rooms" data-toggle="tooltip"
+            title="Delete">
             <i class="fas fa-minus-circle"></i>
           </button>
-          <button id="btn-rooms-export-import" class="btn btn-dark col-1 btn-inset btn-rooms" data-btn-type="export" data-target="#rooms-export-import" data-toggle="modal">
+          <button id="btn-rooms-export-import" class="btn btn-dark col-1 btn-inset btn-rooms" data-btn-type="export"
+            data-target="#rooms-export-import" data-toggle="modal">
             <i class="fas fa-file-export" data-toggle="tooltip" title="Export Import"></i></button>
         </div>
 
@@ -939,13 +951,14 @@
               <h5 class="sub-title" type="text" data-msg-sub-heading-rooms>Rooms</h5>
             </div>
             <div class="col-8 px-0 pl-1">
-              <h5 class="text-left sub-title" type="text"><span data-msg-nickname>
-                  Nickname</span>
-                or <span data-msg-code>Code</span> or
-                <span data-msg-url>URL </span>&nbsp&nbsp
-                <a class="href-help" href="https://hudektech.github.io/gmbr-help/#setup-2-create-breakout-rooms"
-                  target="_blank" data-zhtw-href="#第二步創建討論室" data-msg-nickname-helplink> Help</a>
-                <!-- <a id="goto50" type="button" style="color:#ff4c68" data-msg-nickname-helplink> Help</a> -->
+              <h5 class="text-left sub-title" type="text">
+                <div class="rooms-url-code-nickname">
+                  <span data-msg-url>URL </span>
+                  or <span data-msg-code>Code</span> or
+                  <span data-msg-nickname>Nickname</span>&nbsp&nbsp
+                  <a class="href-help" href="https://hudektech.github.io/gmbr-help/#setup-2-create-breakout-rooms" target="_blank"
+                    data-zhtw-href="#第二步創建討論室" data-msg-nickname-helplink> Help</a>
+                  </div>
               </h5>
             </div>
           </div>
@@ -1033,21 +1046,23 @@
 
         <div id="btn-classes" class="row mt-4 justify-content-between ml-0 mr-0">
           <button id="btn-classes-add" type="submit" class="col-2 btn btn-success btn-inset" data-toggle="tooltip" title="Add">
-            <i class="fas fa-plus-circle" ></i>
+            <i class="fas fa-plus-circle"></i>
           </button>
           <button id="btn-classes-save" type="submit" class="col-2 btn btn-primary btn-inset" data-toggle="tooltip" title="Save">
-            <i class="fas fa-save" ></i>
+            <i class="fas fa-save"></i>
           </button>
           <button id="btn-classes-undo" type="submit" class="col-2 btn btn-info btn-inset" data-toggle="tooltip" title="Undo">
             <i class="fas fa-undo"></i>
           </button>
           <!-- <button id="btn-classes-delete" type="submit" class="col-2 btn btn-danger btn-inset" data-btn-type="delete"
             data-toggle="modal" data-target="#class-delete"> -->
-          <button id="btn-classes-delete" type="submit" class="col-2 btn btn-danger btn-inset" data-btn-type="delete" data-toggle="tooltip" title="Delete">
+          <button id="btn-classes-delete" type="submit" class="col-2 btn btn-danger btn-inset" data-btn-type="delete"
+            data-toggle="tooltip" title="Delete">
             <i class="fas fa-minus-circle"></i>
           </button>
           <button id="btn-classes-export-import" class="btn btn-dark col-2 btn-inset" data-btn-type="export"
-            data-toggle="modal" data-target="#classes-export-import"><i class="fas fa-file-export" data-toggle="tooltip" title="Export / Import"></i></button>
+            data-toggle="modal" data-target="#classes-export-import"><i class="fas fa-file-export" data-toggle="tooltip"
+              title="Export / Import"></i></button>
         </div>
 
         <div class="border-top my-3"></div>

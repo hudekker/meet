@@ -329,23 +329,10 @@ const oneTimeClick = () => {
 };
 
 const autoAdmit = (evt) => {
-  // if (g_autoEnterFlag == false) {
-  //   g_autoAdmitted = true;
-  //   return;
-  // }
-
   try {
-    // select2 = [...document.querySelector("[data-back-to-cancel]").querySelectorAll('[role="button"]')];
-
-    // autoAdmit2 = select2[select2.length - 1];
-    // if (autoAdmit2) {
-    //   // g_autoAdmitted = true;
-    //   console.log(`g_autoAdmitted = ${g_autoAdmitted}`);
-    //   autoAdmit2.click();
-    // }
-
     // console.log(`autoAdmit2 = ${autoAdmit2}`);
-    let admitBtn = document.querySelector("[data-mdc-dialog-action='accept']");
+    // let admitBtn = document.querySelector("[data-mdc-dialog-action='accept']");
+    let admitBtn = document.querySelector("[data-is-touch-wrapper] button[data-idom-class][data-promo-anchor-id]");
 
     if (admitBtn) {
       testSpan = admitBtn.querySelector("span");
@@ -359,7 +346,6 @@ const autoAdmit = (evt) => {
           }
         })();
       }
-      // g_autoAdmitted = true;
     }
   } catch (err) {}
 };
@@ -1130,6 +1116,121 @@ const setTabColor = () => {
   }
 };
 
+const getParticipants2_new = () => {
+  // Function to store the size and position of the Google Meet window and maximize the window
+  const storeAndMaximizeWindow = () => {
+    const googleMeetWindow = window; // Assuming this script is running in the Google Meet window context
+    const windowSizeAndPosition = {
+      width: googleMeetWindow.outerWidth,
+      height: googleMeetWindow.outerHeight,
+      x: googleMeetWindow.screenX,
+      y: googleMeetWindow.screenY,
+    };
+
+    // Store the original size and position
+    localStorage.setItem("googleMeetWindowSizeAndPosition", JSON.stringify(windowSizeAndPosition));
+
+    // Maximize the window to the screen size
+    googleMeetWindow.moveTo(0, 0);
+    // googleMeetWindow.resizeTo(screen.availWidth, screen.availHeight);
+    googleMeetWindow.resizeTo(1000, 1000);
+  };
+
+  // Call the function to store the window size and position and maximize it
+  storeAndMaximizeWindow();
+
+  // Function to get the innerText excluding elements with role="tooltip"
+  const getFilteredText = (element) => {
+    let text = "";
+    element.childNodes.forEach((child) => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        text += child.textContent;
+      } else if (child.nodeType === Node.ELEMENT_NODE && child.getAttribute("role") !== "tooltip") {
+        text += getFilteredText(child);
+      }
+    });
+    return text;
+  };
+
+  // Select the <i> tag with innerText 'visual_effects'
+  const visualEffectsIcon = Array.from(document.querySelectorAll("i")).find(
+    (element) => element.innerText === "visual_effects"
+  );
+
+  // Traverse up the DOM tree to find the participant element
+  let participantElement = visualEffectsIcon;
+
+  while (participantElement && !participantElement.hasAttribute("data-participant-id")) {
+    participantElement = participantElement.parentElement;
+  }
+
+  // Get the participant ID
+  const hostParticipantId = participantElement ? participantElement.getAttribute("data-participant-id") : null;
+
+  console.log("Host Participant ID:", hostParticipantId);
+
+  // Go thru all participants
+  // let ppt = Array.from(document.querySelectorAll('[role="listitem"]')).map((el) => {});
+
+  // let ppt = [...document.querySelectorAll("[data-requested-participant-id]")]
+  let testListItems = Array.from(document.querySelectorAll('[role="listitem"]'));
+  let listItems = testListItems.filter((el, index) => index !== 0);
+
+  let ppt = listItems
+    .map((el) => {
+      // elName2 = el.querySelector("[data-self-name]");
+      const name = el.querySelector("[avatar-tooltip-id]").textContent;
+
+      // Get the filtered innerText
+      // const name = getFilteredText(selfName);
+      console.log(name);
+
+      elId2 = el.dataset.participantId;
+      elUrl2 = el.querySelector("img[data-iml]");
+
+      let me = false;
+      let id, url;
+
+      if (name) {
+        if (el.dataset.participantId === hostParticipantId) {
+          me = true;
+        }
+      } else {
+        return false;
+      }
+
+      if (elId2.split("devices/").length > 1) {
+        id = elId2.split("devices/")[1];
+      } else {
+        return false;
+      }
+
+      if (elUrl2) {
+        url = elUrl2.src;
+      } else {
+        return false;
+      }
+
+      return { name, me, id, url };
+    })
+    .filter((el) => el != false);
+
+  ppt.sort((a, b) => {
+    aName = `${a.name.toLowerCase()} ${a.id}`;
+    bName = `${b.name.toLowerCase()} ${b.id}`;
+
+    if (aName < bName) {
+      return -1;
+    }
+    if (aName > bName) {
+      return 1;
+    }
+    return 0;
+  });
+
+  return ppt;
+};
+
 const getParticipants2 = () => {
   // Function to get the innerText excluding elements with role="tooltip"
   const getFilteredText = (element) => {
@@ -1301,7 +1402,7 @@ const removeAll = async (boolClose = false, winId, tabId) => {
   } else {
     console.log(`appears to be closed so need to click btn1`, testListItems);
     if (btn1) {
-      console.log('btn1 clicked');
+      console.log("btn1 clicked");
       simulateUserClick(btn1);
     } else {
       console.log("Panel button not found");
@@ -1425,7 +1526,6 @@ function simulateUserClick(element) {
 
 // Function to mute all participants
 const muteAll = async (myPptId) => {
-
   let boolOpen = false;
   const btn1 = document.querySelector('button[data-panel-id="1"]');
   console.log(`btn1 open? aria-pressed = ${btn1.ariaPressed}`);
@@ -1439,7 +1539,7 @@ const muteAll = async (myPptId) => {
   } else {
     console.log(`appears to be closed so need to click btn1`, testListItems);
     if (btn1) {
-      console.log('btn1 clicked');
+      console.log("btn1 clicked");
       simulateUserClick(btn1);
     } else {
       console.log("Panel button not found");

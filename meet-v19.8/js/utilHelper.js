@@ -35,7 +35,9 @@ const updateChooseCourseLabel = (meetClassName = "", numRooms = "") => {
     //   numBreakouts = "0";
     // }
 
-    document.querySelector("#course-num-breakouts").innerText = `\u00A0 Choose Course (${selectedCourse} and ${numBreakouts} Breakouts)`;
+    document.querySelector(
+      "#course-num-breakouts"
+    ).innerText = `\u00A0 Choose Course (${selectedCourse} and ${numBreakouts} Breakouts)`;
   } catch (err) {}
 };
 
@@ -96,11 +98,49 @@ const chromeGetReportPopup = async (reportSuffix) => {
   } catch (err) {}
 };
 
-const chromeAllOpenRooms = async (boolOpen = false, tabId = 0, boolFilter = true, boolGetReferrer = false) => {
+// Function to show the overlay with smooth transition
+const showOverlay = () => {
+  const overlay = document.getElementById("fullscreen-overlay");
+  overlay.classList.remove("no-display");
+  setTimeout(() => {
+    overlay.classList.add("visible");
+  }, 10); // Delay to ensure the transition works
+};
+
+// Function to hide the overlay with smooth transition
+const hideOverlay = () => {
+  const overlay = document.getElementById("fullscreen-overlay");
+  overlay.classList.remove("visible");
+  overlay.classList.add("no-display");
+  overlay.addEventListener(
+    "transitionend",
+    () => {
+      overlay.classList.add("no-display");
+    },
+    { once: true }
+  ); // Ensure 'no-display' is added after the transition
+};
+
+const chromeAllOpenRooms = async (
+  boolOpen = false,
+  tabId = 0,
+  boolFilter = true,
+  boolGetReferrer = false,
+  boolExpand = false
+) => {
+  if (document.querySelector("#assign-ppts").ariaExpanded == "true") {
+    return;
+  }
+
   try {
+    // new stuff
+    boolExpand ? showOverlay() : null;
+
     let rooms = [];
     let win = await chromeWindowsGetAll({ windowTypes: ["normal"] });
     // let win = await chromeWindowsGetAll({ windowTypes: ["normal"] });
+    let tabCurrent = await chromeTabsGetCurrent();
+    console.log(`tabCurrent `, tabCurrent);
 
     for (let i = 0; i < win.length; i++) {
       let tabs = await chromeTabsQuery({ windowId: win[i].id });
@@ -141,23 +181,105 @@ const chromeAllOpenRooms = async (boolOpen = false, tabId = 0, boolFilter = true
     // disable
     boolOpen = false;
 
-    for (let i = 0; i < rooms.length; i++) {
-      // Open the slide window???
-      if (boolOpen && rooms[i].id == tabId) {
-        // await chromeTabsSendMessage(rooms[i].id, { action: "showAllPpt" });
-        chrome.tabs.sendMessage(rooms[i].id, { action: "showAllPpt" });
-      }
-
-      if (rooms[i].url && rooms[i].url.startsWith("https://meet.google.com")) {
-        let { ppt } = await chromeTabsSendMessage(rooms[i].id, {
-          action: "getPpt",
+    const getWindowProperties = async (windowId) => {
+      return new Promise((resolve, reject) => {
+        chrome.windows.get(windowId, { populate: true }, (window) => {
+          if (chrome.runtime.lastError) {
+            reject(chrome.runtime.lastError);
+          } else {
+            resolve(window);
+          }
         });
-        rooms[i].ppt = ppt;
-      }
+      });
+    };
+
+    const updateRoomsInParallel = async () => {
+      const promises = rooms.map(async (room) => {
+        if (room.url && room.url.startsWith("https://meet.google.com")) {
+          let windowProperties;
+
+          if (boolExpand) {
+            windowProperties = await getWindowProperties(room.windowId);
+            console.log(`chromeAllOpenRooms`, windowProperties);
+            await chrome.windows.update(room.windowId, {
+              state: "maximized",
+            });
+            await sleep(3000);
+          }
+
+          let { ppt } = await chromeTabsSendMessage(room.id, {
+            action: "getPpt",
+          });
+          room.ppt = ppt;
+
+          if (boolExpand) {
+            const { width, height, top, left, id } = windowProperties;
+            await chrome.windows.update(room.windowId, {
+              state: "normal",
+              width: width,
+              height: height,
+              top: top,
+              left: left,
+              drawAttention: true,
+              focused: true,
+            });
+          }
+        }
+      });
+
+      // Wait for all the promises to resolve
+      await Promise.all(promises);
+    };
+
+    // Run the function
+    await updateRoomsInParallel();
+
+    // for (let i = 0; i < rooms.length; i++) {
+    //   if (rooms[i].url && rooms[i].url.startsWith("https://meet.google.com")) {
+    //     let windowProperties;
+    //     // open the window full screen so can see all the participants
+    //     if (boolExpand) {
+    //       windowProperties = await getWindowProperties(rooms[i].windowId);
+    //       console.log(`chromeAllOpenRooms`, windowProperties);
+    //       await chrome.windows.update(rooms[i].windowId, {
+    //         state: "maximized",
+    //       });
+    //       await sleep(100);
+    //     }
+
+    //     // Normal stuff
+    //     let { ppt } = await chromeTabsSendMessage(rooms[i].id, {
+    //       action: "getPpt",
+    //     });
+    //     rooms[i].ppt = ppt;
+
+    //     // reset the window
+    //     if (boolExpand) {
+    //       const { width, height, top, left, id } = windowProperties;
+    //       await chrome.windows.update(rooms[i].windowId, {
+    //         state: "normal",
+    //         width: width,
+    //         height: height,
+    //         top: top,
+    //         left: left,
+    //         drawAttention: true,
+    //         focused: true,
+    //       });
+    //     }
+    //   }
+    // }
+
+    // new stuff
+    if (boolExpand) {
+      const window = await chromeWindowsUpdate2(tabCurrent.windowId, { focused: true });
     }
 
+    boolExpand ? hideOverlay() : null;
+
     return rooms;
-  } catch (err) {}
+  } catch (error) {
+    console.log("Inside chromeAllOpenRooms Error handling room:", error);
+  }
 };
 
 const roomsOptions = {
@@ -181,7 +303,12 @@ const roomsOptions = {
 };
 
 // Screen
-const calcRoomParams = (numRooms, roomNum, availWidth = window.screen.availWidth, availHeight = window.screen.availHeight) => {
+const calcRoomParams = (
+  numRooms,
+  roomNum,
+  availWidth = window.screen.availWidth,
+  availHeight = window.screen.availHeight
+) => {
   const roomWindows = {
     1: { rows: 1, cols: 1 },
     2: { rows: 1, cols: 2 },
@@ -522,7 +649,9 @@ const setMeetBannerMessage = () => {
     myName = headline1b;
   }
 
-  document.querySelector("#meet-tab-message").outerHTML = `<p id="meet-tab-message" class="mb-0 d-none" style="color: black" > 
+  document.querySelector(
+    "#meet-tab-message"
+  ).outerHTML = `<p id="meet-tab-message" class="mb-0 d-none" style="color: black" > 
 Built with<span style="color: red; font-size: 12px">&nbsp❤️&nbsp</span>by <a target="_blank" rel="noopener noreferrer"
 href="https://www.hudektech.com" style="color: black"> ${myName}</a>, click <a style="color: mediumblue;" target="_blank" rel="noopener noreferrer"
 href=${hrefNotes}>here</a> for v ${manifest.version} notes`;
@@ -539,7 +668,9 @@ href=${hrefNotes}>here</a> for v ${manifest.version} notes`;
   //   }
 
   if (headline1a && headline1b && headline1c && headline1d && headline1e) {
-    document.querySelector("#meet-tab-message").outerHTML = `<p id="meet-tab-message" class="mb-0" style="color: black" > 
+    document.querySelector(
+      "#meet-tab-message"
+    ).outerHTML = `<p id="meet-tab-message" class="mb-0" style="color: black" > 
 ${headline1a}<a target="_blank" rel="noopener noreferrer"
 href="https://www.hudektech.com" style="color: black">${headline1b} </a> ${headline1c}<span style="color: red; font-size: 12px">&nbsp❤️&nbsp</span> ${headline1d} <a style="color: black;" target="_blank" rel="noopener noreferrer"
 href=${hrefNotes}>${manifest.version} ${headline1e}</a> `;
@@ -665,7 +796,9 @@ const popupRetile = async (currentTarget) => {
 
     // Make sure that tile option is selectedCourse
     if (!tilesRadio) {
-      return alert("Re-Tile is only available for Tiled breakouts. Tabs breakout rooms option is selected in the Settings.");
+      return alert(
+        "Re-Tile is only available for Tiled breakouts. Tabs breakout rooms option is selected in the Settings."
+      );
     }
     // Get all the rooms
     let rooms = await chromeAllOpenRooms((boolOpen = false), (tabId = 0), (boolFilter = false));
