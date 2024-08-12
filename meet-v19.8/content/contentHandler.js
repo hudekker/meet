@@ -1391,7 +1391,7 @@ const removeParticipant = (myPptId) => {
 const removeAll = async (boolClose = false, winId, tabId) => {
   let boolOpen = false;
   const btn1 = document.querySelector('button[data-panel-id="1"]');
-  console.log(`btn1 open? aria-pressed = ${btn1.ariaPressed}`);
+  console.log(`btn1 open? aria-pressed = ${btn1?.ariaPressed}`);
 
   // See if need to press btn1.  If this popup open then no need for btn1
   let testListItems = Array.from(document.querySelectorAll('[role="listitem"]'));
@@ -1528,7 +1528,7 @@ function simulateUserClick(element) {
 const muteAll = async (myPptId) => {
   let boolOpen = false;
   const btn1 = document.querySelector('button[data-panel-id="1"]');
-  console.log(`btn1 open? aria-pressed = ${btn1.ariaPressed}`);
+  console.log(`btn1 open? aria-pressed = ${btn1?.ariaPressed}`);
 
   // See if need to press btn1.  If this popup open then no need for btn1
   let testListItems = Array.from(document.querySelectorAll('[role="listitem"]'));
