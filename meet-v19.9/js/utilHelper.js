@@ -210,9 +210,12 @@ const chromeAllOpenRooms = async (
           let { ppt } = await chromeTabsSendMessage(room.id, {
             action: "getPpt",
           });
+
           room.ppt = ppt;
 
           if (boolExpand) {
+            // const window = await chromeWindowsUpdate2(tabCurrent.windowId, { focused: true });
+
             const { width, height, top, left, id } = windowProperties;
             await chrome.windows.update(room.windowId, {
               state: "normal",
@@ -220,8 +223,8 @@ const chromeAllOpenRooms = async (
               height: height,
               top: top,
               left: left,
-              drawAttention: true,
-              focused: true,
+              drawAttention: false,
+              focused: false,
             });
           }
         }
