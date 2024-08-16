@@ -1,0 +1,1156 @@
+(async () => {
+  let lang = await chromeDetectLanguage();
+
+  document.querySelectorAll(".href-help")?.forEach((el) => {
+    if (lang == "zh-TW") {
+      el.href = "https://hudektech.github.io/gmbr-help-zhTW/" + el.dataset.zhtwHref;
+    }
+  });
+})();
+
+// Set the version message
+setMeetBannerMessage();
+
+// Temporarily alert for dracula themes
+const setThemeHeadline = () => {
+  // Also in utilHelper/setMeetBannerMessage
+  let manifest = chrome.runtime.getManifest();
+  let hrefNotes = `https://www.hudektech.com/projects/breakout/notes#v-${manifest.version}`;
+  let myName = chrome.i18n.getMessage("myName"); // 胡浩洋用
+  let tryThemes = chrome.i18n.getMessage("headlineTryThemes"); // 胡浩洋用
+
+  // myName = myName == "胡浩洋" ? myName : "Robert Hudek";
+
+  if (myName == "胡浩洋") {
+    myName = myName;
+  } else if (myName == "Robert 'Alejandro' Hudek") {
+    myName = myName;
+  } else {
+    myName = "Robert Hudek";
+  }
+
+  document.querySelector("#my-name").innerText = `by ${myName}`;
+
+  let stub1 = document.querySelector("#try-themes-version");
+  stub1.outerHTML = ` <a href=${hrefNotes} target="_blank" style="color:black">v${manifest.version}</a> &nbsp <span id="try-themes-click">Color Themes</span>`;
+  // stub1.outerHTML = ` <a href=${hrefNotes} target="_blank" style="color:black">v${manifest.version}</a> ${tryThemes} <span id="try-themes-click">Dracula</span> color themes!`;
+
+  document.querySelector("#try-themes-click").addEventListener("click", (event) => {
+    let tab4 = document.querySelector("#four-tab");
+    tab4.click();
+  });
+};
+
+setThemeHeadline();
+
+// Begin normal processing
+g_flag = false;
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
+window.addEventListener("focus", async (e) => {
+  await sleep(100);
+
+  console.log("focused");
+
+  // // January 10
+  // let accountName = await getDefaultAccount();
+
+  // document.querySelector("[data-span-meet-account-name]").innerText = accountName;
+
+  // let msg = chrome.i18n.getMessage("defaultAccount");
+
+  // if (msg) {
+  //   document.querySelector("[data-msg-default-account]").innerHTML = `${msg} <span data-span-meet-account-name>${accountName}</span>`;
+  //   document.querySelector("[data-msg-default-account2]").innerHTML = `${msg} <span data-span-meet-account-name>${accountName}</span>`;
+  // }
+  // // January 10
+
+  // document.querySelector(
+  //   "[data-span-rooms-account-name]"
+  // ).innerText = accountName;
+});
+
+// window.addEventListener("load", async evt => {
+//   await sleep(500);
+//   // Update tab button for Start Class
+//   updateChooseCourseLabel();
+// })
+if (chrome.i18n.getMessage("@@ui_locale") == "zh_TW") {
+  document.querySelector("a#gmbr-help").href = "https://hudektech.github.io/gmbr-help-zhTW/";
+  document.title = "分組控制面板";
+}
+document.querySelector("#status-students").addEventListener("click", handleStatusStudents);
+
+document.querySelector("#status-rooms").addEventListener("click", handleStatusRooms);
+
+//Easter egg test
+document.querySelector("#speaker-section-test").addEventListener("click", async (event) => {
+  let stringSpkr = "";
+  let rooms = await chromeAllOpenRooms();
+  rooms = filterExtensionRooms(rooms);
+  rooms = sortRoomsTabOrder(rooms);
+
+  for (let i = 0; i < rooms.length; i++) {
+    stringSpkr += `Room: ${rooms[i].title}, Speaker Muted: ${rooms[i].muted}, Tab Id: ${rooms[i].id}\n`;
+  }
+
+  alert(stringSpkr);
+});
+
+// Low Memory Checkbox
+document.querySelector("#low-memory-option").addEventListener("click", async (event) => {
+  myBreakout.settings.lowMemoryFlag = document.querySelector("#low-memory-option").checked;
+  await myBreakout.saveBreakout();
+
+  updateOpenButtons();
+
+  if (myBreakout.settings.lowMemoryFlag) {
+    document.querySelector("#open-breakouts").classList.add("d-none");
+    document.querySelector("#open-both").classList.add("d-none");
+    document.querySelector("#open-main i").innerText =
+      "Open/Sync One Window for Main and Breakout Rooms, Use Slider to Move Through the Rooms";
+    intlMsg("btn-open-main", "btnRam", "&nbsp");
+    document.querySelector("#open-main").classList.remove("col-3");
+    document.querySelector("#open-main").classList.add("col-12");
+  } else {
+    document.querySelector("#open-breakouts").classList.remove("d-none");
+    document.querySelector("#open-both").classList.remove("d-none");
+    document.querySelector("#open-main i").innerHTML = "Main Room";
+    intlMsg("btn-open-main", "btnOpenMain1", "&nbsp");
+    document.querySelector("#open-main").classList.add("col-3");
+    document.querySelector("#open-main").classList.remove("col-12");
+  }
+});
+
+// document
+//   .querySelector("#help-low-memory-option")
+//   .addEventListener("click", (event) => {
+//     debugger;
+//   });
+
+document.querySelector("#goto20").addEventListener("click", (event) => {
+  document.querySelector("#my-help").style.display = "block";
+  window.location.href = "#20";
+
+  // When the user clicks on <span> (x), close the modal
+  document.querySelector(".close-help").onclick = function () {
+    document.querySelector("#my-help").style.display = "none";
+    window.location.href = "#help-list";
+  };
+});
+
+// Popup refresh
+document.querySelector("#popup-refresh").addEventListener("click", async (event) => {
+  await refreshControlPanel();
+  // resize
+  // let win = await chromeWindowsGetCurrent({});
+
+  // await chromeWindowsUpdate2(win.id, {
+  //   state: "normal",
+  //   drawAttention: true,
+  //   focused: true,
+  //   width: 530,
+  //   height: window.screen.availHeight,
+  //   top: 0,
+  //   left: window.screen.availWidth - 530,
+  // });
+
+  // window.location.reload();
+});
+
+document.querySelector("#popup-hide-bar").addEventListener("click", async (event) => {
+  handleCopyClipboardButtons(event);
+  let icon = event.currentTarget.querySelector("i");
+  let myAction;
+
+  if (event.currentTarget.dataset.hidden == "false") {
+    myAction = "hideBar";
+    icon.className = "fas fa-eye";
+    event.currentTarget.dataset.hidden = "true";
+    event.currentTarget.style.color = "white";
+    event.currentTarget.style.backgroundColor = "cornflowerblue";
+    event.currentTarget.dataset.originalTitle = "Unhide Meet Bottom Bar";
+  } else {
+    myAction = "unHideBar";
+    icon.className = "fas fa-eye-slash";
+    event.currentTarget.dataset.hidden = "false";
+    event.currentTarget.style.color = "cornflowerblue";
+    event.currentTarget.style.backgroundColor = "white";
+    event.currentTarget.dataset.originalTitle = "Hide Meet Bottom Bar";
+  }
+
+  // Get all the tabIds
+  let rooms = await chromeAllOpenRooms();
+  rooms = filterExtensionRooms(rooms);
+  rooms = sortRoomsTabOrder(rooms);
+
+  for (let i = 0; i < rooms.length; i++) {
+    chrome.tabs.sendMessage(rooms[i].id, {
+      action: myAction,
+    });
+  }
+});
+
+document.querySelector("#popup-retile").addEventListener("click", async (event) => {
+  handleCopyClipboardButtons(event);
+  await popupRetile(event.currentTarget);
+});
+
+document.querySelector("#popup-resize").addEventListener("click", async (event) => {
+  await popupResize(event.currentTarget);
+  $('[data-toggle="tooltip"]').tooltip("hide");
+});
+
+document.querySelector("#popup-minimize").addEventListener("click", async (event) => {
+  let win = await chromeWindowsGetCurrent({});
+
+  chrome.windows.update(win.id, {
+    state: "minimized",
+  });
+});
+
+// Mute all in Main
+document.querySelector("#mute-all-main").parentElement.addEventListener("click", async (event) => {
+  try {
+    handleCopyClipboardButtons({ currentTarget: event.currentTarget.querySelector("button") });
+    let allRooms = await chromeAllOpenRooms();
+    // allRooms = allrooms.filter((el) => el.link != "");
+    let myRooms = myBreakout.myRooms;
+    myRooms = myRooms.slice(0, 1);
+
+    for (let i = 0; i < myRooms.length; i++) {
+      // let tabId = allRooms.filter((el) => el.url == myRooms[i].link)[0].id;
+      let tabId;
+
+      let arr = allRooms.filter((el) => getMeetUrlBase(el.url) == myRooms[i].linkFetchedUrl);
+
+      if (arr && arr.length > 0) {
+        tabId = arr[0].id;
+
+        chrome.tabs.sendMessage(tabId, {
+          action: "muteAll",
+        });
+      }
+    }
+  } catch (err) {}
+});
+// Mute this tab
+document.querySelector("#mute-all-this").parentElement.addEventListener("click", (event) => {
+  try {
+    handleCopyClipboardButtons({ currentTarget: event.currentTarget.querySelector("button") });
+    let tabId = parseInt(document.querySelector("#slider-title").dataset.tabId);
+    return chrome.tabs.sendMessage(tabId, {
+      action: "muteAll",
+    });
+  } catch (err) {}
+});
+// Mute all in All Breakouts
+document.querySelector("#mute-all-breakouts").parentElement.addEventListener("click", async (event) => {
+  try {
+    handleCopyClipboardButtons({ currentTarget: event.currentTarget.querySelector("button") });
+    let allRooms = await chromeAllOpenRooms();
+    // allRooms = allrooms.filter((el) => el.link != "");
+    let myRooms = myBreakout.myRooms;
+    myRooms = myRooms.slice(1);
+
+    for (let i = 0; i < myRooms.length; i++) {
+      // let tabId = allRooms.filter((el) => el.url == myRooms[i].link)[0].id;
+      let tabId;
+
+      let arr = allRooms.filter((el) => getMeetUrlBase(el.url) == myRooms[i].linkFetchedUrl);
+
+      if (arr && arr.length > 0) {
+        tabId = arr[0].id;
+
+        chrome.tabs.sendMessage(tabId, {
+          action: "muteAll",
+        });
+      }
+    }
+  } catch (err) {}
+});
+
+// Mute All Everywhere
+document.querySelector("#mute-all-all").parentElement.addEventListener("click", async (event) => {
+  try {
+    handleCopyClipboardButtons({ currentTarget: event.currentTarget.querySelector("button") });
+    let allRooms = await chromeAllOpenRooms();
+    // allRooms = allrooms.filter((el) => el.link != "");
+    let myRooms = myBreakout.myRooms;
+    // myRooms = myRooms.slice(1);
+
+    for (let i = 0; i < myRooms.length; i++) {
+      // let tabId = allRooms.filter((el) => el.url == myRooms[i].link)[0].id;
+      let tabId;
+
+      let arr = allRooms.filter((el) => getMeetUrlBase(el.url) == myRooms[i].linkFetchedUrl);
+
+      if (arr && arr.length > 0) {
+        tabId = arr[0].id;
+
+        chrome.tabs.sendMessage(tabId, {
+          action: "muteAll",
+        });
+      }
+    }
+  } catch (err) {}
+});
+
+// Mute allmain
+// Mute allbreakouts
+
+document.querySelector("#remove-all-this").parentElement.addEventListener("click", (event) => {
+  try {
+    handleCopyClipboardButtons({ currentTarget: event.currentTarget.querySelector("button") });
+    let tabId = parseInt(document.querySelector("#slider-title").dataset.tabId);
+    return chrome.tabs.sendMessage(tabId, {
+      action: "removeAll",
+    });
+  } catch (err) {}
+});
+
+document.querySelector("#remove-all-breakouts").parentElement.addEventListener("click", async (event) => {
+  try {
+    handleCopyClipboardButtons({ currentTarget: event.currentTarget.querySelector("button") });
+    let allRooms = await chromeAllOpenRooms();
+    // allRooms = allrooms.filter((el) => el.link != "");
+    let myRooms = myBreakout.myRooms;
+    myRooms = myRooms.slice(1);
+
+    for (let i = 0; i < myRooms.length; i++) {
+      // let tabId = allRooms.filter((el) => el.url == myRooms[i].link)[0].id;
+      let tabId;
+
+      let arr = allRooms.filter((el) => getMeetUrlBase(el.url) == myRooms[i].linkFetchedUrl);
+
+      if (arr && arr.length > 0) {
+        tabId = arr[0].id;
+
+        chrome.tabs.sendMessage(tabId, {
+          action: "removeAll",
+        });
+      }
+    }
+  } catch (err) {}
+});
+
+document.querySelector("#remove-all-main").parentElement.addEventListener("click", async (event) => {
+  try {
+    handleCopyClipboardButtons({ currentTarget: event.currentTarget.querySelector("button") });
+    let allRooms = await chromeAllOpenRooms();
+    // allRooms = allrooms.filter((el) => el.link != "");
+    let myRooms = myBreakout.myRooms;
+    myRooms = myRooms.slice(0, 1);
+
+    for (let i = 0; i < myRooms.length; i++) {
+      // let tabId = allRooms.filter((el) => el.url == myRooms[i].link)[0].id;
+      let tabId;
+
+      let arr = allRooms.filter((el) => getMeetUrlBase(el.url) == myRooms[i].linkFetchedUrl);
+
+      if (arr && arr.length > 0) {
+        tabId = arr[0].id;
+
+        chrome.tabs.sendMessage(tabId, {
+          action: "removeAll",
+        });
+      }
+    }
+  } catch (err) {}
+});
+
+document.querySelector("#hangup-all-breakouts").parentElement.addEventListener("click", async (event) => {
+  try {
+    handleCopyClipboardButtons({ currentTarget: event.currentTarget.querySelector("button") });
+    let allRooms = await chromeAllOpenRooms();
+
+    let myRooms = myBreakout.myRooms;
+    myRooms = myRooms.slice(1);
+
+    for (let i = 0; i < myRooms.length; i++) {
+      // let tabId = allRooms.filter((el) => el.url == myRooms[i].link)[0].id;
+      let tabId;
+
+      let arr = allRooms.filter((el) => getMeetUrlBase(el.url) == myRooms[i].linkFetchedUrl);
+
+      if (arr && arr.length > 0) {
+        tabId = arr[0].id;
+
+        chrome.tabs.sendMessage(tabId, {
+          action: "hangup",
+        });
+
+        // await chromeTabsSendMessage(tabId, {
+        //   action: "hangup",
+        // });
+
+        // await chromeRuntimeSendMessage({
+        //   tabId: tabId,
+        //   action: "closeRoomTab2",
+        // });
+      }
+    }
+  } catch (err) {}
+});
+
+document.querySelector("#hangup-main").parentElement.addEventListener("click", async (event) => {
+  try {
+    handleCopyClipboardButtons({ currentTarget: event.currentTarget.querySelector("button") });
+    let allRooms = await chromeAllOpenRooms();
+    // allRooms = allrooms.filter((el) => el.link != "");
+    let myRooms = myBreakout.myRooms;
+    myRooms = myRooms.slice(0, 1);
+
+    for (let i = 0; i < myRooms.length; i++) {
+      // let tabId = allRooms.filter((el) => el.url == myRooms[i].link)[0].id;
+      let tabId;
+
+      let arr = allRooms.filter((el) => getMeetUrlBase(el.url) == myRooms[i].linkFetchedUrl);
+
+      if (arr && arr.length > 0) {
+        tabId = arr[0].id;
+
+        chrome.tabs.sendMessage(tabId, {
+          action: "hangup",
+        });
+
+        // await chromeTabsSendMessage(tabId, {
+        //   action: "hangup",
+        // });
+
+        // await chromeRuntimeSendMessage({
+        //   tabId: tabId,
+        //   action: "closeRoomTab2",
+        // });
+      }
+    }
+  } catch (err) {}
+});
+
+document.querySelector("#close-room").parentElement.addEventListener("click", async (event) => {
+  // await refreshControlPanel();
+  // debugger;
+  // document.querySelector('#meet-room-controls').classList.remove('collapse');
+
+  try {
+    handleCopyClipboardButtons({ currentTarget: event.currentTarget.querySelector("button") });
+    let tabId = parseInt(document.querySelector("#slider-title").dataset.tabId);
+    let winId = parseInt(document.querySelector("#slider-title").dataset.winId);
+    let link = document.querySelector("#slider-title").dataset.link;
+
+    chrome.tabs.sendMessage(tabId, {
+      action: "closeRoom",
+      winId: winId,
+      tabId: tabId,
+    });
+
+    let toBeRemoved = document.querySelector(`[data-goto][data-link="${link}"]`);
+
+    if (toBeRemoved) {
+      toBeRemoved.parentElement.removeChild(toBeRemoved);
+    } else {
+      alert(`${link} not found`);
+    }
+
+    // July 21 change from 2 to normal
+    // await buildSlider2();
+    await buildSlider();
+
+    document.querySelector("#slider-right").click();
+    document.querySelector("#slider-left").click();
+  } catch (err) {}
+});
+
+// Event listener on start up
+document.addEventListener("DOMContentLoaded", (event) => {
+  updateDropdownsLists();
+});
+
+// document.addEventListener('visibilitychange', event => {
+//   console.log('visibility changed');
+// })
+// 1) Event listener on meet tab
+
+document.querySelector("#dropdown-meet-class-hook").addEventListener("click", handleMeetChooseClass);
+
+document.querySelector("#dropdown-meet-room-hook").addEventListener("click", handleMeetChooseNumber);
+
+document.querySelector("#assign-ppts").addEventListener("click", buildMeetMainPptListing);
+
+document.querySelector("#meet-rooms-hook").addEventListener("click", handleMeetRoomsHook);
+
+// August 2 disable refresh and change it to updateDropdownsLists
+document.querySelector("#open-main").addEventListener("click", async (event) => {
+  try {
+    await handleMeetOpenAllRooms(event);
+    updateDropdownsLists();
+    await chromeRuntimeSendMessage({ action: "tellContextToUpdateTabs" });
+  } catch (error) {
+    console.log(`Error in #open-main `, error);
+  }
+});
+
+document.querySelector("#open-breakouts").addEventListener("click", async (event) => {
+  await handleMeetOpenAllRooms(event);
+  // document.querySelector("#popup-refresh").click();
+  updateDropdownsLists();
+
+  // await sleep(100);
+  // document.querySelector("#slider-right").click();
+  // alert("clicked");
+
+  // await sleep(1000);
+  // document.querySelector("#slider-right").click();
+  // await sleep(100);
+  // document.querySelector("#slider-left").click();
+  // await sleep(100);
+  // alert("All rooms synced");
+
+  await chromeRuntimeSendMessage({ action: "tellContextToUpdateTabs" });
+});
+
+document.querySelector("#open-breakouts2").addEventListener("click", async (event) => {
+  await handleMeetOpenAllRooms(event);
+  // document.querySelector("#popup-refresh").click();
+  updateDropdownsLists();
+  handleCopyClipboardButtons(event);
+
+  // await sleep(100);
+  // document.querySelector("#slider-right").click();
+  // alert("clicked");
+
+  await chromeRuntimeSendMessage({ action: "tellContextToUpdateTabs" });
+});
+
+document.querySelector("#open-both").addEventListener("click", async (event) => {
+  try {
+    await handleMeetOpenAllRooms(event);
+    // document.querySelector("#popup-refresh").click();
+    updateDropdownsLists();
+
+    // await sleep(1000);
+    // document.querySelector("#slider-right").click();
+    // await sleep(100);
+    // document.querySelector("#slider-left").click();
+    // await sleep(100);
+    // alert("All rooms synced");
+
+    // await sleep(3000);
+    // document.querySelector("#slider-right").click();
+    // await sleep(100);
+    // document.querySelector("#slider-left").click();
+
+    await chromeRuntimeSendMessage({ action: "tellContextToUpdateTabs" });
+  } catch (err) {}
+});
+
+document.querySelector("#copy-all-links").addEventListener("click", handleCopyClipboardButtons);
+
+document.querySelector("#btn-ad-hoc-list-groups-link-copy").addEventListener("click", handleCopyClipboardButtons);
+
+document.querySelector("#btn-ad-hoc-list-groups-ppt-copy").addEventListener("click", handleCopyClipboardButtons);
+
+document.querySelector("#btn-pre-assigned").addEventListener("click", handleCopyClipboardButtons);
+document.querySelector("#btn-gc-sync").addEventListener("click", (events) => {
+  handleCopyClipboardButtons(events);
+  syncGC(events);
+});
+
+document.querySelector("#btn-ad-hoc").addEventListener("click", handleCopyClipboardButtons);
+document.querySelector("#btn-ad-hoc-autosend").addEventListener("click", handleAutosendAssignments);
+
+document.querySelector("#copy-ppt-list").addEventListener("click", handleCopyClipboardButtons);
+document.querySelector("#copy-ppt-assignments").addEventListener("click", handleCopyClipboardButtons);
+document.querySelector("#copy-breakout-groups").addEventListener("click", handleCopyClipboardButtons);
+
+document.querySelector("#slider").addEventListener("input", handleSlider);
+document.querySelector("#slider-left").addEventListener("click", handleSlider);
+document.querySelector("#slider-right").addEventListener("click", handleSlider);
+document.querySelector("#thisSpk").addEventListener("click", handleSliderMute);
+document.querySelector("#thisMic").addEventListener("click", handleSliderMute);
+document.querySelector("#thisVid").addEventListener("click", handleSliderMute);
+document.querySelector("#thatSpk").addEventListener("click", handleSliderMute);
+document.querySelector("#thatMic").addEventListener("click", handleSliderMute);
+document.querySelector("#thatVid").addEventListener("click", handleSliderMute);
+document.querySelector("#broadSpk").addEventListener("click", handleSliderMute);
+document.querySelector("#broadMic").addEventListener("click", handleSliderMute);
+document.querySelector("#broadVid").addEventListener("click", handleSliderMute);
+
+// 2) Event listeners on rooms tab
+document.querySelector("#dropdown-rooms-class-hook").addEventListener("click", handleRoomsChooseClass);
+
+document.querySelector("#btn-rooms-add").addEventListener("click", handleRooms);
+document.querySelector("#btn-rooms-save").addEventListener("click", handleRooms);
+document.querySelector("#btn-rooms-recycle").addEventListener("click", handleRooms);
+document.querySelector("#btn-rooms-undo").addEventListener("click", handleRooms);
+document.querySelector("#btn-rooms-delete").addEventListener("click", handleRooms);
+
+document.querySelector("#btn-rooms-export").addEventListener("click", handleRoomsExport);
+document.querySelector("#btn-rooms-import").addEventListener("click", handleRoomsImport);
+
+document.querySelector("#list-rooms-hook").addEventListener("input", handleRoomsEditInput);
+
+document.querySelector("#list-rooms-hook").addEventListener("dragend", (evt) => {
+  alertMessage(roomsNotYetSaved, "alert-warning", "#rooms-alert", (category = "rooms"), (waitTime = 1000000));
+});
+
+// 3) Event listeners on classes tab
+document.querySelector("#btn-classes-add").addEventListener("click", handleClasses);
+document.querySelector("#btn-classes-save").addEventListener("click", handleClasses);
+document.querySelector("#btn-classes-undo").addEventListener("click", handleClasses);
+document.querySelector("#btn-classes-delete").addEventListener("click", handleClasses);
+
+document.querySelector("#btn-classes-export").addEventListener("click", handleClassesExport);
+document.querySelector("#btn-classes-import").addEventListener("click", handleClassesImport);
+
+document.querySelector("#list-classes-hook").addEventListener("input", handleClassesEditInput);
+
+document.querySelector("#list-classes-hook").addEventListener("dragend", (evt) => {
+  alertMessage(roomsNotYetSaved, "alert-warning", "#classes-alert", (category = "classes"), (waitTime = 1000000));
+});
+
+// Tab 4: General
+document.querySelector("[data-general-click]").addEventListener("click", handleTabsTilesMaxtabs);
+document.querySelector("[data-general-themes]").addEventListener("click", handleThemes);
+document.querySelector("[data-radio-toolbar-solid]").addEventListener("click", handleRadioSolid);
+document.querySelector("[data-radio-toolbar-grad]").addEventListener("click", handleRadioGrad);
+
+document.querySelector("#slider-bg-url-save").addEventListener("click", async (event) => {
+  handleCopyClipboardButtons(event);
+  handleSliderBg();
+  myBreakout.saveBreakout();
+});
+
+document.querySelector("#broadcast-bg-url-save").addEventListener("click", async (event) => {
+  handleCopyClipboardButtons(event);
+  handleBroadcastBg();
+  myBreakout.saveBreakout();
+});
+
+document.querySelector("#auto-enter").addEventListener("click", handleAutoEnter);
+document.querySelector("#new-mute").addEventListener("click", handleNewMute);
+document.querySelector("#auto-join-main").addEventListener("click", handleAutoJoin);
+document.querySelector("#auto-join-breakouts").addEventListener("click", handleAutoJoin);
+document.querySelector("#auto-refresh-main").addEventListener("click", handleAutoRefresh);
+document.querySelector("#auto-refresh-breakouts").addEventListener("click", handleAutoRefresh);
+document.querySelector("#allow-simult").addEventListener("click", handleAllowSimult);
+
+// Bootstrap
+$(".alert").alert();
+
+// $(".nav-tabs a").on("show.bs.tab", function () {
+//   myBreakout.saveBreakout();
+// });
+
+$("#meet-main-ppt-pre").on("show.bs.collapse", function () {
+  // Groups Links
+  let groupsLinkText = getAssignRoomList((boolCondense = true)).listText;
+
+  document.querySelector("#pre-assigned-list-groups-link-copy").classList.remove("hide-button");
+  // document.querySelector("#ad-hoc-list-groups-link").innerText = groupsLinkText;
+
+  if (groupsLinkText.length < 500) {
+    document.querySelector(
+      "#pre-assigned-list-groups-link-length"
+    ).innerHTML = `<span data-msg-pre-numwords2a>This copy/paste is only </span>${groupsLinkText.length} <span data-msg-pre-numwords2b> characters, which is under the 500 character limit.  The listing below is for your reference only</span>`;
+  } else {
+    document.querySelector("#pre-assigned-list-groups-link-copy").classList.add("hide-button");
+    document.querySelector(
+      "#pre-assigned-list-groups-link-length"
+    ).innerText = `<span data-msg-pre-numwords2c>This copy/paste has </span>${groupsLinkText.length} <span data-msg-pre-numwords2d> characters, which is OVER the 500 character limit.  Please copy/paste by highlighting the text below in sections and copy/paste into the Main chat.  Use your judgment as to how much to copy and paste at a time, perhaps 8 lines at a time.  It is OK if you overlap and copy and paste the same lines again.  The purpose it so inform the students so they know what to click on.</span>`;
+  }
+
+  document.querySelector("#pre-assigned-list-groups-link").innerText = groupsLinkText;
+
+  intlMsg("pre-numwords2a", "preNumwords2a");
+  intlMsg("pre-numwords2b", "preNumwords2b");
+  intlMsg("pre-numwords2c", "preNumwords2c");
+  intlMsg("pre-numwords2d", "preNumwords2d");
+});
+
+$("#rooms-export-import").on("show.bs.modal", (evt) => {
+  nameKey = document.querySelector("#setup-rooms-class[data-class-name-key]").dataset.classNameKey;
+
+  document.querySelector("[data-impexp-rooms-popup-title]").innerText = `${nameKey}`;
+});
+
+// Slider background image options
+$("#slider-bg-position").on("show.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#slider-bg-size .dropdown-item");
+
+  for (let i = 0; i < sel.length; i++) {
+    sel[i].classList.remove("active");
+
+    if (sel[i].text == myBreakout.settings.sliderBg.position) {
+      sel[i].classList.add("active");
+    }
+  }
+});
+
+$("#slider-bg-size").on("show.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#slider-bg-size .dropdown-item");
+
+  for (let i = 0; i < sel.length; i++) {
+    sel[i].classList.remove("active");
+
+    if (sel[i].text == myBreakout.settings.sliderBg.size) {
+      sel[i].classList.add("active");
+    }
+  }
+});
+
+$("#slider-bg-fgcolor").on("show.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#slider-bg-fgcolor .dropdown-item");
+
+  for (let i = 0; i < sel.length; i++) {
+    sel[i].classList.remove("active");
+
+    if (sel[i].text == myBreakout.settings.sliderBg.fgcolor) {
+      sel[i].classList.add("active");
+    }
+  }
+});
+
+$("#slider-bg-bgcolor").on("show.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#slider-bg-bgcolor .dropdown-item");
+
+  for (let i = 0; i < sel.length; i++) {
+    sel[i].classList.remove("active");
+
+    if (sel[i].text == myBreakout.settings.sliderBg.bgcolor) {
+      sel[i].classList.add("active");
+    }
+  }
+});
+
+// Slider background image options
+$("#slider-bg-position").on("hide.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#slider-bg-position .dropdown-item");
+
+  if (event.clickEvent && event.clickEvent.target && event.clickEvent.target.classList.contains("dropdown-item")) {
+    for (let i = 0; i < sel.length; i++) {
+      sel[i].classList.remove("active");
+    }
+    event.clickEvent.target.classList.add("active");
+    myBreakout.settings.sliderBg.position = event.clickEvent.target.text;
+    await myBreakout.saveBreakout();
+
+    updateSliderBG();
+  }
+});
+
+$("#slider-bg-size").on("hide.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#slider-bg-size .dropdown-item");
+
+  if (event.clickEvent && event.clickEvent.target && event.clickEvent.target.classList.contains("dropdown-item")) {
+    for (let i = 0; i < sel.length; i++) {
+      sel[i].classList.remove("active");
+    }
+    event.clickEvent.target.classList.add("active");
+    myBreakout.settings.sliderBg.size = event.clickEvent.target.text;
+    await myBreakout.saveBreakout();
+
+    updateSliderBG();
+  }
+});
+
+$("#slider-bg-fgcolor").on("hide.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#slider-bg-fgcolor .dropdown-item");
+
+  if (event.clickEvent && event.clickEvent.target && event.clickEvent.target.classList.contains("dropdown-item")) {
+    for (let i = 0; i < sel.length; i++) {
+      sel[i].classList.remove("active");
+    }
+    event.clickEvent.target.classList.add("active");
+    myBreakout.settings.sliderBg.fgcolor = event.clickEvent.target.text;
+    await myBreakout.saveBreakout();
+
+    updateSliderBG();
+  }
+});
+
+$("#slider-bg-bgcolor").on("hide.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#slider-bg-bgcolor .dropdown-item");
+
+  if (event.clickEvent && event.clickEvent.target && event.clickEvent.target.classList.contains("dropdown-item")) {
+    for (let i = 0; i < sel.length; i++) {
+      sel[i].classList.remove("active");
+    }
+    event.clickEvent.target.classList.add("active");
+    myBreakout.settings.sliderBg.bgcolor = event.clickEvent.target.text;
+    await myBreakout.saveBreakout();
+
+    updateSliderBG();
+  }
+});
+
+// Broadcast background image options
+$("#broadcast-bg-position").on("show.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#broadcast-bg-size .dropdown-item");
+
+  for (let i = 0; i < sel.length; i++) {
+    sel[i].classList.remove("active");
+
+    if (sel[i].text == myBreakout.settings.broadcastBg.position) {
+      sel[i].classList.add("active");
+    }
+  }
+});
+
+$("#broadcast-bg-size").on("show.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#broadcast-bg-size .dropdown-item");
+
+  for (let i = 0; i < sel.length; i++) {
+    sel[i].classList.remove("active");
+
+    if (sel[i].text == myBreakout.settings.broadcastBg.size) {
+      sel[i].classList.add("active");
+    }
+  }
+});
+
+$("#broadcast-bg-fgcolor").on("show.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#broadcast-bg-fgcolor .dropdown-item");
+
+  for (let i = 0; i < sel.length; i++) {
+    sel[i].classList.remove("active");
+
+    if (sel[i].text == myBreakout.settings.broadcastBg.fgcolor) {
+      sel[i].classList.add("active");
+    }
+  }
+});
+
+$("#broadcast-bg-bgcolor").on("show.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#broadcast-bg-bgcolor .dropdown-item");
+
+  for (let i = 0; i < sel.length; i++) {
+    sel[i].classList.remove("active");
+
+    if (sel[i].text == myBreakout.settings.broadcastBg.bgcolor) {
+      sel[i].classList.add("active");
+    }
+  }
+});
+
+// Broadcast background image options
+$("#broadcast-bg-position").on("hide.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#broadcast-bg-position .dropdown-item");
+
+  if (event.clickEvent && event.clickEvent.target && event.clickEvent.target.classList.contains("dropdown-item")) {
+    for (let i = 0; i < sel.length; i++) {
+      sel[i].classList.remove("active");
+    }
+    event.clickEvent.target.classList.add("active");
+    myBreakout.settings.broadcastBg.position = event.clickEvent.target.text;
+    await myBreakout.saveBreakout();
+
+    updateBroadcastBG();
+  }
+});
+
+$("#broadcast-bg-size").on("hide.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#broadcast-bg-size .dropdown-item");
+
+  if (event.clickEvent && event.clickEvent.target && event.clickEvent.target.classList.contains("dropdown-item")) {
+    for (let i = 0; i < sel.length; i++) {
+      sel[i].classList.remove("active");
+    }
+    event.clickEvent.target.classList.add("active");
+    myBreakout.settings.broadcastBg.size = event.clickEvent.target.text;
+    await myBreakout.saveBreakout();
+
+    updateBroadcastBG();
+  }
+});
+
+$("#broadcast-bg-fgcolor").on("hide.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#broadcast-bg-fgcolor .dropdown-item");
+
+  if (event.clickEvent && event.clickEvent.target && event.clickEvent.target.classList.contains("dropdown-item")) {
+    for (let i = 0; i < sel.length; i++) {
+      sel[i].classList.remove("active");
+    }
+    event.clickEvent.target.classList.add("active");
+
+    myBreakout.settings.broadcastBg.fgcolor = event.clickEvent.target.text;
+    await myBreakout.saveBreakout();
+
+    updateBroadcastBG();
+  }
+});
+
+$("#broadcast-bg-bgcolor").on("hide.bs.dropdown", async (event) => {
+  let sel = document.querySelectorAll("#broadcast-bg-bgcolor .dropdown-item");
+
+  if (event.clickEvent && event.clickEvent.target && event.clickEvent.target.classList.contains("dropdown-item")) {
+    for (let i = 0; i < sel.length; i++) {
+      sel[i].classList.remove("active");
+    }
+    event.clickEvent.target.classList.add("active");
+    myBreakout.settings.broadcastBg.bgcolor = event.clickEvent.target.text;
+    await myBreakout.saveBreakout();
+
+    updateBroadcastBG();
+  }
+});
+
+// One time build the list
+$("#dropdown-general-toolbar-solid").on("show.bs.dropdown", (evt) => {
+  try {
+    let items = [...evt.currentTarget.querySelectorAll(".dropdown-menu>a")];
+
+    if (items.length == 0) {
+      let hook = evt.currentTarget.querySelector(".dropdown-menu");
+      colorList.forEach((el, i) => {
+        i == 0 ? (setActive = "active") : (setActive = "");
+        i > 0 ? (backgroundColor = el) : (backgroundColor = "");
+
+        setStyle = `background: ${getColorRgb(el)}`;
+
+        items =
+          items +
+          `<a class="col-12 flex-fill dropdown-item ${setActive}" href="#" data-general-toolbar-solid><span class="col-6 flex-fill" style="${setStyle}">&nbsp&nbsp&nbsp&nbsp&nbsp</span>&nbsp&nbsp${el}</a>
+          `;
+      });
+
+      hook.innerHTML = items;
+    }
+  } catch (err) {}
+});
+
+// User selects solid color
+$("#dropdown-general-toolbar-solid").on("hidden.bs.dropdown", async (evt) => {
+  try {
+    selectedColor = evt.clickEvent.target.text;
+    if (selectedColor == undefined) {
+      return;
+    }
+    selectedColor != "" ? (selectedColor = selectedColor.trim()) : false;
+    myBreakout.settings.toolbarSolidColor = selectedColor;
+
+    updateToolBarColorSettings();
+    await myBreakout.saveBreakout();
+
+    // Reset the active
+    let items = [...evt.currentTarget.querySelectorAll(".dropdown-menu>a")];
+    items.map((el) => {
+      el.classList.remove("active");
+      if (el.innerText.trim() === selectedColor) {
+        el.classList.add("active");
+      }
+    });
+  } catch (err) {}
+});
+
+$("#dropdown-general-toolbar-grad-left").on("show.bs.dropdown", (evt) => {
+  try {
+    let items = [...evt.currentTarget.querySelectorAll(".dropdown-menu>a")];
+
+    if (items.length == 0) {
+      let hook = evt.currentTarget.querySelector(".dropdown-menu");
+      colorList.forEach((el, i) => {
+        i == 0 ? (setActive = "active") : (setActive = "");
+        i > 0 ? (backgroundColor = el) : (backgroundColor = "");
+
+        setStyle = `background: ${getColorRgb(el)}`;
+
+        items =
+          items +
+          `<a class="col-12 flex-fill dropdown-item ${setActive}" href="#" data-general-toolbar-grad-left><span class="col-6 flex-fill" style="${setStyle}">&nbsp&nbsp&nbsp&nbsp&nbsp</span>&nbsp&nbsp${el}</a>
+          `;
+      });
+
+      hook.innerHTML = items;
+    }
+  } catch (err) {}
+});
+
+$("#dropdown-general-toolbar-grad-left").on("hidden.bs.dropdown", async (evt) => {
+  try {
+    selectedColor = evt.clickEvent.target.text;
+    if (selectedColor == undefined) {
+      return;
+    }
+    selectedColor != "" ? (selectedColor = selectedColor.trim()) : false;
+
+    myBreakout.settings.toolbarGradLeftColor = selectedColor;
+    updateToolBarColorSettings();
+    await myBreakout.saveBreakout();
+
+    // Reset the active
+    let items = [...evt.currentTarget.querySelectorAll(".dropdown-menu>a")];
+    items.map((el) => {
+      el.classList.remove("active");
+      if (el.innerText.trim() === selectedColor) {
+        el.classList.add("active");
+      }
+    });
+  } catch (err) {}
+});
+
+$("#dropdown-general-toolbar-grad-right").on("show.bs.dropdown", (evt) => {
+  try {
+    let items = [...evt.currentTarget.querySelectorAll(".dropdown-menu>a")];
+
+    if (items.length == 0) {
+      let hook = evt.currentTarget.querySelector(".dropdown-menu");
+      colorList.forEach((el, i) => {
+        i == 0 ? (setActive = "active") : (setActive = "");
+        i > 0 ? (backgroundColor = el) : (backgroundColor = "");
+
+        setStyle = `background: ${getColorRgb(el)}`;
+
+        items =
+          items +
+          `<a class="col-12 flex-fill dropdown-item ${setActive}" href="#" data-general-toolbar-grad-right><span class="col-6 flex-fill" style="${setStyle}">&nbsp&nbsp&nbsp&nbsp&nbsp</span>&nbsp&nbsp${el}</a>
+          `;
+      });
+
+      hook.innerHTML = items;
+    }
+  } catch (err) {}
+});
+
+$("#dropdown-general-toolbar-grad-right").on("hidden.bs.dropdown", async (evt) => {
+  try {
+    selectedColor = evt.clickEvent.target.text;
+    if (selectedColor == undefined) {
+      return;
+    }
+    selectedColor != "" ? (selectedColor = selectedColor.trim()) : false;
+
+    myBreakout.settings.toolbarGradRightColor = selectedColor;
+    updateToolBarColorSettings();
+    await myBreakout.saveBreakout();
+
+    // Reset the active
+    let items = [...evt.currentTarget.querySelectorAll(".dropdown-menu>a")];
+    items.map((el) => {
+      el.classList.remove("active");
+      if (el.innerText.trim() === selectedColor) {
+        el.classList.add("active");
+      }
+    });
+  } catch (err) {}
+});
+
+// Popup receives broadcast message
+chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
+  (async () => {
+    let action = payload.action;
+    let tabsQuery, tabsUpdated;
+    let boolMuted;
+
+    switch (action) {
+      case "contentSpk":
+        {
+          let tabId = sender.tab.id;
+          let tabUrl = sender.tab.url;
+          let element = document.querySelector("#slider-title");
+
+          if (!element) {
+            console.log(`Element with id 'slider-title' not found for ${tabId} ${tabUrl}`);
+            break;
+          }
+
+          let tabIdSlider = element.dataset.tabId;
+          console.log(`Inside contentSpk tabId: ${tabId} tabIdSlider: ${tabIdSlider} tabUrl: ${tabUrl}`);
+
+          if (tabId.toString() !== tabIdSlider) break;
+
+          // Match !!!
+          let tab = await chromeTabsGet(tabId);
+          let muted = tab.mutedInfo.muted;
+          console.log(`Inside contentSpk ${tabId} ${muted} ${tabUrl}`);
+
+          if (muted) {
+            document.querySelector("#thisSpk").classList.add("av-mute");
+            icn = document.querySelector("#thisSpk").querySelector("i");
+            icn.classList.remove("fa-volume-up");
+            icn.classList.add("fa-volume-mute");
+          } else {
+            document.querySelector("#thisSpk").classList.remove("av-mute");
+            icn = document.querySelector("#thisSpk").querySelector("i");
+            icn.classList.remove("fa-volume-mute");
+            icn.classList.add("fa-volume-up");
+          }
+        }
+        break;
+
+      case "contentMic":
+        if (document.querySelector("#slider-title").innerText == payload.title) {
+          if (payload.boolMuted == "true") {
+            document.querySelector("#thisMic").classList.add("av-mute");
+          } else {
+            document.querySelector("#thisMic").classList.remove("av-mute");
+          }
+        }
+        break;
+
+      case "contentVid":
+        if (document.querySelector("#slider-title").innerText == payload.title) {
+          if (payload.boolMuted == "true") {
+            document.querySelector("#thisVid").classList.add("av-mute");
+          } else {
+            document.querySelector("#thisVid").classList.remove("av-mute");
+          }
+        }
+        break;
+
+      case "getSelectedCourse":
+        cb({
+          class: "Web Magic",
+          numRooms: 3,
+          links: ["https://meet.google.com/abc-defg-hij", "https://meet.google.com/xyz-jksk-sks"],
+        });
+
+      // This is from the background
+      case "updateSliderFocus":
+        let obj = await chromeWindowsGetCurrent({});
+        await chromeWindowsUpdate2(obj.id, { focused: true });
+        document.querySelector("#slider").focus();
+        cb({ msg: "focused on slider" });
+        break;
+
+      case "pingPopup":
+        let pingObj = await chromeWindowsGetCurrent({});
+        await chromeWindowsUpdate2(pingObj.id, { focused: true });
+        console.log("Popup received runtime message, action: 'pingPopup'");
+        cb({ msg: "popup is already open" });
+        break;
+
+        // case "GETSPKSTATE":
+        //   // Get the current muted state
+        //   tabsQuery = await chromeTabsQuery2({ url: sender.tab.url });
+        //   boolMuted = tabsQuery[0].mutedInfo.muted;
+
+        //   // Return the current state
+        //   cb({ boolMuted: boolMuted });
+        //   break;
+        // case "SPKBTNCLICKED":
+        //   // Get the current muted state
+        //   tabsQuery = await chromeTabsQuery2({ url: sender.tab.url });
+        //   boolMuted = tabsQuery[0].mutedInfo.muted;
+
+        //   // Toggle this state
+        //   tabsUpdated = await chromeTabsUpdate2(sender.tab.id, {
+        //     muted: !boolMuted,
+        //   });
+
+        // Return the new state
+        cb({ boolMutedNew: tabsUpdated.mutedInfo.muted });
+        break;
+
+      default:
+        break;
+    }
+  })();
+});
+
+$(document).ready(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
