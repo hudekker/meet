@@ -878,6 +878,8 @@ const popupRetile = async (currentTarget) => {
       // await sleep(500);
     }
 
+    await sleep(100);
+
     obj = await chromeWindowsUpdate2(saveWinId, {
       focused: true,
     });

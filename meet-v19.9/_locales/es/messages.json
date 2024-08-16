@@ -231,13 +231,13 @@
     "message": "Una vez que vuelva a iniciar sesión con el orden correcto (la primera cuenta es su cuenta principal), puede iniciar sesión en todas sus otras cuentas de Google"
   },
   "btnOpenMain": {
-    "message": "Sala principal"
+    "message": "Principal"
   },
   "btnOpenMain1": {
     "message": "Sala principal abierta (o integración con Google Classroom)"
   },
   "btnOpenMainRam": {
-    "message": "Sala principal"
+    "message": "Principal"
   },
   "btnOpenBreakouts": {
     "message": "Salas"
@@ -354,7 +354,7 @@
     "message": "Estudiante"
   },
   "rptMain": {
-    "message": "Sala principal"
+    "message": "Principal"
   },
   "rptActualRoom": {
     "message": "Sala Real"
