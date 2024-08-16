@@ -141,6 +141,8 @@ intlMsg("adhoc-2", "adhoc2");
 intlMsg("adhoc-2a", "adhoc2a");
 intlMsg("adhoc-2b", "adhoc2b");
 intlMsg("adhoc-2c", "adhoc2c");
+intlMsg("adhoc-autosend", "adhocAutosend");
+intlMsg("btn-autosend", "btnAutosend");
 
 // intlMsg("btn-random", "btnRandom");
 

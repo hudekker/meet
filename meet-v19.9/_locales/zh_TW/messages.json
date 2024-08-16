@@ -27,7 +27,7 @@
     "message": "用"
   },
   "headline1d": {
-    "message": "創作的，"
+    "message": "創作的，註解："
   },
   "headline1e": {
     "message": "注釋"
@@ -87,7 +87,7 @@
     "message": "把關掉的meets重新開 （可能沒有）"
   },
   "audioFixCheckbox": {
-    "message": "使用新的解法"
+    "message": "啟用新的解決方案"
   },
   "audioFixRecommend": {
     "message": "(建議) "
@@ -123,7 +123,7 @@
     "message": "開始上課"
   },
   "assignBreakoutsAdhoc": {
-    "message": "現場分組"
+    "message": "即時分組"
   },
   "assignBreakoutsPre": {
     "message": "預先分組"
@@ -201,7 +201,7 @@
     "message": "這裡"
   },
   "popupHelpAdhocStep2c": {
-    "message": "為了複製討論室連結，然後在大教室即時通訊貼上 (command/control v)"
+    "message": "為了複製討論室連結，然後在大教室即時通訊貼上 (指令/控制鍵 V)"
   },
   "popupHelpAdhocNumwords2a": {
     "message": "這個複製只有"
@@ -225,7 +225,7 @@
     "message": "這裡"
   },
   "popupHelpAdhocStep3c": {
-    "message": "為了複製學生分組，然後在大教室即時通訊貼上 (command/control v)"
+    "message": "為了複製學生分組，然後在大教室即時通訊貼上 (指令/控制鍵 V)"
   },
   "popupHelpAdhocNumwords3a": {
     "message": "這個複製只有"
@@ -556,7 +556,7 @@
     "message": "最簡單的方法: "
   },
   "roomsHowStart1": {
-    "message": "在連結欄位裡，不填寫任何的東西。按（藍色的）儲存按鈕，系統會自動向google 申請一個meet 網址並在這裡儲存。您只要填寫教室的名字而已。這個自動的連結是一個靜態的連結，不會變"
+    "message": "在連結欄位裡，不填寫任何的東西。按（藍色的）儲存按鈕，系統會自動向google 申請一個meet 網址並在這裡儲存。您只要填寫教室的名字而已。這個自動的連結是一個固定的連結，不會變"
   },
   "roomsHowGc": {
     "message": "Google Classroom 老師： "
@@ -613,7 +613,7 @@
     "message": "代碼不是你自己隨機做的，而是google meet製作的。比方說如果用這個網址：https://meet/google.com/new 會有一個新的meet 發起，在網址能看得出來這個12個字，就是你的代碼"
   },
   "roomsHowCode3": {
-    "message": "代碼是靜態的因為總是發起同樣的meet網址。"
+    "message": "代碼是固定的因為總是發起同樣的meet網址。"
   },
   "roomsHowUrl": {
     "message": "Meet Url"
@@ -628,7 +628,7 @@
     "message": "向google 申請一個連結網址並儲存. 或許你能直接輸入一個全網址，在這個格式："
   },
   "roomsHowUrl4": {
-    "message": "Meet URLs 是靜態的因為他們總是發起同樣的網址沒變。不過在「一般設計」的標籤裡，有一個「自動發起新的網址】勾子，如果打勾這個選項，每次發起會自動換新的網址。如果你選這個選項，要注意發起後通知學生這個新的網址。這個選項可能比較適合討論室也不是大教室"
+    "message": "Meet URLs 是固定的因為他們總是發起同樣的網址沒變。不過在「一般設計」的標籤裡，有一個「自動發起新的網址】勾子，如果打勾這個選項，每次發起會自動換新的網址。如果你選這個選項，要注意發起後通知學生這個新的網址。這個選項可能比較適合討論室也不是大教室"
   },
   "roomsHowUrl5": {
     "message": "資料 URL： "
@@ -688,7 +688,7 @@
     "message": "背景顏色"
   },
   "genAutoEnter": {
-    "message": "讓「外人」自動進入教室"
+    "message": "允許外部人員自動進入教室"
   },
   "genAutoEnter1": {
     "message": "若勾選的話，外人能透過教室的連結自動近來"
@@ -709,13 +709,13 @@
     "message": "討論室"
   },
   "genAutoNewUrl": {
-    "message": "關於「靜態」教室連結（深藍色的）自動換新的"
+    "message": "關於「固定」教室連結（深藍色的）自動換新的"
   },
   "genAutoNewUrl1": {
-    "message": "每次發起會議，自動換新的meet網址連結，這個選項算一個安全的方法但管理教室過程會變成有一點複雜。要先發起會議才能夠知道該會議的連結是什麼，然後把新的連結通知（傳給）學生。平常這個功能比較適合討論室用的。如果勾選大教室的話，要先發起大教室，知道新的網址連結，把新的連結傳給學生（透過email,簡訊，等等）學生才知道怎麼進入大教室（網址是什麼）。"
+    "message": "每次發起會議時，自動更換新的 Meet 連結。這個選項是一個安全的方法，但管理教室過程可能會變得有點複雜。必須先發起會議才能知道新連結，然後再通知學生。"
   },
   "genAutoNewUrl2": {
-    "message": "請注意：這個選項只是針對教室設定標籤裡面的「靜態」類型的教室連結（深藍色的）。"
+    "message": "請注意：這個選項只是針對教室設定標籤裡面的「固定」類型的教室連結（深藍色的）。"
   },
   "genAutoNewUrl3": {
     "message": "其他的教室連結類型（暱稱綠色的，代碼淺藍色的）就不理會這個選項，完全不影響。"
@@ -781,13 +781,13 @@
     "message": "胡浩洋用 ❤️ 創作的"
   },
   "errorAutoCreateLink": {
-    "message": "發生了問題自動向google為您申請meet連結。請確認您是登入了您的google帳號。如果已經登入了，請用這個連結登出重新登入： https://accounts.google.com/SignoutOptions。這樣會把您所有現在登入的帳戶登出 (pai-sei pai-sei)，然後請注意您第一個重新登入的帳號是您的教書的 google 帳號 。登入順序很重要，您第一個登入的是您的google meet 帳號。"
+    "message": "發生問題時，無法自動向 Google 申請 Meet 連結。。請確認您是登入了您的google帳號。如果已經登入了，請用這個連結登出重新登入： https://accounts.google.com/SignoutOptions。這樣會把您所有現在登入的帳戶登出 (pai-sei pai-sei)，然後請確保您首先登入的是您的教學 Google 帳號 。登入順序很重要，您第一個登入的是您的google meet 帳號。"
   },
   "errorNick1": {
     "message": "發生了問題自動製作了連結為了暱稱："
   },
   "errorNick2": {
-    "message": "請確認您是登入了您的google帳號。如果已經登入了，並確認您的google 帳號是google suite, education ,等等提供暱稱的功能，一般免費的google帳號沒有提供暱稱功能。如果您的帳號提供這個功能及已經登入了，請用這個連結登出重新登入： https://accounts.google.com/SignoutOptions。這樣會把您所有現在登入的帳戶登出 (pai-sei pai-sei)，然後請注意您第一個重新登入的帳號是您的教書的 google 帳號 。登入順序很重要，您第一個登入的是您的google meet 帳號。如果您的google 帳號沒有提供暱稱功能，請只製作靜態（深藍色的）或代碼（淺藍色的）連結"
+    "message": "請確認您已登入 Google 帳號。如果已登入，並且確定您的 Google 帳號具有 Google Suite、教育版等提供暱稱功能，免費的 Google 帳號通常沒有此功能。如果您的帳號提供這個功能及已經登入了，請用這個連結登出重新登入： https://accounts.google.com/SignoutOptions。這樣會把您所有現在登入的帳戶登出 (pai-sei pai-sei)，然後請確保您首先登入的是您的教學 Google 帳號 。登入順序很重要，您第一個登入的是您的google meet 帳號。如果您的google 帳號沒有提供暱稱功能，請只製作固定（深藍色的）或代碼（淺藍色的）連結"
   },
   "errorBouncingBalls": {
     "message": "有一個meet 視窗沒辦法同步聯繫（cannot sync). 請把您所有現在已開meet的視窗關掉，包含此控制面板，然後重新開此控制面板，重新發起大教室與討論室。放心關掉meet視窗並不會把裡面的學生刪除干擾等等。如果您有蠻多已開的視窗，可能不找所有的meet視窗。這樣的話，建議簡單的方法，乾脆把您現在所有的視窗全部關掉，重新開，因為如果還是留著一個舊的meet視窗, 擴充功能還是會無法練習同步。***不需要刪掉擴充功能重新下載。只要先關掉所有已開的meet視窗，再重新開此控制面板，用此控制面板開大教室與討論室"
@@ -800,5 +800,11 @@
   },
   "msgMainSync": {
     "message": "成功： 大教室同步聯繫 （Main room synced)"
+  },
+  "adhocAutosend": {
+    "message": "新功能！自動將分組任務發送到 Meet 聊天室"
+  },
+  "btnAutosend": {
+    "message": "發送分組任務到聊天室"
   }
 }

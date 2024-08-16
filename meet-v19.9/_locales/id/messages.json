@@ -801,5 +801,11 @@
   },
   "msgMainSync": {
     "message": "Sukses: Ruang utama berhasil disinkronkan (Ruang utama disinkronkan)"
+  },
+  "adhocAutosend": {
+    "message": "Baru!!! Kirim tugas breakout secara otomatis ke obrolan meet"
+  },
+  "btnAutosend": {
+    "message": "Kirim tugas breakout ke obrolan"
   }
 }

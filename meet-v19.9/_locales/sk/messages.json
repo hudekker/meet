@@ -749,5 +749,11 @@
   },
   "msgMainSync": {
     "message": "Úspech: Hlavná miestnosť synchronizovaná"
+  },
+  "adhocAutosend": {
+    "message": "Nové!!! Automaticky posielajte úlohy z breakout do chatu Meet"
+  },
+  "btnAutosend": {
+    "message": "Odoslať úlohy z breakout do chatu"
   }
 }

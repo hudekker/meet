@@ -1,12 +1,12 @@
 {
   "extName": {
-    "message": "Google Meet Dividir Cuartos by Alejandro (Robert) Hudek"
+    "message": "Google Meet Salas de Grupos por Alejandro (Robert) Hudek"
   },
   "extDesc": {
-    "message": "Completamente Gratis y sus Datos son Privados. Integración con Google Classroom, control deslizante, apodos, tutoriales de ayuda"
+    "message": "Completamente gratis y con privacidad de datos. Integración con Google Classroom, control deslizante, apodos, tutoriales de ayuda"
   },
   "title": {
-    "message": "Dividir Cuartos"
+    "message": "Salas de Grupos"
   },
   "myCourse": {
     "message": "Mi curso"
@@ -18,13 +18,13 @@
     "message": "Volver a Mosaico"
   },
   "toolTipToolbar": {
-    "message": "Ocultar/Mostrar barra de herramientas de Meet"
+    "message": "Ocultar/Mostrar la barra de herramientas de Meet"
   },
   "meet": {
     "message": "Comenzar la clase"
   },
   "rooms": {
-    "message": "Cuartos"
+    "message": "Salas"
   },
   "courses": {
     "message": "Cursos"
@@ -36,16 +36,16 @@
     "message": "Estudiantes"
   },
   "btnRoomsReport": {
-    "message": "Cuartos"
+    "message": "Salas"
   },
   "broadcast": {
-    "message": "Transmitir a todos"
+    "message": "Transmitir a todas las salas"
   },
   "sliderDefault": {
-    "message": "Cuartos"
+    "message": "Salas"
   },
   "defaultAccount": {
-    "message": "Su cuenta es "
+    "message": "Su cuenta es"
   },
   "startClass": {
     "message": "Comenzar la clase"
@@ -72,19 +72,19 @@
     "message": "Eliminar (arrastrar): haga clic y mantenga presionado el nombre de un estudiante para arrastrar y eliminar del grupo"
   },
   "adhoc11a": {
-    "message": "(haga clic aquí) ¿Por qué no puedo ver a ninguna de mis alumnas?"
+    "message": "(haga clic aquí) ¿Por qué no puedo ver a ninguno de mis alumnos?"
   },
   "adhoc11b": {
     "message": "Aquí"
   },
   "adhoc12a": {
-    "message": "(haga clic aquí) ¿Por qué no puedo ver a todas mis estudiantes?"
+    "message": "(haga clic aquí) ¿Por qué no puedo ver a todos mis estudiantes?"
   },
   "adhoc2": {
-    "message": "Paso 2 y 3: copie los enlaces de los cuartos y las tareas de los estudiantes"
+    "message": "Paso 2 y 3: copie los enlaces de las salas y las tareas de los estudiantes"
   },
   "adhoc2a": {
-    "message": "Después de asignar estudiantes, haga clic en "
+    "message": "Después de asignar estudiantes, haga clic en"
   },
   "adhoc2b": {
     "message": "Aquí"
@@ -93,13 +93,13 @@
     "message": "."
   },
   "btnRandom": {
-    "message": "Asignar aleatoriamente "
+    "message": "Asignar aleatoriamente"
   },
   "lblStudents": {
     "message": "Estudiantes"
   },
   "lblBreakoutRooms": {
-    "message": "Dividir Cuartos"
+    "message": "Salas de Grupos"
   },
   "lblBreakoutAssigns": {
     "message": "Grupo pequeño"
@@ -108,16 +108,16 @@
     "message": "Asignación ad hoc"
   },
   "popupHelpAdhocStep2": {
-    "message": "Paso 2: copie los enlaces a los cuartos para grupos pequeños"
+    "message": "Paso 2: copie los enlaces a las salas de grupos pequeños"
   },
   "popupHelpAdhocStep2a": {
-    "message": "Por favor haz click"
+    "message": "Por favor haz clic"
   },
   "popupHelpAdhocStep2b": {
     "message": "Aquí"
   },
   "popupHelpAdhocStep2c": {
-    "message": "para copiar los enlaces del cuarto de reuniones y luego pegarlos en el mensaje de chat de la sala principal (comando/control v)"
+    "message": "para copiar los enlaces de la sala de reuniones y luego pegarlos en el mensaje de chat de la sala principal (comando/control v)"
   },
   "popupHelpAdhocNumwords2a": {
     "message": "Esto es sólo"
@@ -126,69 +126,68 @@
     "message": "caracteres, que es menos de 500 caracteres como máximo. Aceptar para copiar todo a la vez"
   },
   "popupHelpAdhocNumwords2c": {
-    "message": "Esto es "
+    "message": "Esto es"
   },
   "popupHelpAdhocNumwords2d": {
-    "message": "caracteres, que es más que el máximo de 500 caracteres, lo que significa que tendrá que copiar/pegar en secciones para estar por debajo del límite máximo de 500 caracteres del mensaje de chat de Google Meet para una sola copia/pegado. Es posible que deba copiar en quizás 2 o 3 secciones. Resalte algunas filas, luego copie / pegue en el chat de la sala principal, repita para las filas restantes hasta que todo esté copiado y pegado en el mensaje de chat de la sala principal. "
+    "message": "caracteres, que es más que el máximo de 500 caracteres, lo que significa que tendrá que copiar/pegar en secciones para estar por debajo del límite máximo de 500 caracteres del mensaje de chat de Google Meet para una sola copia/pegado. Es posible que deba copiar en quizás 2 o 3 secciones. Resalte algunas filas, luego copie / pegue en el chat de la sala principal, repita para las filas restantes hasta que todo esté copiado y pegado en el mensaje de chat de la sala principal."
   },
   "popupHelpAdhocStep3": {
     "message": "Paso 3: Copie y pegue las tareas de los estudiantes"
   },
   "popupHelpAdhocStep3a": {
-    "message": "Por favor haz click"
+    "message": "Por favor haz clic"
   },
   "popupHelpAdhocStep3b": {
     "message": "Aquí"
   },
   "popupHelpAdhocStep3c": {
-    "message": "para copiar los enlaces del cuarto de reuniones y luego pegarlos en el mensaje de chat de la sala principal (comando/control v)"
+    "message": "para copiar las asignaciones de los estudiantes y luego pegarlas en el mensaje de chat de la sala principal (comando/control v)"
   },
   "popupHelpAdhocNumwords3a": {
-    "message": "Esto es sólo "
+    "message": "Esto es sólo"
   },
   "popupHelpAdhocNumwords3b": {
     "message": "caracteres, que es menos de 500 caracteres como máximo. Aceptar para copiar todo a la vez"
   },
   "popupHelpAdhocNumwords3c": {
-    "message": "Esto es "
+    "message": "Esto es"
   },
   "popupHelpAdhocNumwords3d": {
-    "message": "caracteres, que es más que el máximo de 500 caracteres, lo que significa que tendrá que copiar/pegar en secciones para estar por debajo del límite máximo de 500 caracteres del mensaje de chat de Google Meet para una sola copia/pegado. Es posible que deba copiar en quizás 2 o 3 secciones.  "
+    "message": "caracteres, que es más que el máximo de 500 caracteres, lo que significa que tendrá que copiar/pegar en secciones para estar por debajo del límite máximo de 500 caracteres del mensaje de chat de Google Meet para una sola copia/pegado. Es posible que deba copiar en quizás 2 o 3 secciones."
   },
   "pre1": {
-    "message": "Paso 1: copie su lista preasignada de asignaciones de estudiantes / salas de reuniones"
+    "message": "Paso 1: copie su lista preasignada de asignaciones de estudiantes/salas de reuniones"
   },
   "pre1a": {
     "message": "Por ejemplo, desde cualquier archivo de texto puede copiar la lista de asignaciones en el chat de mensajes de la sala principal."
   },
   "pre1b": {
-    "message": "Cada vez que copie / pegue, asegúrese de no exceder el límite de mensajes de chat de Google Meet de 500 caracteres para una sola copia / pegado. Si su lista tiene más de 500 caracteres, deberá copiar/pegar en las secciones para estar por debajo del límite de 500 caracteres para una sola copia/pegado."
+    "message": "Cada vez que copie/pegue, asegúrese de no exceder el límite de mensajes de chat de Google Meet de 500 caracteres para una sola copia/pegado. Si su lista tiene más de 500 caracteres, deberá copiar/pegar en secciones para estar por debajo del límite de 500 caracteres para una sola copia/pegado."
   },
   "pre2": {
     "message": "Paso 2: copie/pegue los enlaces de las salas de reuniones"
   },
   "pre2a": {
-    "message": "Por favor haz click"
+    "message": "Por favor haz clic"
   },
   "pre2b": {
     "message": "Aquí"
   },
   "pre2c": {
-    "message": "luego, en el mensaje de chat de los cuarto principal, pegue (comando / control v)"
+    "message": "luego, en el mensaje de chat de la sala principal, pegue (comando/control v)"
   },
   "preNumwords2a": {
-    "message": "Esto es sólo "
+    "message": "Esto es sólo"
   },
   "preNumwords2b": {
     "message": "caracteres, que es menos de 500 caracteres como máximo. Aceptar para copiar todo a la vez"
   },
   "preNumwords2c": {
-    "message": "Esto es "
+    "message": "Esto es"
   },
   "preNumwords2d": {
-    "message": "caracteres, que es más que el máximo de 500 caracteres, lo que significa que tendrá que copiar/pegar en secciones para estar por debajo del límite máximo de 500 caracteres del mensaje de chat de Google Meet para una sola copia/pegado. Es posible que deba copiar en quizás 2 o 3 secciones.  "
+    "message": "caracteres, que es más que el máximo de 500 caracteres, lo que significa que tendrá que copiar/pegar en secciones para estar por debajo del límite máximo de 500 caracteres del mensaje de chat de Google Meet para una sola copia/pegado. Es posible que deba copiar en quizás 2 o 3 secciones."
   },
-
   "muteRemove": {
     "message": "Silenciar, eliminar alumnos"
   },
@@ -199,7 +198,7 @@
     "message": "Cursos"
   },
   "dropdownBreakouts": {
-    "message": "Cuartos"
+    "message": "Salas"
   },
   "default1": {
     "message": "Si la cuenta es correcta, entonces todo está bien."
@@ -220,7 +219,7 @@
     "message": "Cierre sesión en todas sus cuentas"
   },
   "default5a": {
-    "message": "Su cuenta de Google Meet es la PRIMERA cuenta en la lista en la que inició sesión. Si la primera cuenta no es su cuenta de Google deseada para la enseñanza, lamentablemente deberá cerrar sesión en todas sus cuentas y volver a iniciar sesión. Chrome debería haber guardado su nombre de usuario y contraseñas para cada una de sus cuentas, así que con suerte no será una molestia volver a iniciar sesión.  "
+    "message": "Su cuenta de Google Meet es la PRIMERA cuenta en la lista en la que inició sesión. Si la primera cuenta no es su cuenta de Google deseada para la enseñanza, lamentablemente deberá cerrar sesión en todas sus cuentas y volver a iniciar sesión. Chrome debería haber guardado su nombre de usuario y contraseñas para cada una de sus cuentas, así que con suerte no será una molestia volver a iniciar sesión."
   },
   "default5b": {
     "message": "Es muy importante utilizar la misma cuenta principal de Google (la primera cuenta de la lista) para ejecutar la extensión de reuniones y salas de reuniones, a fin de mantener la coherencia de los datos de la extensión."
@@ -232,19 +231,19 @@
     "message": "Una vez que vuelva a iniciar sesión con el orden correcto (la primera cuenta es su cuenta principal), puede iniciar sesión en todas sus otras cuentas de Google"
   },
   "btnOpenMain": {
-    "message": "Cuarto principal"
+    "message": "Sala principal"
   },
   "btnOpenMain1": {
-    "message": "Cuarto principal abierta (o integración con Google Classroom) "
+    "message": "Sala principal abierta (o integración con Google Classroom)"
   },
   "btnOpenMainRam": {
-    "message": "Cuarto principal"
+    "message": "Sala principal"
   },
   "btnOpenBreakouts": {
-    "message": "Cuartos"
+    "message": "Salas"
   },
   "btnOpenAll": {
-    "message": "Todos"
+    "message": "Todas"
   },
   "checkRam": {
     "message": "Opción de memoria baja (RAM): normalmente no marque esta casilla, para RAM inferior a 8G"
@@ -253,34 +252,34 @@
     "message": "Ayuda"
   },
   "btnRam": {
-    "message": "Abra la ventana de la habitación, use el control deslizante para pasar a la siguiente ventana de la habitación"
+    "message": "Abra la ventana de la sala, use el control deslizante para pasar a la siguiente ventana de la sala"
   },
   "muteAllMain": {
-    "message": "Silenciar a todos los alumnos: Solo en el Cuarto Principal"
+    "message": "Silenciar a todos los alumnos: Solo en la Sala Principal"
   },
   "muteAllBreakouts": {
-    "message": "Silenciar a todos los estudiantes: en todas los cuartos de grupo "
+    "message": "Silenciar a todos los estudiantes: en todas las salas de grupo"
   },
   "muteAllRooms": {
-    "message": "Silenciar a todos los estudiantes: cuarto principal y todos los grupos de trabajo"
+    "message": "Silenciar a todos los estudiantes: sala principal y todas las salas de grupo"
   },
   "muteAllThis": {
-    "message": "Silenciar a todos los alumnos: Solo en este cuarto"
+    "message": "Silenciar a todos los alumnos: Solo en esta sala"
   },
   "removeAllThis": {
-    "message": "Quitar a todos los estudiantes：Solo en este cuarto"
+    "message": "Quitar a todos los estudiantes：Solo en esta sala"
   },
   "removeBreakouts": {
-    "message": "*** Discusión terminado: Elimine a los estudiantes de todas los cuartos"
+    "message": "*** Discusión terminada: Elimine a los estudiantes de todas las salas"
   },
   "hangupBreakouts": {
-    "message": "*** Discusión terminado: Cerrar todas los cuartos"
+    "message": "*** Discusión terminada: Cerrar todas las salas"
   },
   "removeMain": {
-    "message": "*** Clase terminada：Eliminar a todos los estudiantes de cuarto principal"
+    "message": "*** Clase terminada：Eliminar a todos los estudiantes de la sala principal"
   },
   "hangupMain": {
-    "message": "*** Clase terminada：Cerrar cuarto principal"
+    "message": "*** Clase terminada：Cerrar la sala principal"
   },
   "reportsClipboard": {
     "message": "Copiar al portapapeles"
@@ -289,7 +288,7 @@
     "message": "Descargar archivos CSV"
   },
   "reportsLinks": {
-    "message": "Cuartos links"
+    "message": "Enlaces de salas"
   },
   "reportsAttendance": {
     "message": "Asistencia Estudiantil"
@@ -298,10 +297,10 @@
     "message": "Asignaciones de estudiantes/grupos de trabajo"
   },
   "reportsGroups": {
-    "message": "Miembros del cuartos de reuniones"
+    "message": "Miembros de las salas de reuniones"
   },
   "subHeadingRooms": {
-    "message": "Cuartos"
+    "message": "Salas"
   },
   "code": {
     "message": "Código"
@@ -310,13 +309,13 @@
     "message": "URL"
   },
   "nickname": {
-    "message": "Apodo (Inglés)"
+    "message": "Apodo"
   },
   "nicknameHelplink": {
     "message": "Ayuda"
   },
   "genDisplay": {
-    "message": "Disposición de los cuartos"
+    "message": "Disposición de las salas"
   },
   "genTiles": {
     "message": "Azulejos: Ventanas independientes"
@@ -325,7 +324,7 @@
     "message": "Pestañas: Pestañas de ventana"
   },
   "genToolbarColor": {
-    "message": "Meet Color de Toolbar"
+    "message": "Color de la barra de herramientas de Meet"
   },
   "genSolid": {
     "message": "Color sólido"
@@ -355,25 +354,25 @@
     "message": "Estudiante"
   },
   "rptMain": {
-    "message": "Cuarto principal"
+    "message": "Sala principal"
   },
   "rptActualRoom": {
-    "message": "Cuarto Real"
+    "message": "Sala Real"
   },
   "rptAssignRoom": {
-    "message": "Cuarto Asignado"
+    "message": "Sala Asignada"
   },
   "rptTitleBRSR": {
-    "message": "Cuarto Estado"
+    "message": "Estado de la Sala"
   },
   "rptBreakoutRoom": {
-    "message": "Cuartos"
+    "message": "Salas"
   },
   "rptActualStudent": {
-    "message": "Estudiantes Real"
+    "message": "Estudiantes Reales"
   },
   "rptAssignStudent": {
-    "message": "Estudiantes Asignado"
+    "message": "Estudiantes Asignados"
   },
   "setTimer": {
     "message": "Poner Cronómetro"
@@ -400,46 +399,46 @@
     "message": "Ingresar Cursos"
   },
   "firstRoomMain": {
-    "message": "La primera fila es la sala principal, la segunda fila es Cuartos"
+    "message": "La primera fila es la sala principal, la segunda fila es Salas"
   },
   "linksSaved": {
     "message": "Enlaces guardados"
   },
   "mainName": {
-    "message": "Cuarto principal"
+    "message": "Sala principal"
   },
   "roomsDupe": {
-    "message": "No se puede guardar: error porque el nombre de lo cuarto o los enlaces no son únicos. Todas los cuartos deben tener un nombre. "
+    "message": "No se puede guardar: error porque el nombre de la sala o los enlaces no son únicos. Todas las salas deben tener un nombre."
   },
   "roomsCreatingUrl": {
     "message": "Creando URL ..."
   },
   "roomsSaved": {
-    "message": "Cuartos guardadas"
+    "message": "Salas guardadas"
   },
   "roomsNotYetSaved": {
-    "message": "Cuartos aún no guardadas"
+    "message": "Salas aún no guardadas"
   },
   "roomsUndo": {
     "message": "Deshacer"
   },
   "roomsNeedName": {
-    "message": "No se puede guardar: todas los cuartos necesitan un nombre (único)"
+    "message": "No se puede guardar: todas las salas necesitan un nombre (único)"
   },
   "courseEnter": {
-    "message": "Por favor ingrese el nombre de su curso "
+    "message": "Por favor ingrese el nombre de su curso"
   },
   "courseCourse": {
-    "message": " Curso"
+    "message": "Curso"
   },
   "courseDesc": {
-    "message": " Descripción del curso"
+    "message": "Descripción del curso"
   },
   "coursesDupe": {
-    "message": " No se puede guardar: el nombre no es único."
+    "message": "No se puede guardar: el nombre no es único."
   },
   "coursesSaved": {
-    "message": " Guardada"
+    "message": "Guardado"
   },
   "coursesNotYetSaved": {
     "message": "Datos cambiados pero no guardados"
@@ -457,13 +456,13 @@
     "message": "Por cuestiones de privacidad"
   },
   "genAutoJoin": {
-    "message": "Esta es una opción de conveniencia que le permite ingresar a las habitaciones una vez que están abiertas. Recomendar marcado"
+    "message": "Esta es una opción de conveniencia que le permite ingresar a las salas una vez que están abiertas. Recomendar marcado"
   },
   "genAutoJoinMain": {
-    "message": "Cuarto principal"
+    "message": "Sala principal"
   },
   "genAutoJoinBreak": {
-    "message": "Cuartos"
+    "message": "Salas"
   },
   "genAutoNewUrl": {
     "message": "Para enlaces URL (color azul oscuro), crea automáticamente un nuevo enlace de reunión cada vez que se abre. Esta opción no se selecciona a menudo."
@@ -478,10 +477,10 @@
     "message": "Esta opción no afecta los enlaces de apodo (color verde) ni los enlaces de código (color azul claro)"
   },
   "genAutoNewUrlMain": {
-    "message": "Cuarto principal"
+    "message": "Sala principal"
   },
   "genAutoNewUrlBreak": {
-    "message": "Cuartos"
+    "message": "Salas"
   },
   "coursesExpimp": {
     "message": "Exportar o importar todos los datos de la extensión"
@@ -508,10 +507,10 @@
     "message": "Importar"
   },
   "coursesBuiltWith": {
-    "message": "Creado con ❤️ by Robert Hudek"
+    "message": "Creado con ❤️ por Robert Hudek"
   },
   "roomsExpimp": {
-    "message": "Exportar Importar los enlaces de este curso"
+    "message": "Exportar o importar los enlaces de este curso"
   },
   "roomsPopupTitle": {
     "message": "Curso: "
@@ -535,7 +534,7 @@
     "message": "Importar"
   },
   "roomsBuiltWith": {
-    "message": "Creado con ❤️ by Robert Hudek"
+    "message": "Creado con ❤️ por Robert Hudek"
   },
   "myName": {
     "message": "Robert Hudek"
@@ -553,12 +552,18 @@
     "message": "Hay una ventana de reunión que no se puede sincronizar. En este caso, cierre todas sus ventanas de reunión y también cierre la ventana de extensión del panel de control. Luego, vuelva a abrir la ventana de extensión y abra todas sus ventanas de reunión nuevamente. Si aún tiene problemas, es posible que deba cerrar Chrome y luego volver a abrirlo. *** NO desinstale la extensión porque no es necesario y, al hacerlo, se eliminarían los datos de la extensión. Simplemente cierre y vuelva a abrir las ventanas."
   },
   "msgAllSync": {
-    "message": "Éxito： Todas las ventanas de encuentro fueron sincronizadas"
+    "message": "Éxito：Todas las ventanas de encuentro fueron sincronizadas"
   },
   "msgBreakoutSync": {
-    "message": "Éxito： Todas los cuartos fueron sincronizadas"
+    "message": "Éxito：Todas las salas fueron sincronizadas"
   },
   "msgMainSync": {
-    "message": "Éxito： Sala principal sincronizada"
+    "message": "Éxito：Sala principal sincronizada"
+  },
+  "adhocAutosend": {
+    "message": "¡Nuevo! Envía automáticamente las asignaciones de salas de grupos al chat de Meet"
+  },
+  "btnAutosend": {
+    "message": "Enviar asignaciones de salas de grupos al chat"
   }
 }

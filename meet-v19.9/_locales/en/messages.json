@@ -176,6 +176,7 @@
   "adhoc2c": {
     "message": "."
   },
+
   "btnRandom": {
     "message": "Randomize"
   },
@@ -801,5 +802,11 @@
   },
   "msgMainSync": {
     "message": "Success: Main room synced (Main room synced)"
+  },
+  "adhocAutosend": {
+    "message": "New!!! Automatically send breakout assignments to meet chat"
+  },
+  "btnAutosend": {
+    "message": "Send breakout assignments to the chat"
   }
 }
