@@ -1821,4 +1821,14 @@ const handleSendAssignments = async (messages) => {
 
   // Start sending the messages with a delay between each
   sendAllMessages(messages);
+
+  // Scroll to bottom
+  await sleep(100);
+  let chatContainer = document.querySelector('div[aria-live="polite"]');
+  if (chatContainer) {
+    chatContainer.scrollTo({
+      top: chatContainer.scrollHeight,
+      behavior: "smooth",
+    });
+  }
 };

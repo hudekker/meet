@@ -485,66 +485,51 @@ document.querySelector("#meet-rooms-hook").addEventListener("click", handleMeetR
 // August 2 disable refresh and change it to updateDropdownsLists
 document.querySelector("#open-main").addEventListener("click", async (event) => {
   try {
+    closeOpenMeetsAccordian();
     await handleMeetOpenAllRooms(event);
     updateDropdownsLists();
     await chromeRuntimeSendMessage({ action: "tellContextToUpdateTabs" });
+    //
   } catch (error) {
     console.log(`Error in #open-main `, error);
   }
 });
 
 document.querySelector("#open-breakouts").addEventListener("click", async (event) => {
-  await handleMeetOpenAllRooms(event);
-  // document.querySelector("#popup-refresh").click();
-  updateDropdownsLists();
-
-  // await sleep(100);
-  // document.querySelector("#slider-right").click();
-  // alert("clicked");
-
-  // await sleep(1000);
-  // document.querySelector("#slider-right").click();
-  // await sleep(100);
-  // document.querySelector("#slider-left").click();
-  // await sleep(100);
-  // alert("All rooms synced");
-
-  await chromeRuntimeSendMessage({ action: "tellContextToUpdateTabs" });
+  try {
+    closeOpenMeetsAccordian();
+    await handleMeetOpenAllRooms(event);
+    updateDropdownsLists();
+    await chromeRuntimeSendMessage({ action: "tellContextToUpdateTabs" });
+    //
+  } catch (error) {
+    console.log(`Error in #open-breakouts `, error);
+  }
 });
 
 document.querySelector("#open-breakouts2").addEventListener("click", async (event) => {
-  await handleMeetOpenAllRooms(event);
-  // document.querySelector("#popup-refresh").click();
-  updateDropdownsLists();
-  handleCopyClipboardButtons(event);
-
-  // await sleep(100);
-  // document.querySelector("#slider-right").click();
-  // alert("clicked");
-
-  await chromeRuntimeSendMessage({ action: "tellContextToUpdateTabs" });
+  try {
+    closeOpenMeetsAccordian();
+    await handleMeetOpenAllRooms(event);
+    updateDropdownsLists();
+    handleCopyClipboardButtons(event);
+    await chromeRuntimeSendMessage({ action: "tellContextToUpdateTabs" });
+    //
+  } catch (error) {
+    console.log(`Error in #open-breakouts2 `, error);
+  }
 });
 
 document.querySelector("#open-both").addEventListener("click", async (event) => {
   try {
+    closeOpenMeetsAccordian();
     await handleMeetOpenAllRooms(event);
-    // document.querySelector("#popup-refresh").click();
     updateDropdownsLists();
-
-    // await sleep(1000);
-    // document.querySelector("#slider-right").click();
-    // await sleep(100);
-    // document.querySelector("#slider-left").click();
-    // await sleep(100);
-    // alert("All rooms synced");
-
-    // await sleep(3000);
-    // document.querySelector("#slider-right").click();
-    // await sleep(100);
-    // document.querySelector("#slider-left").click();
-
     await chromeRuntimeSendMessage({ action: "tellContextToUpdateTabs" });
-  } catch (err) {}
+    //
+  } catch (error) {
+    console.log(`Error in #open-both `, error);
+  }
 });
 
 document.querySelector("#copy-all-links").addEventListener("click", handleCopyClipboardButtons);

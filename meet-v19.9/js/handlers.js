@@ -290,3 +290,8 @@ Sortable.create(listClassesHook, {
   sort: "true",
   animation: 150,
 });
+
+const closeOpenMeetsAccordian = (event) => {
+  const accordian = document.querySelector("#meet-open-accordian");
+  accordian.click();
+};

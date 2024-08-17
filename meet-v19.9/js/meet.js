@@ -1,4 +1,11 @@
-const buildMeetMainPptListing = async () => {
+const buildMeetMainPptListing = async (event) => {
+  if (event) {
+    event.preventDefault();
+    console.log("Inside buildMeetMainPptListing Event object received:", event);
+  } else {
+    console.log("Inside buildMeetMainPptListing no event object passed");
+  }
+
   let hook = document.querySelector("#meet-main-ppt-hook");
   let ppt;
 
@@ -132,6 +139,12 @@ const buildMeetMainPptListing = async () => {
   intlMsg("lbl-breakout-rooms", "lblBreakoutRooms");
   intlMsg("lbl-students", "lblStudents");
   intlMsg("lbl-breakout-assigns", "lblBreakoutAssigns");
+
+  // scroll if this is an event
+  if (event) {
+    await sleep(1);
+    document.getElementById("autosend-assignments-group").scrollIntoView({ behavior: "smooth" });
+  }
 };
 
 const buildBreakoutListing = async (ppt) => {
