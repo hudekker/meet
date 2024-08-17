@@ -84,7 +84,7 @@ a.href-help:hover {
   color: var(--dracula-yellow) !important;
 }
 .rooms-url-code-nickname {
-  margin-bottom: 10px
+  margin-bottom: 10px;
 }
 
 .btn-inset {
@@ -272,7 +272,7 @@ input[data-type="link"] {
   color: black !important;
   /* background-color: var(--dracula-green) !important; */
   /* background-color: #98FF98 !important; */
-  background-color: #90EE90 !important;
+  background-color: #90ee90 !important;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -352,14 +352,16 @@ h5.sub-title {
   font-weight: 400;
   font-weight: 300;
   font-family: Sans-Serif;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .span-small {
   font-weight: 300;
   font-size: 16px;
   font-family: Sans-Serif;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .red {
@@ -550,7 +552,7 @@ input[type="text"] {
 
 .btn.btn-autosend {
   color: var(--dracula-dark-black);
-  background-color: #98FF98;
+  background-color: #98ff98;
   border-color: grey;
 }
 
@@ -561,44 +563,45 @@ input[type="text"] {
 }
 
 .autosend-assignments-group {
-  border: 2px solid #4CAF50; /* Green border */
-  padding: 20px;             /* Space inside the border */
+  border: 2px solid #4caf50; /* Green border */
+  padding: 20px; /* Space inside the border */
   background-color: #f9f9f9; /* Light grey background */
-  border-radius: 10px;       /* Rounded corners */
+  border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  max-width: 400px;          /* Optional: Set a max-width for the div */
-  margin: 20px auto;         /* Center the div horizontally */
+  max-width: 400px; /* Optional: Set a max-width for the div */
+  margin: 20px auto; /* Center the div horizontally */
 }
 
 .autosend-assignments-group p {
-  margin: 0 0 10px;          /* Remove margin at the top, add space below */
-  font-weight: bold;         /* Make the text bold */
-  color: #333;               /* Darker text color for contrast */
+  margin: 0 0 10px; /* Remove margin at the top, add space below */
+  font-weight: bold; /* Make the text bold */
+  color: #333; /* Darker text color for contrast */
 }
 
 .autosend-assignments-group button {
-  background-color: #4CAF50; /* Green background */
-  color: white;              /* White text color */
-  padding: 10px 15px;        /* Padding inside the button */
-  border: none;              /* Remove default border */
-  border-radius: 5px;        /* Rounded corners for the button */
-  cursor: pointer;           /* Pointer cursor on hover */
-  font-size: 16px;           /* Slightly larger text */
-}
-.autosend-assignments-group button {
-  background-color: #4CAF50; /* Green background */
-  color: white;              /* White text color */
-  padding: 10px 20px;        /* Padding inside the button */
-  border: none;              /* Remove default border */
-  border-radius: 5px;        /* Rounded corners for the button */
-  cursor: pointer;           /* Pointer cursor on hover */
-  font-size: 16px;           /* Slightly larger text */
-  font-weight: bold;         /* Bold text */
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text color */
+  padding: 10px 15px; /* Padding inside the button */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners for the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Slightly larger text */
+
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding inside the button */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners for the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Slightly larger text */
+  font-weight: bold; /* Bold text */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Shadow for 3D effect */
   transition: all 0.2s ease; /* Smooth transition for the hover effect */
-  background: linear-gradient(145deg, #5cbf60, #4CAF50); /* Subtle gradient */
-  background: linear-gradient(145deg, #7BD787, #66C967);
+}
 
+.btn-autosend {
+  background: linear-gradient(145deg, #5cbf60, #4caf50); /* Subtle gradient */
+  background: linear-gradient(145deg, #7bd787, #66c967);
 }
 
 .autosend-assignments-group button:hover {
@@ -614,7 +617,15 @@ input[type="text"] {
   transform: translateY(2px); /* Slightly move the button down when clicked */
 }
 
-
+/* #autosend-assignments-group #btn-autosend-ok:hover {
+  background-color: var(--dracula-white) !important;
+  color: white;
+} */
+#autosend-assignments-group #btn-autosend-ok {
+  margin-top: 10px;
+  background-color: var(--dracula-dark-blue);
+  color: white;
+}
 
 .btn[data-meet-assign] {
   color: var(--dracula-dark-black);
@@ -1247,8 +1258,8 @@ span.span-course {
 
 #btn-rooms-save:hover,
 #btn-classes-save:hover {
-  background-color: #007bff!important; /* Bootstrap primary */
-  border-color: #007bff!important;
+  background-color: #007bff !important; /* Bootstrap primary */
+  border-color: #007bff !important;
   color: #fff;
 }
 
@@ -1260,7 +1271,7 @@ span.span-course {
 }
 
 #btn-rooms-undo:hover,
-#btn-classes-undo:hover  {
+#btn-classes-undo:hover {
   background-color: #17a2b8 !important; /* Bootstrap info */
   border-color: #17a2b8 !important;
   color: #fff;
@@ -1294,14 +1305,13 @@ span.span-course {
   align-items: center;
   z-index: 9999; /* High z-index to cover everything */
   transition: opacity 0.5s ease-in-out; /* Transition for smooth fading */
-
 }
 
 #fullscreen-overlay.visible {
   opacity: 1; /* Fully visible when the class 'visible' is added */
 }
 
-#meet-main-assign-hook{
+#meet-main-assign-hook {
   display: flex;
   justify-content: space-between;
 }

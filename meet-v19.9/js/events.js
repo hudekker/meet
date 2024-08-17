@@ -546,6 +546,7 @@ document.querySelector("#btn-gc-sync").addEventListener("click", (events) => {
 
 document.querySelector("#btn-ad-hoc").addEventListener("click", handleCopyClipboardButtons);
 document.querySelector("#btn-ad-hoc-autosend").addEventListener("click", handleAutosendAssignments);
+document.querySelector("#btn-autosend-ok").addEventListener("click", handleAutosendOk);
 
 document.querySelector("#copy-ppt-list").addEventListener("click", handleCopyClipboardButtons);
 document.querySelector("#copy-ppt-assignments").addEventListener("click", handleCopyClipboardButtons);
@@ -1139,3 +1140,4 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
 $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
 });
+

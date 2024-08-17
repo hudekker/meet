@@ -497,6 +497,7 @@ const handleAutosendAssignments = async (evt) => {
 
   let tabMain = tabsMeet.find((tab) => tab.title === "Main");
 
+  debugger;
   await chromeWindowActive(tabMain.windowId);
 
   await chrome.windows.update(tabMain.windowId, {
@@ -648,4 +649,11 @@ const downloadToolTip = (options) => {
   } catch (err) {
     // alert(`Error in downloading the file ${JSON.stringify(err)}`);
   }
+};
+
+const handleAutosendOk = () => {
+  if (document.querySelector("#breakout-tiles").checked) {
+    document.querySelector("#popup-retile").click();
+  }
+  document.querySelector("#assign-ppts").click();
 };

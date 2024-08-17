@@ -128,9 +128,9 @@ const chromeAllOpenRooms = async (
   boolGetReferrer = false,
   boolExpand = false
 ) => {
-  if (document.querySelector("#assign-ppts").ariaExpanded == "true") {
-    // return;
-  }
+  // if (document.querySelector("#assign-ppts").ariaExpanded == "true") {
+  // return;
+  // }
 
   try {
     // new stuff
@@ -239,6 +239,8 @@ const chromeAllOpenRooms = async (
 
     // new stuff
     if (boolExpand) {
+      debugger;
+      await chromeTabsUpdate2(rooms[0].id, { active: true });
       const window = await chromeWindowsUpdate2(tabCurrent.windowId, { focused: true });
     }
 
