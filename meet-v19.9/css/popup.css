@@ -597,10 +597,13 @@ input[type="text"] {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Shadow for 3D effect */
   transition: all 0.2s ease; /* Smooth transition for the hover effect */
   background: linear-gradient(145deg, #5cbf60, #4CAF50); /* Subtle gradient */
+  background: linear-gradient(145deg, #7BD787, #66C967);
+
 }
 
 .autosend-assignments-group button:hover {
   background-color: #45a049; /* Darker green on hover */
+  background-color: var(--dracula-green);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
   transform: translateY(-2px); /* Slightly move the button up for a 3D effect */
 }
