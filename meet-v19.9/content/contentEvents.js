@@ -259,6 +259,21 @@ chrome.runtime.onMessage.addListener((payload, sender, cb) => {
       handleSendAssignments(messages);
       break;
 
+    case "clickChatButton":
+      try {
+        const chatButton = document.querySelector('[aria-label="Chat with everyone"]');
+        if (chatButton.ariaPressed == "true") {
+          chatButton.click();
+          sendResponse({ status: "success" });
+        } else {
+          sendResponse({ status: "error", message: "Chat button not found" });
+        }
+      } catch (error) {
+        console.log("error in clickChatButton", error);
+      }
+
+      break;
+
     default:
       break;
   }

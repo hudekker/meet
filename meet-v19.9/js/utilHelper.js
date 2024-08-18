@@ -239,9 +239,11 @@ const chromeAllOpenRooms = async (
 
     // new stuff
     if (boolExpand) {
-      debugger;
       await chromeTabsUpdate2(rooms[0].id, { active: true });
+      await sleep(1000);
       const window = await chromeWindowsUpdate2(tabCurrent.windowId, { focused: true });
+      await sleep(1000);
+      await chromeTabsUpdate2(tabCurrent.id, { active: true });
     }
 
     boolExpand ? hideOverlay() : null;

@@ -1,3 +1,6 @@
+let saveMainWindowPosition;
+let saveMainTab;
+
 const handleToolTipCopyText = (event, listText) => {
   l_obj = {
     button: event.button,
@@ -405,34 +408,6 @@ const handleAutosendAssignments = async (evt) => {
   // Log the final result
   console.log(result);
 
-  // let messages = [];
-  // let currentRoom = "";
-  // let message = "\n**************\n\n"; // Start with a blank line, leading line, and another blank line
-
-  // result.forEach((entry, index) => {
-  //   // Check if the room has changed
-  //   if (entry.roomName !== currentRoom) {
-  //     // If it's not the first room, add a blank line before starting the new room block
-  //     if (currentRoom !== "") {
-  //       message += "\n"; // Add a blank line before starting the new room block
-  //     }
-  //     // Start a new message for the new room
-  //     currentRoom = entry.roomName;
-  //     message += `Room Name: ${currentRoom}\nRoom Link: ${entry.link}\n`; // Room name and link
-  //   }
-  //   // Add the participant name
-  //   message += `${entry.participantName}\n`;
-
-  //   // If this is the last entry, close the message with the final line and a blank line
-  //   if (index === result.length - 1) {
-  //     message += "\n**************\n\n"; // Closing line and a blank line after
-  //     messages.push(message.trim()); // Push the final message to the array
-  //   }
-  // });
-
-  // // Log the messages array
-  // messages.forEach((msg) => console.log(msg + "\n"));
-
   let messages = [];
   let currentRoom = "";
   let message = "\n**************\n\n"; // Start with a blank line, leading line, and another blank line
@@ -463,7 +438,11 @@ const handleAutosendAssignments = async (evt) => {
     message += `Room Name: ${currentRoom}\nRoom Link: ${roomParticipants[roomName].link}\n`;
 
     // Sort participants alphabetically and add them to the message
-    const sortedParticipants = roomParticipants[roomName].participants.sort();
+    // const sortedParticipants = roomParticipants[roomName].participants.sort();
+    const sortedParticipants = roomParticipants[roomName].participants.sort((a, b) =>
+      a.toLowerCase().localeCompare(b.toLowerCase())
+    );
+
     sortedParticipants.forEach((participant) => {
       message += `${participant}\n`;
     });
@@ -497,8 +476,11 @@ const handleAutosendAssignments = async (evt) => {
 
   let tabMain = tabsMeet.find((tab) => tab.title === "Main");
 
-  debugger;
   await chromeWindowActive(tabMain.windowId);
+
+  // update the saveMainWindowPosition
+  saveMainWindowPosition = await chromeWindowProperties(tabMain.windowId);
+  saveMainTab = tabMain;
 
   await chrome.windows.update(tabMain.windowId, {
     state: "maximized",
@@ -651,9 +633,55 @@ const downloadToolTip = (options) => {
   }
 };
 
-const handleAutosendOk = () => {
-  if (document.querySelector("#breakout-tiles").checked) {
-    document.querySelector("#popup-retile").click();
+// const handleAutosendOk = async () => {
+//   if (document.querySelector("#breakout-tiles").checked) {
+//     document.querySelector("#popup-retile").click();
+//   } else {
+//     debugger;
+//     // use the top, height, width, left properties of this object saveMainWindowPosition
+//     let { top, left, height, width } = saveMainWindowPosition;
+//     if (top && left && height && width) {
+//       await chrome.windows.update(tabMain.windowId, {
+//         top,
+//         left,
+//         height,
+//         width,
+//       });
+//     }
+//   }
+//   document.querySelector("#assign-ppts").click();
+// };
+
+const handleAutosendOk = async () => {
+  const sendMessageToTab = async (tabId) => {
+    try {
+      await chrome.tabs.sendMessage(tabId, { action: "clickChatButton" });
+    } catch (error) {
+      console.error("Error sending message to tab:", error);
+    }
+  };
+
+  debugger;
+
+  if (saveMainTab && saveMainWindowPosition) {
+    sendMessageToTab(saveMainTab.id);
+
+    if (document.querySelector("#breakout-tiles").checked) {
+      document.querySelector("#popup-retile").click();
+    } else {
+      let { top, left, height, width, id } = saveMainWindowPosition;
+
+      try {
+        await chrome.windows.update(id, {
+          top,
+          left,
+          height,
+          width,
+        });
+      } catch (error) {
+        console.log("Error updating window position:", error, saveMainWindowPosition);
+      }
+    }
+    document.querySelector("#assign-ppts").click();
   }
-  document.querySelector("#assign-ppts").click();
 };

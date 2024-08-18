@@ -4,6 +4,18 @@ const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
+const chromeWindowProperties = async (windowId) => {
+  return new Promise((resolve, reject) => {
+    chrome.windows.get(windowId, { populate: true }, (window) => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve(window);
+      }
+    });
+  });
+};
+
 const chromeDetectLanguage = async () => {
   return new Promise((resolve, reject) => {
     chrome.tabs.detectLanguage((obj) => {

@@ -552,13 +552,14 @@ input[type="text"] {
 
 .btn.btn-autosend {
   color: var(--dracula-dark-black);
-  background-color: #98ff98;
+  /* background-color: #98ff98; */
+  background-color: var(--dracula-green);
   border-color: grey;
 }
 
 .btn.btn-autosend:hover {
   color: var(--dracula-dark-black);
-  background-color: var(--dracula-green);
+  background: linear-gradient(145deg, #7bd787, #66c967);
   border-color: grey;
 }
 
@@ -599,10 +600,10 @@ input[type="text"] {
   transition: all 0.2s ease; /* Smooth transition for the hover effect */
 }
 
-.btn-autosend {
-  background: linear-gradient(145deg, #5cbf60, #4caf50); /* Subtle gradient */
+/* .btn-autosend {
+  background: linear-gradient(145deg, #5cbf60, #4caf50); 
   background: linear-gradient(145deg, #7bd787, #66c967);
-}
+} */
 
 .autosend-assignments-group button:hover {
   background-color: #45a049; /* Darker green on hover */
