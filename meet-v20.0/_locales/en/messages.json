@@ -1,0 +1,812 @@
+{
+  "extName": {
+    "message": "Google Meet Breakout by Robert Hudek"
+  },
+  "extDesc": {
+    "message": "Completely Free and your Data is Private.  Google Classroom integration, Slider Control, Nicknames, Help tutorials"
+  },
+  "title": {
+    "message": "Breakout"
+  },
+  "myCourse": {
+    "message": "My Courses"
+  },
+  "myCourseDesc": {
+    "message": "My own courses"
+  },
+  "myName": {
+    "message": "Robert Hudek"
+  },
+  "headline1a": {
+    "message": "Free to use, no data leaks,"
+  },
+  "headline1b": {
+    "message": "Robert"
+  },
+  "headline1c": {
+    "message": "created by,"
+  },
+  "headline1d": {
+    "message": "annotated,"
+  },
+  "headline1e": {
+    "message": "notes"
+  },
+  "headlineTryThemes": {
+    "message": "Try new themes"
+  },
+  "toolTipRetile": {
+    "message": "Retile window layout"
+  },
+  "toolTipToolbar": {
+    "message": "Hide/Show Meet bottom toolbar"
+  },
+  "onlineVideoTitle": {
+    "message": "Instructional Video (Chinese v17.3)"
+  },
+  "onlineVideoHref": {
+    "message": "https://youtu.be/5oGmIL3pmP4"
+  },
+  "audioHeadline": {
+    "message": "How to fix speaker stuttering issues, click here"
+  },
+  "audioFixTitle": {
+    "message": "New solution for random speaker stuttering issues"
+  },
+  "audioFixIntro": {
+    "message": "I recommend leaving this option checked (default state). If you encounter speaker instability or other issues after enabling this option, please email robert@hudektech.com. Unchecked (o) uses the old solution (not recommended). If you switch the state (x or o), remember to restart all Meet sessions as the setting changes the speaker mode, which can cause the extension to misidentify the speaker state (on or off). Again, I recommend keeping it checked (X)."
+  },
+  "audioFixFirst": {
+    "message": "How to opt-in to this solution?"
+  },
+  "audioFixOptin": {
+    "message": "How to opt-in to this solution?"
+  },
+  "audioFixOptin1": {
+    "message": "Please check (x)"
+  },
+  "audioFixOptin2": {
+    "message": "Close any open Meet sessions (if any)"
+  },
+  "audioFixOptin3": {
+    "message": "Restart closed Meet sessions (if any)"
+  },
+  "audioFixSecond": {
+    "message": "If you encounter issues with the new solution, you can revert to the original solution"
+  },
+  "audioFixFallback": {
+    "message": "How to opt-in to this solution?"
+  },
+  "audioFixFallback1": {
+    "message": "Please check (empty)"
+  },
+  "audioFixFallback2": {
+    "message": "Close any open Meet sessions (if any)"
+  },
+  "audioFixFallback3": {
+    "message": "Restart closed Meet sessions (if any)"
+  },
+  "audioFixCheckbox": {
+    "message": "Use new solution"
+  },
+  "audioFixRecommend": {
+    "message": "(Recommended)"
+  },
+  "meet": {
+    "message": "Meet"
+  },
+  "rooms": {
+    "message": "Rooms"
+  },
+  "courses": {
+    "message": "Courses"
+  },
+  "settings": {
+    "message": "General"
+  },
+  "btnStudentsReport": {
+    "message": "Students"
+  },
+  "btnRoomsReport": {
+    "message": "Classrooms"
+  },
+  "broadcast": {
+    "message": "Broadcast to all breakout rooms"
+  },
+  "sliderDefault": {
+    "message": "Breakout"
+  },
+  "defaultAccount": {
+    "message": "Your account is"
+  },
+  "startClass": {
+    "message": "Start Class"
+  },
+  "assignBreakoutsAdhoc": {
+    "message": "Ad-hoc Breakouts"
+  },
+  "assignBreakoutsPre": {
+    "message": "Pre-assigned Breakouts"
+  },
+  "adhoc0": {
+    "message": "Note: Teachers need to send links to students, and students can join breakout rooms voluntarily by clicking the links."
+  },
+  "adhoc1": {
+    "message": "Step 1: Group students, there are several ways"
+  },
+  "adhoc1a": {
+    "message": "Random Grouping: Click the 'Random' button. You can continue to click the button until you find a grouping you like. You can also manually adjust groups by dragging and dropping students between groups (second method)."
+  },
+  "adhoc1b": {
+    "message": "Manual Adjustment: Hold the student's name and drag it between groups."
+  },
+  "adhoc1c": {
+    "message": "Exclude from Random Grouping: Click the student's name to toggle exclusion."
+  },
+  "adhoc1d": {
+    "message": "Manual Exclusion: Hold the student's name and drag it to the left."
+  },
+  "adhoc11a": {
+    "message": "(Click here for explanation) Why can't I see any students in the grouping area?"
+  },
+  "adhoc11b": {
+    "message": "Here"
+  },
+  "adhoc12a": {
+    "message": "(Click here for explanation) Why can't I see all students?"
+  },
+  "adhoc12b": {
+    "message": "Here"
+  },
+  "adhoc13a": {
+    "message": "Google Classroom Users,"
+  },
+  "adhoc13b": {
+    "message": "Make sure the main classroom link is green in the 'Classroom Settings' tab and that the 'Nickname' is the last 10 characters of the Google Classroom meet link. Then click the 'Initiate Main Room' button."
+  },
+  "adhoc2": {
+    "message": "Steps 2 and 3: Copy breakout room links and student group lists"
+  },
+  "adhoc2a": {
+    "message": "Once you have properly grouped students, click"
+  },
+  "adhoc2b": {
+    "message": "Here"
+  },
+  "adhoc2c": {
+    "message": "."
+  },
+
+  "btnRandom": {
+    "message": "Randomize"
+  },
+  "lblStudents": {
+    "message": "Students"
+  },
+  "lblBreakoutRooms": {
+    "message": "Breakout Rooms"
+  },
+  "lblBreakoutAssigns": {
+    "message": "Groups"
+  },
+  "popupHelpAdhoc": {
+    "message": "Ad-hoc Breakouts"
+  },
+  "popupHelpAdhocStep2": {
+    "message": "Step 2: Copy and paste breakout room links"
+  },
+  "popupHelpAdhocStep2a": {
+    "message": "Click"
+  },
+  "popupHelpAdhocStep2b": {
+    "message": "Here"
+  },
+  "popupHelpAdhocStep2c": {
+    "message": "to copy the breakout room links, then paste them in the main room chat (command/control v)."
+  },
+  "popupHelpAdhocNumwords2a": {
+    "message": "This copy has only"
+  },
+  "popupHelpAdhocNumwords2b": {
+    "message": "characters, which is below the 500-character limit for a single copy-paste, so you can copy-paste it all at once."
+  },
+  "popupHelpAdhocNumwords2c": {
+    "message": "This copy has"
+  },
+  "popupHelpAdhocNumwords2d": {
+    "message": "characters, which exceeds the 500-character limit for a single copy-paste, so you need to copy and paste a few lines at a time into the main room chat, each time no more than 500 characters."
+  },
+  "popupHelpAdhocStep3": {
+    "message": "Step 3: Copy and paste student groupings"
+  },
+  "popupHelpAdhocStep3a": {
+    "message": "Click"
+  },
+  "popupHelpAdhocStep3b": {
+    "message": "Here"
+  },
+  "popupHelpAdhocStep3c": {
+    "message": "To copy student groupings, then paste them into the main room chat (command/control v)"
+  },
+  "popupHelpAdhocNumwords3a": {
+    "message": "This copy only has"
+  },
+  "popupHelpAdhocNumwords3b": {
+    "message": "characters, which is below the 500-character limit for copying and pasting at once, so you can copy and paste it at once"
+  },
+  "popupHelpAdhocNumwords3c": {
+    "message": "This copy has"
+  },
+  "popupHelpAdhocNumwords3d": {
+    "message": "characters, which exceeds the 500-character limit for copying and pasting at once, so you need to copy and paste in sections: highlight a few lines, copy and paste them into the main room chat. Each time not exceeding 500 characters."
+  },
+  "pre1": {
+    "message": "Step 1: Copy the pre-arranged group list"
+  },
+  "pre1a": {
+    "message": "For example, copy the group list from an MS Word document and paste it into the main room chat. This way, students will know their assigned chat rooms"
+  },
+  "pre1b": {
+    "message": "For each copy and paste, note that Google Meet chat has a 500-character limit, so you may need to copy and paste multiple times"
+  },
+  "pre2": {
+    "message": "Step 2: Copy the breakout room links"
+  },
+  "pre2a": {
+    "message": "Please click"
+  },
+  "pre2b": {
+    "message": "here"
+  },
+  "pre2c": {
+    "message": "then paste them into the main room chat"
+  },
+  "preNumwords2a": {
+    "message": "This copy only has"
+  },
+  "preNumwords2b": {
+    "message": "characters, which is below the 500-character limit for copying and pasting at once, so you can copy and paste it at once"
+  },
+  "preNumwords2c": {
+    "message": "This copy has"
+  },
+  "preNumwords2d": {
+    "message": "characters, which exceeds the 500-character limit for copying and pasting at once, so you need to copy and paste in sections: highlight a few lines, copy and paste them into the main room chat. Each time not exceeding 500 characters."
+  },
+  "helpNickname": {
+    "message": "What are: Nicknames, Codes, URLs?"
+  },
+  "helpNickname1a": {
+    "message": "Nickname:"
+  },
+  "helpNickname1b": {
+    "message": "A nickname is a name freely chosen by the teacher, used to conveniently initiate a Meet. Within an organization (such as a school), the 'nickname' is a unique name, so be careful not to use a name already used by another teacher, otherwise it will interfere with that teacher's Meet. To avoid duplicate nicknames, schools can set rules for creating nicknames: full name, course, or free choice. For example: huhaoyang_math1_050810. Two schools being different organizations will not conflict with each other.\n\n\rNote: Nicknames must be in English."
+  },
+  "helpNickname1c": {
+    "message": "You must use English for nicknames"
+  },
+  "helpNickname1d": {
+    "message": "Also, do not enter any URL prefixes in the nickname. For example, g.co/meet/ or meet.google.com/lookup/ in the nickname is not allowed. Exception is that Google Classroom teachers can enter the full meet link, explained below"
+  },
+  "helpNickname2": {
+    "message": "Note to Google Classroom teachers: "
+  },
+  "helpNickname2a": {
+    "message": " Here teachers can enter the entire 'meet link' from Google Classroom, and the extension will automatically filter out the last 10 characters from this meet link, which is the randomly assigned 'nickname' from the Google Classroom system."
+  },
+  "helpNickname3": {
+    "message": "For example, my Google Classroom meet link is https://meet.google.com/lookup/g45j4fubqb. I copy and paste this entire URL, and the extension will automatically filter out and retain the last 10 characters: g45j4fubqb. This is the 'nickname' randomly assigned by Google Classroom, g45j4fubqb"
+  },
+  "helpCode": {
+    "message": " Code: "
+  },
+  "helpCode1a": {
+    "message": "The code consists of 12 characters: three characters, a '-', four characters, a '-', and three characters. An example is: abc-defg-hij. Note to keep the two hyphens.  This code is the 12 characters following 'https://meet.google.com/' in the Google Meet URL, for example: https://meet.google.com/sik-akes-ilq?user=0. Here, the code is sik-akes-ilq"
+  },
+  "helpUrl": {
+    "message": "URL: "
+  },
+  "helpUrl1a": {
+    "message": "URLs are flexible. An example is the full Google Meet URL: https://meet.google.com/abc-defg-hij. Or perhaps a website the teacher wants to use in class, such as: https://en.wikipedia.org/wiki/Astronomy, or https://www.freecodecamp.org/, or YouTube https://youtu.be/C4_uJmH9hmc"
+  },
+
+  "muteRemove": {
+    "message": "Mute, Remove Student"
+  },
+  "reports": {
+    "message": "Reports"
+  },
+  "dropdownCourse": {
+    "message": "Course"
+  },
+  "dropdownBreakouts": {
+    "message": "Breakouts"
+  },
+  "default1": {
+    "message": "If the above account is correct, no further action is needed"
+  },
+  "default2": {
+    "message": "If the account is incorrect, please follow the instructions below"
+  },
+  "default3a": {
+    "message": "Please click"
+  },
+  "default3b": {
+    "message": "here"
+  },
+  "default3c": {
+    "message": "to manage the order of Google accounts"
+  },
+  "default4": {
+    "message": "Sign out of all accounts"
+  },
+  "default5a": {
+    "message": "Your Google Meet account is the first account you sign in with. If the account you want to use is not the first one, you must first sign out of all accounts, then sign in again, this time making the first account the one you want to use for Google Meet"
+  },
+  "default5b": {
+    "message": "It is important to use the same account to set up and initiate the meeting"
+  },
+  "default5c": {
+    "message": "The account used to set up and initiate the meeting is considered the owner of the Google Meet account"
+  },
+  "default6": {
+    "message": "Sign in again in the correct order, and you can set up and initiate meetings"
+  },
+  "btnOpenMain": {
+    "message": "Main"
+  },
+  "btnOpenMain1": {
+    "message": "Main"
+  },
+  "btnOpenMainRam": {
+    "message": "Main"
+  },
+  "btnOpenBreakouts": {
+    "message": "Breakout"
+  },
+  "btnOpenAll": {
+    "message": "All"
+  },
+  "checkRamOld": {
+    "message": "Low RAM option: Usually not selected. If RAM is below 8G, you can select it. After selection, the main room and breakout rooms will still open, but only one window can be viewed at a time. Using the slider will synchronize closing the current video and opening the next video"
+  },
+  "checkRam": {
+    "message": "Low RAM option: For RAM below 8G"
+  },
+  "btnRam": {
+    "message": "Open video, use slider to open videos in turn"
+  },
+  "checkRam2": {
+    "message": "Instructions"
+  },
+  "muteAllMain": {
+    "message": "Mute all: Main room"
+  },
+  "muteAllBreakouts": {
+    "message": "Mute all: All Breakout Rooms"
+  },
+  "muteAllRooms": {
+    "message": "Mute all: Main and All Breakout Rooms"
+  },
+  "muteAllThis": {
+    "message": "Mute all: This Room (slider)"
+  },
+  "removeAllThis": {
+    "message": "Remove all: This Room (slider)"
+  },
+  "removeBreakouts": {
+    "message": "Remove all: All Breakout Rooms"
+  },
+  "hangupBreakouts": {
+    "message": "Close all Breakout Rooms"
+  },
+  "removeMain": {
+    "message": "Remove all: Main room"
+  },
+  "hangupMain": {
+    "message": "Close the Main room"
+  },
+  "reportsClipboard": {
+    "message": "Copy to Clipboard"
+  },
+  "reportsCsv": {
+    "message": "Download CSV file simultaneously"
+  },
+
+  "reportsLinks": {
+    "message": "Breakout room links"
+  },
+  "reportsAttendance": {
+    "message": "Attendance list"
+  },
+  "reportsAssignments": {
+    "message": "Student group assignments"
+  },
+  "reportsGroups": {
+    "message": "Group students"
+  },
+  "instructRoomLinks": {
+    "message": "Instructions on how to enter room links"
+  },
+  "subHeadingRooms": {
+    "message": "Rooms"
+  },
+  "code": {
+    "message": "Code"
+  },
+  "url": {
+    "message": "URL"
+  },
+  "nickname": {
+    "message": "Nickname"
+  },
+  "nicknameHelplink": {
+    "message": "Help"
+  },
+  "genDisplay": {
+    "message": "Breakout Room Format"
+  },
+  "genTiles": {
+    "message": "Tiles: Independent windows"
+  },
+  "genTabs": {
+    "message": "Tabs: Window tabs"
+  },
+  "genToolbarColor": {
+    "message": "Meet Toolbar Color"
+  },
+  "genSolid": {
+    "message": "Solid Color"
+  },
+  "genGrad": {
+    "message": "Gradient"
+  },
+  "genDropSolid": {
+    "message": "Solid Color"
+  },
+  "genDropEnd": {
+    "message": "Ends"
+  },
+  "genDropMid": {
+    "message": "Middle"
+  },
+  "rptYes": {
+    "message": "Yes"
+  },
+  "rptNo": {
+    "message": "No"
+  },
+  "rptTitleSSR": {
+    "message": "Student Status"
+  },
+  "rptStudent": {
+    "message": "Student"
+  },
+  "rptMain": {
+    "message": "In Main room"
+  },
+  "rptActualRoom": {
+    "message": "Actual Breakout room"
+  },
+  "rptAssignRoom": {
+    "message": "Assigned Breakout room"
+  },
+  "rptTitleBRSR": {
+    "message": "Breakout Room Status"
+  },
+  "rptBreakoutRoom": {
+    "message": "Breakout Room"
+  },
+  "rptActualStudent": {
+    "message": "Actual student"
+  },
+  "rptAssignStudent": {
+    "message": "Assigned student"
+  },
+  "setTimer": {
+    "message": "Set Timer"
+  },
+  "timerHrs": {
+    "message": "Hours"
+  },
+  "timerMin": {
+    "message": "Minutes"
+  },
+  "timerSec": {
+    "message": "Seconds"
+  },
+  "timerStart": {
+    "message": "Start"
+  },
+  "timerStop": {
+    "message": "Pause"
+  },
+  "timerReset": {
+    "message": "Reset"
+  },
+  "enterCourses": {
+    "message": "Please enter your courses"
+  },
+  "firstRoomMain": {
+    "message": "The first row is the main room, the rows after are breakout rooms"
+  },
+  "linksSaved": {
+    "message": "Room links saved"
+  },
+  "mainName": {
+    "message": "Main"
+  },
+  "roomsDupe": {
+    "message": "Cannot save: Duplicate room names or links. All must be unique"
+  },
+  "roomsCreatingUrl": {
+    "message": "Creating and saving room links"
+  },
+  "roomsSaved": {
+    "message": "Rooms and links saved"
+  },
+  "roomsNotYetSaved": {
+    "message": "Note: Changes not yet saved"
+  },
+  "roomsUndo": {
+    "message": "Reverted"
+  },
+  "roomsNeedName": {
+    "message": "Cannot save: Each room needs a name"
+  },
+  "roomsHowStart": {
+    "message": "Easiest way: "
+  },
+  "roomsHowStart1": {
+    "message": "In the link field, leave it blank. Click the (blue) save button, the system will automatically apply for a meet link from Google and save it here. You only need to fill in the room name. This automatic link is a static link that will not change"
+  },
+  "roomsHowGc": {
+    "message": "Google Classroom teachers: "
+  },
+  "roomsHowGc1": {
+    "message": "Please copy the meet link from the Google Classroom homepage, then paste it in the link field here. For example, my meet link is https://meet.google.com/lookup/g45j4fubqb. After pasting in the link field, the extension will remove the preceding characters https://meet.google.com/lookup/, leaving the last 10 characters. In my example, it leaves"
+  },
+  "roomsHowGc2": {
+    "message": "g45j4fubqb"
+  },
+  "roomsHowGc3": {
+    "message": "If the main room is initiated by this extension, the extension and Google Classroom will already be synced. If the main room is initiated on the Google Classroom webpage, you must press the 'Initiate Main Room' button in the 'Happy Classes' tab under 'Start Class' in the extension, which will sync the extension with Google Classroom."
+  },
+  "roomsHowTypes": {
+    "message": "Nicknames, Codes, URLs: "
+  },
+  "roomsHowTypes1": {
+    "message": "There are three types of links, explained below"
+  },
+  "roomsHowNick": {
+    "message": "Nickname: "
+  },
+  "roomsHowNick1": {
+    "message": "An example of a nickname is"
+  },
+  "roomsHowNick2": {
+    "message": "Nicknames cannot contain any URL prefixes, such as g.co/meet/ or meet.google.com/lookup/. Nicknames are freely chosen, can include numbers, but must be in English (must use English nicknames, no Chinese characters)"
+  },
+  "roomsHowNick3": {
+    "message": "Class nicknames are green. Nicknames are dynamic, changing URLs each time they are initiated"
+  },
+  "roomsHowGcnick": {
+    "message": "Google Classroom Nickname: "
+  },
+  "roomsHowGcnick1": {
+    "message": "An example is the full meet URL"
+  },
+  "roomsHowGcnick2": {
+    "message": "or the last 10 characters"
+  },
+  "roomsHowGcnick3": {
+    "message": "In the link field, you can enter the full meet link, or the last 10 characters. If you enter the full URL, the extension will remove the preceding characters, leaving only the last 10 characters. In this example, it is g45j4fubqb"
+  },
+  "roomsHowGcnick4": {
+    "message": "Google Classroom nicknames are green because they are dynamic, changing URLs each time they are initiated"
+  },
+  "roomsHowCode": {
+    "message": "Code: "
+  },
+  "roomsHowCode1": {
+    "message": "The code consists of 12 characters, in this format: three characters, a '-', four characters, a '-', and three characters. An example is"
+  },
+  "roomsHowCode2": {
+    "message": "The code is not randomly created by you, but by Google Meet. For example, if you use this URL: https://meet.google.com/new, a new meet will be initiated, and in the URL you can see these 12 characters, which is your code"
+  },
+  "roomsHowCode3": {
+    "message": "The code is static because it always initiates the same meet URL."
+  },
+  "roomsHowUrl": {
+    "message": "Meet URL"
+  },
+  "roomsHowUrl1": {
+    "message": "If you leave the link field blank, the extension will"
+  },
+  "roomsHowUrl2": {
+    "message": "automatically"
+  },
+  "roomsHowUrl3": {
+    "message": "apply for a link URL from Google and save it. Or you can directly enter a full URL in this format:"
+  },
+  "roomsHowUrl4": {
+    "message": "Meet URLs are static because they always initiate the same URL without changing. However, in the 'General Design' tab, there is an 'Auto Initiate New URL' checkbox, if this option is selected, a new URL will be automatically generated each time it is initiated. If you select this option, be sure to notify students of the new URL after initiation. This option is more suitable for breakout rooms rather than the main room"
+  },
+  "roomsHowUrl5": {
+    "message": "Data URL: "
+  },
+  "roomsHowUrl6": {
+    "message": "Data URLs need the full URL, including https://. An example is"
+  },
+  "roomsHowUrl7": {
+    "message": "Data URLs are flexible and can be a science website, math website, history website, music website, etc."
+  },
+  "courseEnter": {
+    "message": "Please enter your course list"
+  },
+  "courseCourse": {
+    "message": " Course"
+  },
+  "courseDesc": {
+    "message": " Course Description"
+  },
+  "coursesDupe": {
+    "message": " Cannot save: Name is duplicate, name needs to be unique"
+  },
+  "coursesSaved": {
+    "message": " Saved"
+  },
+  "coursesNotYetSaved": {
+    "message": "Changes not yet saved"
+  },
+  "genSliderImg": {
+    "message": "Slider control background image"
+  },
+  "genSliderPos": {
+    "message": "Image position"
+  },
+  "genSliderSize": {
+    "message": "Image size"
+  },
+  "genSliderTextColor": {
+    "message": "Text color"
+  },
+  "genSliderBackColor": {
+    "message": "Background color"
+  },
+  "genBroadImg": {
+    "message": "Broadcast background image"
+  },
+  "genBroadPos": {
+    "message": "Image position"
+  },
+  "genBroadSize": {
+    "message": "Image size"
+  },
+  "genBroadTextColor": {
+    "message": "Text color"
+  },
+  "genBroadBackColor": {
+    "message": "Background color"
+  },
+  "genAutoEnter": {
+    "message": "Allow 'outsiders' to automatically enter the room"
+  },
+  "genAutoEnter1": {
+    "message": "If selected, outsiders can automatically join through the room link"
+  },
+  "genAutoEnter2": {
+    "message": "Usually recommended not to select (leave blank)"
+  },
+  "genAutoEnter3": {
+    "message": "For security reasons"
+  },
+  "genAutoJoin": {
+    "message": "For rooms managed by this extension, automatically press the 'Join' button when initiated. This is a convenient feature"
+  },
+  "genAutoJoinMain": {
+    "message": "Main Room"
+  },
+  "genAutoJoinBreak": {
+    "message": "Breakout Room"
+  },
+  "genAutoNewUrl": {
+    "message": "Automatically change 'static' room links (dark blue)"
+  },
+  "genAutoNewUrl1": {
+    "message": "Each time a meeting is initiated, a new meet URL link will be automatically generated. This option is a safe method but managing the room process will become a bit more complicated. You need to initiate the meeting first to know what the link is, then notify (send to) students the new link. Usually, this feature is more suitable for breakout rooms. If selected for the main room, you need to initiate the main room first, know the new link, and send the new link to students (via email, SMS, etc.), so they know how to enter the main room (what the URL is)."
+  },
+  "genAutoNewUrl2": {
+    "message": "Please note: This option only applies to 'static' type room links (dark blue) in the room settings tab."
+  },
+  "genAutoNewUrl3": {
+    "message": "Other types of room links (green nicknames, light blue codes) are not affected by this option."
+  },
+  "genAutoNewUrlMain": {
+    "message": "Main Room"
+  },
+  "genAutoNewUrlBreak": {
+    "message": "Breakout Room"
+  },
+  "coursesExpimp": {
+    "message": "Export or import all data of this extension"
+  },
+  "coursesExpimpWarn": {
+    "message": "Special note: Importing will replace all existing data of this extension"
+  },
+  "coursesExp1": {
+    "message": "Export all data of this extension"
+  },
+  "coursesExp2": {
+    "message": "File (.txt)"
+  },
+  "coursesExp3": {
+    "message": "Export"
+  },
+  "coursesImp1": {
+    "message": "Import all data of this extension"
+  },
+  "coursesImp2": {
+    "message": "File (.txt)"
+  },
+  "coursesImp3": {
+    "message": "Import"
+  },
+  "coursesBuiltWith": {
+    "message": "Built with ❤️ by 胡浩洋"
+  },
+  "roomsExpimp": {
+    "message": "Export or import breakout room data for this course"
+  },
+  "roomsPopupTitle": {
+    "message": "Course: "
+  },
+  "roomsExp1": {
+    "message": "Export data for this course"
+  },
+  "roomsExp2": {
+    "message": "File (.txt)"
+  },
+  "roomsExp3": {
+    "message": "Export"
+  },
+  "roomsImp1": {
+    "message": "Import data for this course"
+  },
+  "roomsImp2": {
+    "message": "File (.txt)"
+  },
+  "roomsImp3": {
+    "message": "Import"
+  },
+  "roomsBuiltWith": {
+    "message": "Built with ❤️ by 胡浩洋"
+  },
+  "errorAutoCreateLink": {
+    "message": "There was an issue automatically applying for a meet link from Google. Please ensure you are signed in to your Google account. If already signed in, please use this link to sign out and sign in again: https://accounts.google.com/SignoutOptions. This will sign you out of all currently signed-in accounts (sorry for the inconvenience), then ensure the first account you sign in with is your teaching Google account. Sign-in order is important; the first account you sign in with will be your Google Meet account."
+  },
+  "errorNick1": {
+    "message": "There was an issue automatically generating a link for the nickname:"
+  },
+  "errorNick2": {
+    "message": "Please ensure you are signed in to your Google account. If already signed in, and confirmed that your Google account is Google Suite, Education, etc., which provides the nickname feature (general free Google accounts do not provide the nickname feature). If your account provides this feature and is signed in, please use this link to sign out and sign in again: https://accounts.google.com/SignoutOptions. This will sign you out of all currently signed-in accounts (sorry for the inconvenience), then ensure the first account you sign in with is your teaching Google account. Sign-in order is important; the first account you sign in with will be your Google Meet account. If your Google account does not provide the nickname feature, please create only static (dark blue) or code (light blue) links"
+  },
+  "errorBouncingBalls": {
+    "message": "There is a meet window that cannot sync. Please close all currently open meet windows, including this control panel, then reopen this control panel, and reinitiate the main room and breakout rooms. Rest assured, closing the meet window will not delete or interfere with the students inside. If you have many open windows, you may not find all the meet windows. In this case, the simplest method is to close all currently open windows and reopen them, because if an old meet window remains, the extension will still be unable to practice syncing. ***No need to delete the extension and re-download. Just close all currently open meet windows first, then reopen this control panel, and use this control panel to open the main room and breakout rooms."
+  },
+  "msgAllSync": {
+    "message": "Success: All meet windows synced (All successfully synced)"
+  },
+  "msgBreakoutSync": {
+    "message": "Success: All breakout rooms synced (Breakouts successfully synced)"
+  },
+  "msgMainSync": {
+    "message": "Success: Main room synced (Main room synced)"
+  },
+  "adhocAutosend": {
+    "message": "New!!! Automatically send breakout assignments to meet chat"
+  },
+  "btnAutosend": {
+    "message": "Send breakout assignments to the chat"
+  }
+}
