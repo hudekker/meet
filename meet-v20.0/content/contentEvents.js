@@ -82,15 +82,15 @@ const waitForJoinButton = setInterval(() => {
 
 // Extra
 
-document.body.addEventListener("dom-changed", (evt) => {
+document.body.addEventListener("dom-changed", async (evt) => {
   try {
     // Get the breakout object
     if (!g_myBreakout) {
-      (async () => {
-        let { breakout: test } = await chromeStorageLocalGet("breakout");
-        myBreakout = test;
-        g_myBreakout = myBreakout;
-      })();
+      // (async () => {
+      let { breakout: test } = await chromeStorageLocalGet("breakout");
+      myBreakout = test;
+      g_myBreakout = myBreakout;
+      // })();
     }
 
     // If haven't initialized...
@@ -111,17 +111,16 @@ document.body.addEventListener("dom-changed", (evt) => {
       }
 
       // Give yourself some time before trying to initialize
-      (async () => {
-        await sleep(5000);
+      // (async () => {
+      await sleep(5000);
 
-        oneTimeClick();
-      })();
+      oneTimeClick();
+      // })();
 
       // Always update the speaker audio if initialized
     } else {
-      // alwaysUpdateSpkAudio();
-      setBtnColor();
-      setTabColor();
+      // let muted = await setTabColor();
+      // setBtnColor(muted);
     }
 
     // Auto enter flag
@@ -157,7 +156,7 @@ document.body.addEventListener("dom-changed", (evt) => {
 //   }
 // };
 
-chrome.runtime.onMessage.addListener((payload, sender, cb) => {
+chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
   // console.log(payload);
   let meetBottomBar;
 
@@ -264,14 +263,72 @@ chrome.runtime.onMessage.addListener((payload, sender, cb) => {
         const chatButton = document.querySelector('[aria-label="Chat with everyone"]');
         if (chatButton.ariaPressed == "true") {
           chatButton.click();
-          sendResponse({ status: "success" });
+          cb({ status: "success" });
         } else {
-          sendResponse({ status: "error", message: "Chat button not found" });
+          cb({ status: "error", message: "Chat button not found" });
         }
       } catch (error) {
         console.log("error in clickChatButton", error);
       }
+      break;
 
+    case "updateSpkMicVidMuteState":
+      try {
+        const spkMute = payload.state.spkMute;
+        const micMute = payload.state.micMute;
+        const vidMute = payload.state.vidMute;
+
+        console.log(`updateSpkMicVidMuteState spkMute: ${spkMute}, micMute: ${micMute}, vidMute: ${vidMute}`);
+
+        // Get the current state for these
+        let currentSpkMute = document.querySelector('[data-btn-breakout="spk"]');
+        let turnMicOn = document.querySelector('[aria-label="Turn on microphone"]');
+        let turnMicOff = document.querySelector('[aria-label="Turn off microphone"]');
+        let turnVidOn = document.querySelector('[aria-label="Turn on camera"]');
+        let turnVidOff = document.querySelector('[aria-label="Turn off camera"]');
+
+        // 1) Speaker mute logic
+        if (currentSpkMute && spkMute != null) {
+          let icons = currentSpkMute.querySelectorAll("[data-muted-icon]");
+          if (spkMute && !currentSpkMute.classList.contains("av-mute")) {
+            currentSpkMute.classList.add("av-mute");
+            currentSpkMute.classList.add("breakout-mute");
+            currentSpkMute.classList.remove("breakout-unmute");
+            icons[0].style.display = "flex";
+            icons[1].style.display = "none";
+          } else if (!spkMute && currentSpkMute.classList.contains("av-mute")) {
+            currentSpkMute.classList.remove("av-mute");
+            currentSpkMute.classList.remove("breakout-mute");
+            currentSpkMute.classList.add("breakout-unmute");
+            icons[0].style.display = "none";
+            icons[1].style.display = "flex";
+          }
+        }
+
+        // 2) Microphone mute logic
+        if (micMute != null) {
+          if (micMute && turnMicOff) {
+            turnMicOff.click(); // Click to mute microphone
+          } else if (!micMute && turnMicOn) {
+            turnMicOn.click(); // Click to unmute microphone
+          }
+        }
+
+        // 3) Video mute logic
+        if (vidMute != null) {
+          if (vidMute && turnVidOff) {
+            turnVidOff.click(); // Click to mute video
+          } else if (!vidMute && turnVidOn) {
+            turnVidOn.click(); // Click to unmute video
+          }
+        }
+
+        let muted = await setTabColor();
+        setBtnColor(muted);
+        console.log(muted);
+      } catch (error) {
+        console.log("error in updateSpkMicVidMuteState", error);
+      }
       break;
 
     default:

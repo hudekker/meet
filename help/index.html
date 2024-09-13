@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Breakout RoomVersion Notes</title>
+  <meta name="author" content="Robert Hudek, hudektech.com">
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- <script src=" js/jquery.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <link rel="stylesheet" href="css/popup.css"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="icon" href="../img/icons/logo128.png">
+  <link rel="stylesheet" href="notesStyle.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+</head>
+
+<body style="background-color: ivory; padding-bottom: 80vh;">
+  <h4 class="text-center">Breakout Room Version Notes</h4>
+
+  <div class="row justify-content-center ">
+    <div class="notes-section col-lg-6 col-md-7 col-sm-10 col-11 ">
+
+      <h6 id="v-0.0.15.6" class="pt-1">Version 0.0.15.6</h6>
+      <ul> <span class="text-success">Features</span>
+        <li>The headline message on the "Meet" tab shows the version number. Version 0.0.15.6 is the first version to
+          show
+          this,
+          which will help in user support if I know exactly what version you are using. All versions are globally
+          updated
+          but occasionally there is a delay. This headline message will also alert the user that the version has
+          changed.
+        </li>
+        <li>New section for Open Rooms for Google Classroom. The process for opening the rooms in standard Google Meet
+          is
+          different than for Google Classroom, so to make this process cleaner and easier for users, a new section
+          Google
+          Classroom is added</li>
+        <li>The "Choose Course" section in the Meet tab shows the selected course and number of breakout rooms
+          requested.
+          This allows the user at a glance to see what course they are manaing and the number of breakouts they
+          selected/li>
+      </ul>
+
+      <ul> <span class="text-danger">Known Issues and Workarounds</span>
+        <li>
+          For Google Classroom users, please delete the "?authuser=0" suffix of the URL for the GC
+          automatically generated Meet. After you delete the suffix, the URL should be in the format:
+          https://meet.google.com/abc-def-ghi. This is a bug on my side and I will fix it in the next release. I have
+          a matching problem in the "Assign Participants" section if the suffix exist in the GC automatically created
+          Meet URL.
+          This is only a problem for release 0.0.15.6. I will fix it in the next release.
+        </li>
+        <li>You will need to select (again) the course name and select (again) the number of breakouts. Even though the
+          name is to the right of the dropdown, please select it again. </li>
+        <li>Verion 15.6 deleted the user's extension data. This is an error on my part and should not happen again. For
+          the next several weeks at least, please back up your extension data by going to the "Course" tab and Export
+          your data to your personal computer download folder. If need be, you can Import it back in again. I'm very
+          sorry for any inconvenience this caused. This should not happen again, but to be on the safe side please use
+          this backup method.</li>
+      </ul>
+
+      <h6 id="v-0.0.15.7" class="pt-1">Version 0.0.15.7</h6>
+      <ul> <span class="text-success">Features</span>
+        <li>Fixed the bug for Google Classroom users where they must delete the "?authuser=0" suffix in the GC
+          automatically
+          generated link URL. Now please do not do that anymore. That was just a
+          temporary workaround until this version's fix </li>
+        <li>Fixed the bug in the Meet tab where the user needed to re-select the course. Now you don't have to do
+          that. For Course selected, what you see is what you selected, which is how it is supposed to be. However,
+          there
+          still is
+          the lingering problem (fixed in 15.8) where you will need to re-select the number of rooms, please see the
+          Known Issues and Workaround below</li>
+        <li>Fixed the intermittent error for the "Choose Course" section label in the "Meet" tab where the
+          section label did not always accurately reflect
+          the Course chosen and the selected number of Breakouts Rooms.</li>
+        <li>Added a link to this version release notes web page in the headline message in "Meet" tab where the version
+          is
+          specified. There is a click "here"
+          link which takes the user to this Version Notes page. This is the quickest way to
+          learn
+          about new features in the latest version. Also if a problem occurs, I will post the error and a workaround if
+          possible
+          for that
+          error while I am fixing it or waiting for Google to approve the new release</li>
+        <li>Packaged up the Room Participant Controls into its own section in the Meet tab. This simplified the look of
+          the control panel
+          by reducing the number of buttons at the top of the panel. These participant controls still exist and work the
+          same, however, they are in their own section "{Room Name} Room Participant Controls"</li>
+      </ul>
+      <ul> <span class="text-danger">Known Issues and Workarounds</span>
+        <li>Error: Clicking on the Open Breakout Rooms button in the Meet tab opens all the breakout rooms for a given
+          course. For example,
+          even though the dropdown may
+          select 3 breakout
+          rooms and the total number of breakout rooms is 8, the extension will open all 8. </li>
+        <ul>
+          <li>Workaround is to re-select
+            the number of breakout rooms. So even though the selected number is 3, please select it again. After
+            re-selecting it, now the Open Breakout Rooms button will only open the requested number which is 3 in the
+            example above. This is an
+            error that I will fix in the next release, however, this workaround will handle this error. Just select
+            again
+            the number of breakout rooms. </li>
+        </ul>
+      </ul>
+
+      <h6 id="v-0.0.15.8" class="pt-1">Version 0.0.15.8</h6>
+      <ul> <span class="text-success">Features</span>
+        <li>Fixed the bug in the Meet tab where the user needed to re-select the number of breakout rooms. Now you do
+          not need to do that.</li>
+        <li>Resize button at the top right hand side of the control panel. This minimizes and maximizes the control
+          panel</li>
+        <li>Resize button at the top right hand side of the control panel, just to the left of the Resize button. This
+          retiles all of the rooms as if they were created at the same time, sized and spaced appropriately
+          panel</li>
+      </ul>
+
+      <ul> <span class="text-danger">Known Issues and Workarounds</span>
+        <li>None to date</li>
+      </ul>
+
+      <h6 id="v-0.0.15.9" class="pt-1">Version 0.0.15.9 </h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="red">Automatic Meet Links!!!</span> Now all the links can be automatically generated.
+          There is no need to go to Google
+          Calendar anymore. Just name your rooms and save, then the links will be automatically created and saved in the
+          extension. This is a HUGE time saver</li>
+        <li>If you want to save a particular link, for example the main room, you can save that link and it will not be
+          changed. All you have to do is leave it alone and it will not be overwritten. However, if you want to refresh
+          a new set of links for existing rooms, then blank out the links field and click save. A new set of links will
+          automatically be created and saved.</li>
+        <li><span class="red">Rooms can now be any resource you want</span>, such as a youtube video, jamboard, a
+          math or science web page, or an
+          article on the web you want to discuss. Simply copy that link to the Rooms tab and give the "Room" a name.
+          Make sure that it begins with https:// or http:// in order to be viewed as a valid link. These resources will
+          be tiled and available for retile along with the Google meet rooms on your screen</li>
+        <li>Google Classroom users will still need to copy their GC auto generated main page URL to the Rooms tab Main
+          room in order to sync the extension with Google Classroom. However, all of the GC breakout rooms links can be
+          automatically generated. Just leave the Link field blank and the extension will create the link and save it
+          for you in the list.</li>
+      </ul>
+
+      <ul> <span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Problem with Auto Link Generation:</span> When you receive the update 15.9
+          you may have to verify your google
+          account. I experienced this problem and received an error message from the extension: Error
+          in automatically creating the link. Please make sure you are logged in to your teaching google account.... No
+          need to panic, please type in the following url: <a
+            href="https://meet.google.com/new">https://meet.google.com/new</a> . Next the system
+          will ask you to
+          verify
+          your account. Once you do that you are all good! This needs to be initialized once by going to this url and
+          following the instructions to confirm your account. After than it should work in the automated mode within the
+          extension.</li>
+        <li><span class="font-weight-bold">Noisy Feedback when Using Broadcast:</span> This can happen when students
+          are in both the
+          breakout rooms and also
+          the main room. I fixed this already in version 16.0 which will be available August 19 (estimated). In the
+          meantime, the workaround is to *** manually *** turn off the speaker button in the main room when
+          broadcasting. I know this breaks the "rule" I gave everyone to please only use the control panel, but this is
+          a
+          temporary workaround until 16.0 When you turn on the Broadcast microphone it will automatically turn on the
+          microphone everywhere so before you speak please turn off the mic in the main rooom (directly in its window).
+          This is a temporary workaround and in 16.0 the broadcast will only affect the breakout rooms</li>
+        <li><span class="font-weight-bold">Sync Google Classroom Main room with the extension is inconvenient:</span>
+          This
+          will be more
+          automated by only
+          having to
+          click on a button to sync up
+          the room, and it is laid out as step 2 in the process within the extension so you may easily know what to do
+          and when to click. So as of version 16.0 no more highlighting the
+          URL,
+          copy/paste in the
+          rooms tab. Just click a button. Details in the help
+          for version 16.0 when it becomes available</li>
+        <li><span class="font-weight-bold">Meets ALWAYS automatically force me to Join:</span> This is also fixed in
+          version 16.0
+          There will be two checkboxes
+          in the settings to control this for the main room and also breakouts. This will be explained in the version
+          16.0 help video once version 16.0 is released (estimated August 19)</li>
+        <li><span class="font-weight-bold">Retile for Google Classroom Main room restarts that room:</span> I already
+          fixed this in my development version of version 16.0. This will smoothly retile all rooms with no restarting.
+        </li>
+      </ul>
+
+      <!-- // version 16.0 -->
+      <h6 id="v-0.0.16.0" class="pt-1">Version 0.0.16.0</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Picture background for the Slider and Broadcast sections</span> This is
+          controlled in the settings where you may
+          choose an URL image link as your background. Additionally you can control the position, size, text color and
+          background matte color if the image size is Contain and there is some blank space on the background</li>
+        <li><span class="font-weight-bold">Auto Join Meet is Configureable in the Settings: </span>There are two
+          checkboxes, one each for the main rooms and
+          one for the
+          breakouts. If these are checked, then the respective room type (main or breakout) will automatically be
+          joined. Otherwise, it will open the window but wait for you to click Join</li>
+        <li><span class="font-weight-bold">Re-Tile Google Classrooms:</span> Now this is a smooth process and it does
+          not
+          automatically restart the window</li>
+        <li><span class="font-weight-bold">Google Classroom Sync is just a Click:</span> In the "Start Class with Google
+          Classroom", there is a button to
+          automatically sync up the extension with Google Classroom. Just click it and you are in sync. No need to copy
+          the url and paste it in the Rooms tab. This button does all that for you</li>
+        <li><span class="font-weight-bold">Broadcast is now only to Breakouts:</span> There was a feedback issue when
+          the broadcast to breakouts also
+          broadcast to the main room. Now broadcast only broadcasts into the breakouts. If you also want to broadcast
+          into the Main room then you may also directly click on the Main room microphone (and video) to broadcat there
+          as well</li>
+        <li><span class="font-weight-bold">Automatically create new links for rooms when they are opened:</span> This is
+          a
+          configureable setting for the main room and the breakout rooms. There is one checkbox for Main rooms and one
+          checkbox
+          for Breakout rooms, because in some cases the main room link should be static but the breakouts links
+          should be
+          dynamically created
+          each time. If checked on, then a brand new
+          room link will be created when the teacher opens the room. This is creating new room links "on the fly". After
+          defining the room names in the Rooms tab, if this checkbox is on (separate checkbox for main and breakout
+          categories)
+          then a new room link will be created whenever that room is opened. With this checkbox on, there will be no
+          need
+          to go to the Rooms tab to blank out the room if the teacher wants a new link, because a new link will be
+          created automatically whenever the room is opened.</li>
+        <li><span class="font-weight-bold">Remove All Participants from All Breakouts:</span> Now you can with a click
+          of a button remove all participants from all breakout rooms. This will not remove students from the main room,
+          just from ALL of the breakouts. If you want students removed from the main room then you can use the single
+          room button option just above the Remove All from All Breakouts.</li>
+        <li><span class="font-weight-bold">The Close Room button is removed because it is redundant and slightly
+            problematic:</span> This button is the same as directly closing the window and it occasionally causes some
+          microphone issues. Since this has no functionality over the normal close and it occasionally causes problems
+          it is removed. The process is still the same. First remove students then close the room just like you close
+          down any window. You can even use a command/control W on that window to close it after you first removed the
+          students</li>
+      </ul>
+
+      <ul> <span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Feedback when Broadcasting: </span> The speaker button is on for all the
+          breakouts when you first turn on the microphone. In the next version I will make sure that when the broadcast
+          microphone is turned on all the breakout rooms speakers will be turned off. WORKAROUND: Before you turn on the
+          microphone, please toggle the broadcast speaker button until you see all the breakout rooms speakers turn off.
+          Then you can turn on the broadcast microphone. I will fix this in the next version which I will upload to
+          Google by August 23 or so.</li>
+        <li><span class="font-weight-bold">Remove All Participants from All Rooms button does not work properly if there
+            are "resource" room(s)
+            opened.</span>
+          Resource rooms are any non-meet rooms that are defined in the list of your rooms in the extension. An
+          example of a resource
+          room is https://en.wikipedia.org/wiki/Astronomy. I
+          fixed this in version 16.1 but the workaround is to go to the rooms tab on the extension and move all the
+          resources to the bottom of the list of rooms. You can do this step while all the rooms are still open, go to
+          the
+          rooms tab and rearrange the order and save. Now you can
+          click on the Remove
+          All Participants from All Rooms button. If you never define any resources in the rooms list then you will not
+          have this problem in v16.0</li>
+      </ul>
+
+      <h6 id="v-0.0.16.1" class="pt-1">Version 0.0.16.1</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Control Panel scrollbar</span> Added a verical scrollbar on the control panel
+          so teachers can move it up and
+          down on their smartboards. This should work properly now on smartboards for scrolling, but if not then
+          please contact me and let me know</li>
+        <li><span class="font-weight-bold">Broadcast speaker off</span> Automatically initially turns off the speaker
+          for
+          all breakouts when the
+          teacher uses the broadcast microphone to all breakouts</li>
+        <li><span class="font-weight-bold">Fixed Remove All Participants from All Breakouts with there is a Resource
+            room</span> Resource rooms are any non-meet rooms that are defined in the list of your rooms in the
+          extension. An example of a resource room is https://en.wikipedia.org/wiki/Astronomy. Now this function should
+          work properly for all breakout rooms even when there is a resource in the middle</li>
+      </ul>
+
+      <ul> <span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Computer Slow and Latency Issue</span> I found an area where I can consume
+          fewer resources when running the extension. That is fixed in version 16.2 and I hope that solves the latency
+          problem. </li>
+        <li><span class="font-weight-bold">Nicknames in Version 16.2</span> Nicknames coming in version 16.2.</li>
+        <li><span class="font-weight-bold">Sync Extension for all Browsers</span> I plan to include this in 16.3.
+          In the meantime, the workaround if you have multiple computers is to export from the Courses tab (black button
+          on far right) from your one computer and then import from the Courses tab into your second computer</li>
+        </li>
+      </ul>
+
+      <h6 id="v-0.0.16.2" class="pt-1">Version 0.0.16.2</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Nicknames</span> Now you can use nicknames for Rooms links!!!</li>
+        <li><span class="font-weight-bold" style="color: red">Google Classroom teachers</span> There is a required
+          change in version 16.2 for Google Classrom users for their main room link.
+          Please copy your "meet link" from the Google Classroom page into the extension as your Main room link in the
+          Rooms tab. Please refer to <a style="font-size: 0.8rem" href="https://youtu.be/jCLLqBLeFRk">this
+            video</a> for
+          detailed instructions. Non Google Classroom users do not need to change anything.
+        </li>
+        <li><span class="font-weight-bold">Codes</span> You can use just the 10 character code separated with dashes in
+          an 3-4-3 format as your Rooms links</li>
+        <li><span class="font-weight-bold">Backward Compatibility</span> You can still enter and use the static Meet url
+          addresses as your Rooms tab link. There is still the automatic creation of Meet url links. All you have to to
+          do is leave the field blank, just as before in version 16.1 and below</li>
+
+      </ul>
+
+      <ul>
+        <li><span class="text-danger"></span>Known Issues and Workarounds</span>
+          <ul>
+            <li>Error message: TypeError: Error in invocation of tabs.sendMessage(integer tabId, any message, optional
+              object options, optional function responseCallback): No matching signature. This is obviously an uncaught
+              error on my side and I'm sorry it caused you problems. Please go to the Rooms tab and re-save the links.
+              If that doesn't work then blank out the links and click save.
+            </li>
+            <li>Extension is active for non-relevant meets: This is a bug that I am fixing in v16.3 expected release
+              Sept 5. The bug is that the extension is active for meets that are not breakout related, that is meets
+              that are not defined in the Rooms tab</li>
+            <li>These suggestions worked for me when I had audio problems
+              <ul>
+                <li>Refresh on the meet/tile, Refresh the Control Panel
+
+                  Command/control R</li>
+                <li>Turn the extension on/off by going to the Chrome browser, Window menu option, Choose Extension. Turn
+                  the extension off/on using the slider
+                  button
+
+                  This does not delete your extension data and does not remove or disturb your participants</li>
+                <li>"Punted" closed all the windows, Command/control W
+
+                  That did not remove participants and did not disturb them
+
+                  Re-opened everything.
+
+                  That worked!!!</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <h6 id="v-0.0.16.3" class="pt-1">Version 0.0.16.3</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Error tabs.sendMessage</span> Fixed some of the errors on
+          opening...invocation of
+          tabs.sendMessage..
+        </li>
+        <li><span class="font-weight-bold"> Error active for other meets</span> Fixed some errors on freezing up other
+          meets. Now the extension
+          will only be active for meets that are defined in its Rooms tab. All other meets will be ignored
+        </li>
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Additional Problems with the above two issues </span> There are still some
+          issues with the above two problems. That is addressed in 16.4
+        </li>
+        <li><span class="font-weight-bold">Audio Feedback and Button Issues</span> There are still some issues which is
+          addressed in 16.4
+        </li>
+        <li><span class="font-weight-bold">Problems saving the room tab links</span>
+          There is a one-off problem with the saving of room tab links for the static automatic links (purples) and also
+          the nicknames (greens). I worked with a teacher online who put together training for his fellow teachers and
+          all of them can create and save no problem, but suddenly he cannot even though he previously was able to. We
+          worked online together to narrow it down to his computer because when he swapped out another computer it
+          worked. I still am investigating this issue and don't have an answer yet</li>
+      </ul>
+
+      <h6 id="v-0.0.16.4" class="pt-1">Version 0.0.16.4</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Audio problems</span> This was not fixed yet
+        </li>
+        <li><span class="font-weight-bold">Restored functionality for Generic Meets to use the Extension buttons and
+            features</span> I restored the colors and speaker button for non-breakout rooms meets. Sorry about that
+        </li>
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li>Audio problems with the speaker</li>
+        <li><span class="font-weight-bold">Problems saving the room tab links</span>
+          There is a one-off problem with the saving of room tab links for the static automatic links (purples) and also
+          the nicknames (greens). I worked with a teacher online who put together training for his fellow teachers and
+          all of them can create and save no problem, but suddenly he cannot even though he previously was able to. We
+          worked online together to narrow it down to his computer because when he swapped out another computer it
+          worked. I still am investigating this issue and don't have an answer yet</li>
+      </ul>
+      <h6 id="v-0.0.16.5" class="pt-1">Version 0.0.16.5</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Fix Audio problems</span> Some teachers were not
+          able to hear their students even though the speaker button was on. I believe this v16.5 will finally fix that
+          problem
+          as well as some other anomalies associated with the mic and speaker. If you still experience problems please
+          let me know so I can know the details of how it happened. We may want to schedule a meet where you can show
+          me, if that is convenient for you.
+        </li>
+        <li><span class="font-weight-bold">Rooms tab edit checks</span> For google classroom lookup meet links, strips
+          out the prefix to get the nickname.
+
+          Prevents users from entering incorrect formats such as g.co/meet/xxxxx. If you want to enter a nickname just
+          enter the nickname
+
+          Also prevents users from entering meet.google.com/abc-defg-hij. The prefix will be stripped out as just
+          abc-defg-hij
+        </li>
+        <li><span class="font-weight-bold">Countdown timer</span> Chime at one minute and completion. This is only
+          displayed on the teacher's screen
+        </li>
+        <li><span class="font-weight-bold">Students Status Report</span> Lists all the students in all the breakouts,
+          according to their assigned rooms and actual rooms attended. Can use this report to monitor whether students
+          go to the correct rooms or not. Can also identify if they invited their friends to join the breakouts
+        </li>
+        <li><span class="font-weight-bold">Breakout Rooms Status Report</span> Similar to the Students Status Report but
+          organized by breakout rooms
+        </li>
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Loss of data and unable to save</span> I inadverdantly enabled the browser
+          sync capability in this version which caused the data to be deleted. This also caused a problem in saving the
+          links because the browser sync storage is limited in size and would not save any more links. I will revert
+          back to
+          previous browser storage method and I hope that it will be approved by Google by tomorrow morning, Sept 15. I
+          am truly sorry for the inconvenience. Please look for version 16.6</li>
+        <li><span class="font-weight-bold">Unnecessary Delay in Speaker Button Update</span> I just sent up this version
+          and finally
+          found the latency problem in the speaker button when clicking through the slider. The good news is I just
+          fixed it on my development system and will send it up tomorrow. The problem is that there is an unnecessary
+          1/2
+          second delay in the speaker button. I removed this speaker button delay and will send up version 16.6
+          tomorrow (9/15).
+          I think
+          this
+          speaker
+          button problem will finally be put to rest tomorrow in version 16.6. In my testing, if you are only turning on
+          the speaker button,
+          you
+          can go crazy on the slider, grabbing the yellow dot and swinging it back and forth. The meets all keep up and
+          there is no out of sync problems. Finally can fully use the slider and grab the yellow dot moving it back
+          and
+          forth at will!</li>
+
+        </li>
+      </ul>
+      <h6 id="v-0.0.16.6" class="pt-1">Version 0.0.16.6</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Fix Browser Save</span> Reverted back to non-sync browser save so that all
+          the links can be saved. Browser sync has a very limited storage capacity so reverted back to original. The
+          browser sync was mistakenly included in the version 16.5 which caused all the save and loss of data problems.
+          This was inadverdantly added in 16.5 and I'm sorry for the inconvenience it caused everyone. Upgrades should
+          not cause any data loss, however, just to be on the safe side I advise everyone to regularly use the export
+          function in the Courses tab. The export option in the Courses tab exports all the data in the extension to a
+          file in your download folder.
+        </li>
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Speaker Button...</span>
+          Some teachers are reporting that they are still hearing sound from other rooms. If that is the case for you,
+          can you please help me identify this problem? I have a video that shows how you can help...
+          https://youtu.be/pbiy5gHZKcw</li>
+      </ul>
+
+
+      <h6 id="v-0.0.16.7" class="pt-1">Version 0.0.16.7</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Multi Monitors Open Breakouts</span> Open breakout rooms in the same monitor
+          as
+          the control panel
+        </li>
+        <li><span class="font-weight-bold">More Edit Checks on Room Meet Input</span> Prevent the "?authuser=..." suffix
+          from being entered in the room link for the statics (purples). Only the link in the format
+          https://meet.google.com/abc-defg-hij should be entered and with no suffix. This edit check automatically
+          strips
+          off any suffix
+        </li>
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Tabs not working</span> I am working on this now and will upload a fix soon.
+          For now, please use tiles option in the settings and then drag the tabs together. Sorry about that! A fix will
+          come soon - hopefully today 9/29
+        </li>
+        <li><span class="font-weight-bold">Microphone dropping...</span> One teacher mentioned that if the microphone
+          occasionally dropped and tied the problem back to the sound card in the system settings. If you are
+          experiencing
+          a similar problem then you may want to check you system settings to make sure the correct sound card is
+          selected
+        </li>
+      </ul>
+
+
+      <h6 id="v-0.0.16.8" class="pt-1">Version 0.0.16.8</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Fixed the Tabs Error</span> Fixed the tabs error. This was an error from the
+          update on the multiple monitors. Tabs is working now.
+        </li>
+
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Microphone dropping...</span> One teacher mentioned that if the microphone
+          occasionally dropped and tied the problem back to the sound card in the system settings. If you are
+          experiencing
+          a similar problem then you may want to check you system settings to make sure the correct sound card is
+          selected
+        </li>
+      </ul>
+
+      <h6 id="v-0.0.16.9" class="pt-1">Version 0.0.16.9</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Fixed Some External Monitor Display Issues</span> Small issues with improper
+          sizes for
+          retabs
+        </li>
+
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Speaker Issues</span> If you are having speaker/microphone issues, I found
+          that most of these are due to an external monitor. You can try disonnecting the external monitor and run it
+          all on your one computer and see if that solves it. I know that's not really a good solution but at the moment
+          that is what I am able to narrow it down to. I have a video that shows how you can help me debug it and send
+          me screenshots if you have the time and feel inclined to help out. Here's the video:
+          https://youtu.be/pbiy5gHZKcw
+        </li>
+      </ul>
+
+      <h6 id="v-0.0.17.0" class="pt-1">Version 0.0.17.0</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Small Computers Can Now Run the Extension</span> Computers with low RAM (less
+          than 8G RAM) can now run the extension in the Low RAM Option which opens the breakouts one at a time. This
+          conserves memory and allows the small computers to run 20 or more breakout rooms no problem. The Low RAM
+          Option is a checkbox in the Meet tab in the Start section. There is a Help link for more information in the
+          checkbox section.
+        </li>
+
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Speaker Issues</span> If you are having speaker/microphone issues, I found
+          that most of these are due to an external monitor. You can try disonnecting the external monitor and run it
+          all on your one computer and see if that solves it. I know that's not really a good solution but at the moment
+          that is what I am able to narrow it down to. I have a video that shows how you can help me debug it and send
+          me screenshots if you have the time and feel inclined to help out. Here's the video:
+          https://youtu.be/pbiy5gHZKcw
+        </li>
+      </ul>
+
+      <h6 id="v-0.0.17.1" class="pt-1">Version 0.0.17.1</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Fixed the Auto Admit option for Outside Participants</span> Periodically
+          Google makes changes to their program and the popup address slightly changed so I updated the code to find
+          this new address
+        </li>
+        <li><span class="font-weight-bold">Fixed the Remove Participants function</span> Periodically
+          Google makes changes to their program and the remove participants popup slightly changed so I updated the code
+          accordingly
+        </li>
+        <li><span class="font-weight-bold">Slight change to the speaker button updates which may fix the audio bleed
+            from other rooms</span> Removed any delay in updating the speaker button, so hopefully this may address the
+          room audio
+          overlap. This has been a difficult problem for me to identify and debug because I have not been able to
+          duplicate this problem on my system.
+        </li>
+
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Speaker Issues</span> If you are having speaker/microphone issues, I found
+          that most of these are due to an external monitor. You can try disonnecting the external monitor and run it
+          all on your one computer and see if that solves it. I know that's not really a good solution but at the moment
+          that is what I am able to narrow it down to. I have a video that shows how you can help me debug it and send
+          me screenshots if you have the time and feel inclined to help out. Here's the video:
+          https://youtu.be/pbiy5gHZKcw
+        </li>
+      </ul>
+
+      <h6 id="v-0.0.17.2" class="pt-1">Version 0.0.17.2</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Added feature to hide/unhide bottom border</span> Button on top right of
+          control panel will hide/unhide the bottom border in the google meets
+        </li>
+
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Random, intermittent audio bleed between rooms</span> I'm still tracking this
+          down. One teacher said that if he closed the main room window that stopped the bleed between rooms. Another
+          option is to close all the meet windows (don't kick out the students, just close your windows) and then
+          reopend them using the Open/Synch All Rooms option in the Start Class section of the Meet tab
+        </li>
+      </ul>
+
+      <h6 id="v-0.0.17.3" class="pt-1">Version 0.0.17.3</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Language Support for Traditional Chinese</span> Language support for
+          traditional chinese 繁體字。 This was a huge undertaking to make all the text markup in variable form, but now
+          that it is done, I plan to add other languages such as German, Spanish, etc. Currently the help is still in
+          English and that is Phase II of the internationalization of the extension.
+        </li>
+        <li><span class="font-weight-bold">Error message for spinners bouncing forever</span> The spinners bounce
+          forever if there is an "old" meet that is still open and the extension tries unsuccessfully to reconnect. The
+          extension
+          cannot connect sync in some cases so an error message is given with instructions to close all old meets and
+          then rerun the extension. Please do not uninstall the extension. Just close it and and close all the current
+          meet windows, then reopen. Closing a meet window does not remove any students or affect them in any way.
+        </li>
+
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Error in opening meets with nicknames</span>Google made a change to their
+          program so I am making a change to my extension</li>
+        <li><span class="font-weight-bold">Found the reasons for the audio bleed through between rooms (or unexpected
+            muting of rooms)</span> Just turn off and on the extension by going to the extension management page on your
+          chrome
+          browser, which is Window / Extension and then find Google Meet Breakout Rooms. Next click on the slider to the
+          left which turns "off" the extension. Next completely Quit Chrome (not just close windows, completely Quit
+          chrome). Next open up Chrome again and go back to
+          the extension page and click on the slider to the right to turn it "on". This does not delete any of your
+          extension data. It is similar to a reboot on your computer system but
+          it just reboots the extension, keeping all your data. If this problem still persists then please email me at
+          robert@hudektech.com so we can figure out what's going on in your system and solve it. But this has worked for
+          the teachers who notified me of this problem so please try this first. Thanks!
+        </li>
+      </ul>
+
+      <h6 id="v-0.0.17.4" class="pt-1">Version 0.0.17.4</h6>
+      <ul> <span class="text-success">Features</span>
+        <li><span class="font-weight-bold">Fixed the error on opening Nicknames</span> Google made a small change to
+          their program which required me to make a small change on my side.
+        </li>
+
+      </ul>
+      <ul><span class="text-danger">Known Issues and Workarounds</span>
+        <li><span class="font-weight-bold">Sound issues: Reset the Extension. Here's how:</span>
+
+          <p class="li top5">Note: To fix the sound
+            problem between rooms the extension
+            must be reset. Uninstalling and re-installing the extension will NOT fix the problem. The good news is that
+            following these reset steps your data will NOT be
+            deleted. However, just to be
+            on the safe side you may want to export your data using the extension tab Courses / Export</p>
+
+          <p class="li">I have a YouTube explaining this here: <a href="https://youtu.be/l6ht_EvjrG8">YouTube link</a>
+          </p>
+
+          <p class="li">Please following these instructions exactly.</p>
+          <ol>
+            <li>Go to the Extension page in Chrome and turn OFF my extension.
+              <ul>
+                <li>On a Mac, go to the Chrome menu and choose the Windows top-level menu, then underneath that
+                  is Extensions sub-level menu option
+                  and
+                  click on that.</li>
+                <li>For Windows, I believe it is similar. Another way to get to the Extensions page for Chrome is to
+                  click
+                  on the puzzle piece on the menu bar.</li>
+                <li>Once you are on the Chrome/Extension page, click left on the slider there to turn OFF my extension
+                  Google Meet Breakout Rooms.</li>
+              </ul>
+            </li>
+
+
+
+
+            <li>
+              Quit/Exit chrome completely.
+              <ul>
+                <li> On a Mac this is done by going to the Chrome menu, click on Quit Chrome.
+                  Mac keyboard shortcut ⌘ Cmd + Q will also work.</li>
+                <li>On Windows this is Exit Chrome.
+
+                  <p class="li">Click the “≡” button in the upper right corner of the Chrome browser window.
+                    Select the Exit button. This will close all tabs and windows and end the process.</p>
+
+                  <p class="li">Windows shortcut
+                    Windows keyboard shortcuts Ctrl + Shift + Q or Alt + F4 + Q will also work.</p>
+
+                  <p class="li">If you still cannot find an Exit option for windows using the above, then you can also
+                    try right
+                    clicking on the Chrome icon in the taskbar, then select Exit.</p>
+
+                  <p class="li">You must Quit chrome for Mac or Exit chrome for Windows for this reset to work.
+                    Please
+                    do not just close the
+                    windows
+                    because that will NOT
+                    reset the extension. You must Quit chrome for the Mac or Exit chrome for Windows. Also uninstalling
+                    and
+                    reinstalling the extension will not reset the
+                    extension.
+                  </p>
+                </li>
+              </ul>
+            </li>
+            <li>Re-open Chrome.</li>
+            <li>Go back to the Extension page in Chrome and turn ON my extension.</li>
+            <ul>
+              <li>Click right on the slider there to
+                turn ON my extension Google Meet Breakout Rooms</li>
+              <li>Your extension is reset so now it should work properly and clear up the sound issues.</li>
+            </ul>
+          </ol>
+        </li>
+
+        <h6 id="v-0.0.17.5" class="pt-1">Version 0.0.17.5</h6>
+        <ul> <span class="text-success">Features</span>
+          <li><span class="font-weight-bold">Fixed the Audio problem inside and between rooms</span> <a
+              href="https://youtu.be/sg6dN1uf0g0" class="li">
+              Here's the youtube
+              video </a> which explains it, or you can read below. To use this new solution please go to the control
+            panel, settings tab, and all the way down to the bottom there is a section "New Fix for Audio Mute Problem
+            between Rooms" and <span style="color: red">check the box</span>
+
+          </li>
+
+          <li class="d-none lang"><span class="font-weight-bold">解法斷斷續續、隨機發生的喇叭問題</span> <a
+              href="https://youtu.be/2XCPlBIYUBQ" class="li">
+              這是說明明影片 </a> 其實不用看，簡單的說，請到分組控制面板的「一般設定」，然後在最下面是個段落叫做「新解法針對喇叭斷斷續續隨機的問題」，更下面是個打勾。打勾 X
+            代表你想使用新的解決喇叭問題的方法（我建議），如果發現任何問題還是能退回原本的方法，就要再次打勾（空的）。特別注意：每次你打勾，如果那時已有開的meets，你必須把所有meets都關掉重新開。為什麼？因為meets半途而變了，剛切換的解法就不曉的得目前的狀態如何（開或關的），所以必須把已有開的meets都關掉重新開。</span>
+          </li>
+
+
+          <!-- </li> -->
+        </ul>
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li><span>I do not recommend using the extension Grid View Fix. Based on my testing
+              and
+              users' feedback, it does not seem to work properly. Instead, I recommend going with the standard google
+              meet functionality for tile display. In the settings section (bottom right hand side of meet), click on
+              that and then choose Change Layout, then move the slider all the way to the right for 49 students </span>
+          </li>
+          <li class="d-none lang"><span>我不建議下載使用Grid View Fix 擴充功能因為根據我自己測試與使用者的反應，好像那個擴充功能不太有用。 不然能用Google Meet
+              本身的功能。在Meet視訊的下面最右邊的「。。。」 請按那個設定按鈕，然後在「變更版面配置」，選「圖塊」， 拉下面的slider到49</span>
+          </li>
+
+        </ul>
+
+        <h6 id="v-0.0.17.6" class="pt-1">Version 0.0.17.6</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Updated the extension to work with new Google Meet look and feel.
+            Google Meet will fully roll out their new look on June 10 but have already started limited roll out. The
+            buttons changed which means that my extension must change to match up correctly
+          </li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>None at this time </li>
+        </ul>
+
+        <h6 id="v-0.0.17.7" class="pt-1">Version 0.0.17.7</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Updated the hide/unhide option to work with the new look of google meet</li>
+          <li>Updated the toolbar colors options to work with for the new look of google meet</li>
+          <li>Make the default for audio to be the new audio option, which is more stable. The checkbox is now 'on' by
+            default in the Settings tab. I plan to make this the permanent option and this is the intermediate step.
+          </li>
+
+          <li class="d-none lang">更改 隱藏/出現ToolBar 的按鈕 能跟新的google meet 使用 </li>
+          <li class="d-none lang">更改 ToolBar的顏色 能跟新的google meet 使用 </li>
+          <li class="d-none lang">更改 喇叭聲音勾選的默認，變成勾選‘X',在一般設定最下面的。如果再過了兩個禮拜後，這個解法都沒問題，我打算把這個喇叭聲音解法變成固定的解法 </li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>None at this time </li>
+        </ul>
+
+        <h6 id="v-0.0.17.8" class="pt-1">Version 0.0.17.8</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Upgrade extension to chrome extension v3</li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>None at this time </li>
+        </ul>
+
+        <h6 id="v-0.0.17.9" class="pt-1">Version 0.0.17.9</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Fix the mute all and remove all buttons</li>
+          <li>Fix the broadcast microphone functionality so it does not automatically mute the broadcast speaker. In the
+            past, the
+            broadcast "on" for microphone
+            automatically muted the broadcast speaker "off" which may be convenient for some but it caused
+            confusion so I made
+            each button independent. If you want to broadcast talk and not hear everyone at the same time, you can mute
+            the broadcast speaker and then turn on the broadcast microphone</li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>There is a bug where the meets are not able to be opened in tab view. This is fixed in version 18.0 </li>
+        </ul>
+
+        <h6 id="v-0.0.18.0" class="pt-1">Version 0.0.18.0</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Fix the option to open meets in tab view (versus tile view which is the default). There was a bug where it
+            did not open in tab view and it is fixed in this version</li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>None at this time </li>
+        </ul>
+
+        <h6 id="v-0.0.18.1" class="pt-1">Version 0.0.18.1</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Add Ukrainian translation</li>
+          <li>Many thanks to Igor Kozachuk (email disk.igor@gmail.com) for translation into Ukrainian</li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>Speaker button disappears on breakouts and audio bleed between rooms. This is because of a Google Meet
+            update which broke my extension. Sometimes when Google changes their interface it causes my extension to
+            loose it's connection to Google Meet because extensions work on top of the underlying program. If the
+            underlying program changes then the extension needs to be adjusted for this change. I fixed this in version
+            18.2 which I hope will be approved by Monday
+            or Tuesday, December 13 or 14. I'm sorry for any inconvenience this may cause</li>
+        </ul>
+
+        <h6 id="v-0.0.18.2" class="pt-1">Version 0.0.18.2</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Fixed the speaker button and audio bleed problem, which was casued by a Google Meet update
+            which broke my extension. Sometimes when Google changes their interface it causes my extension to
+            loose it's connection to Google Meet because extensions work on top of the underlying program. If the
+            underlying program changes then the extension needs to be adjusted for this change. </li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>There is still an audio problem which bleeds through all the rooms. I fixed it this morning (12/14/2021)
+            for version 18.3
+            and just noticed that this version 18.3 has been approved by Google Chrome store. If you're system has not
+            automatically updated to version 18.3 you can force an update by clicking on the "Update" button in the
+            extensions page of chrome</li>
+        </ul>
+
+        <h6 id="v-0.0.18.3" class="pt-1">Version 0.0.18.3</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Second fix for the audio bleed problem due to Google Meet programming change </li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>None at this time </li>
+        </ul>
+
+        <h6 id="v-0.0.18.4" class="pt-1">Version 0.0.18.4</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Added Slovak language </li>
+          <li>Many thanks to Lenka Zustiaková from Secondary School GaHS, Farského 9 in Petržalka (<a
+              href="https://farskeho.sk">www.farskeho.sk</a> ) for
+            translating into Slovakian </li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>Problems with echo. This is due to a mixed environment where google has both a
+            new and old interface which causes problems for the extension to hook onto properly. The old and new
+            interface may look identical to the user but inside they changed tags which I need to match in order to work
+            properly. I just updated the new version 18.5 and uploaded it today, Monday 1/10 and Google usually takes
+            one day or so to approve, so it should be available sometime Tuesday 1/11 or Wednesday 1/12. Sorry for the
+            invconvenience. Thank you to all the teachers who let me know of this
+            issues. </li>
+        </ul>
+
+        <h6 id="v-0.0.18.5" class="pt-1">Version 0.0.18.5</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Fixed the audio echo. If you still are having problems then please email me at robert@hudektech.com </li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>Mute participants buttons on control panel don't work. I will fix this in version 18.6</li>
+        </ul>
+
+        <h6 id="v-0.0.18.6" class="pt-1">Version 0.0.18.6</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Fixed the mute participants button functionality in the control panel </li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>Echo when presenting a video</li>
+        </ul>
+
+        <h6 id="v-0.0.18.7" class="pt-1">Version 0.0.18.7</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Fix for the echo when presenting a video. If this is not fixed correctly please let me know at
+            robert@hudektech.com. Thank you </li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>None at this time</li>
+        </ul>
+
+        <h6 id="v-19.0" class="pt-1">Version 19.0</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Updated online help </li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>Speaker button randomly does not appear. I submitted an update fix for this problem 2 days ago and am
+            waiting for approval. I'm not sure why the process is longer this time, but in the meantime you can do this
+            Refresh the meet that has the missing speaker by clicking on the meet window and
+            then click: <span class="red">Control R or Command R</span> to refresh the window. That should
+            fix that individual meet. I have
+            already submitted a fix and it will be version 19.1. Hopefully Google will approve that soon. Sorry for the
+            inconvenience</li>
+        </ul>
+        <h6 id="v-19.3" class="pt-1">Version 19.3</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>New Color Themes: Around 20 different themes, light and dark. The original control panel is the "Classic
+            Light" </li>
+        </ul>
+
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>There are some occasional reports of a room where the audio randomly does not work properly. If that
+            happens, then
+            you may try
+            to click: <span class="red">Control R or Command R</span> to refresh the window. If this happens on a
+            regular basis, then please email me so I can investigate it and perhaps set up a meet to discuss and take a
+            look at the situation</li>
+        </ul>
+        <h6 id="v-19.7" class="pt-1">Version 19.7</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Fix the speaker and microphone buttons, they were not toggling on/off colors correctly</li>
+          <li>Add Spanish language</li>
+          <li>Fix the meet bottom bar color scheme</li>
+        </ul>
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>There is a problem where the meets open in the wrong mode and the speaker button does not appear...I fixed
+            this in
+            version 19.8 which is currently in the approval process. I really apologize for this problem. It is due to
+            google meet
+            changing their interface so my extension needs to adjust to this new structure, which I did change but it is
+            in
+            version 19.8 under review. In the meantime, if you are quick on the keyboard, please click the blue "Join
+            Now" button
+            and then you can avoid this problem for each of the meets. I understand this can be challenging if you open
+            many meets
+            at the same time, but unfortunately I do not have any other manual workarounds until 19.8 gets approved.
+            Perhaps can
+            one by one open the breakouts, such say there are 1 breakouts, click Join Now, then say there are 2
+            breakouts, then
+            click Join Now for that breakout, and so on. Then finally click the retile windows button (top right side on
+            control
+            panel, red button second from the left) to get all the windows retiled nicely. Again, sorry for the
+            inconvenience and
+            it should be fixed in the next day or two, depending on Google's approval process </li>
+          <li>This is the first iteration of the Spanish language. If you find some errors please email me and let me
+            know how to change the spelling, etc. hudektech@gmail.com </li>
+        </ul>
+        <h6 id="v-19.8" class="pt-1">Version 19.8</h6>
+        <ul> <span class="text-success">Features</span>
+          <li>Fixed the speaker problem (hopefully for good)</li>
+          <li>Add Indonesian language</li>
+          <li>For Ad Hoc Breakouts: Added reset button to clear out assignments</li>
+          <li>For Ad Hoc Breakouts: Auto expanded and shrink windows to "read" all partipants, so the teacher does not
+            have to remember to expand (and shrink) these windows</li>
+          <li>For Rooms tab, added a reset / clear button for links</li>
+          <li>For Rooms tab, added an auto numbering for rooms</li>
+        </ul>
+        <ul><span class="text-danger">Known Issues and Workarounds</span>
+          <li>Mute all and remove all is not 100% working, I will complete this in v19.9 hopefully in a week </li>
+        </ul>
+        <h6 id="v-19.9" class="pt-1">Version 19.9</h6>
+        <ul>
+          <span class="text-success">Features</span>
+          <li>Minor fixes</li>
+        </ul>
+        <ul>
+          <span class="text-danger">Known Issues and Workarounds</span>
+          <li>There appears to be a change in Google Meet where there is a resource constraint from Google that limits
+            the maximum number of open meets with a functioning microphone to be 8. After the 8th room is open, the 9th
+            and beyond
+            do not have a functioning microphone. This appears to be new from Google and I'm not sure why this is the
+            case. I'm investigating it now.</li>
+          <li>If anyone wants to look into this on their own, they can do the same as what I did. Turn off all the
+            extensions to eliminate extensions as a reason for this constraint, and then manually open 9 google meets.
+            The first 8 should have a functioning microphone but the 9th and beyond will not toggle on or off the
+            microphone when you
+            click on the standard google meet microphone button. If you find that is NOT the case, in other words you
+            first disable all extensions to eliminate extensions as a factor and then manually open 9 or more meets and
+            they all have functioning microphones then please email me a hudektech.com and let me know what you found.
+            In the meantime I will investigate what I can do on my side to hopefully get around this max resource
+            constraing issue.</li>
+        </ul>
+    </div>
+  </div>
+  <script src="notes.js"></script>
+</body>
+
+</html>

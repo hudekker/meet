@@ -115,6 +115,32 @@ chrome.runtime.onMessage.addListener((payload, sender, callback) => {
           callback({ msg: "Opened Tabs" });
           break;
 
+        case "getTabMuteStatus":
+          try {
+            // Get the tab ID from the sender
+            const tabId = sender.tab.id;
+
+            // Get the full tab info, including the mute status
+            const tabInfo = await new Promise((resolve, reject) => {
+              chrome.tabs.get(tabId, (tab) => {
+                if (chrome.runtime.lastError) {
+                  return reject(chrome.runtime.lastError);
+                }
+                resolve(tab);
+              });
+            });
+
+            // Send back the full tab info as the response
+            callback(tabInfo);
+          } catch (error) {
+            console.error("Error retrieving tab info:", error);
+            callback({ error: "Failed to retrieve tab info" });
+          }
+
+          // Return true to indicate we will send a response asynchronously
+          return true;
+          break;
+
         default:
           break;
       }

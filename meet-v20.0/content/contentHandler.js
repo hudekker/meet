@@ -119,7 +119,7 @@ const oneTimeClick_old = () => {
       if (btnMic && btnVid && !g_joinedFlag && btnHangup) {
         g_joinedFlag = true;
 
-        await createSpeakerButton();
+        createSpeakerButton();
         btnHangup.dataset.btnBreakout = "hangup";
 
         btnSpk = document.querySelector('[data-btn-breakout="spk"]');
@@ -138,9 +138,11 @@ const oneTimeClick_old = () => {
         // }
         // ******** June 10
 
-        await updateToolbarColors();
+        updateToolbarColors();
 
-        setTabColor();
+        let muted = await setTabColor();
+
+        setBtnColor(muted);
 
         setTabTitle();
 
@@ -176,7 +178,7 @@ const oneTimeClick_old = () => {
 };
 
 // Only click on button once, while outside
-const oneTimeClick = () => {
+const oneTimeClick = async () => {
   try {
     // let flag40 = false;
 
@@ -274,7 +276,9 @@ const oneTimeClick = () => {
 
       updateToolbarColors();
 
-      setTabColor();
+      let muted = await setTabColor();
+
+      setBtnColor(muted);
 
       setTabTitle();
 
@@ -567,9 +571,9 @@ const handleMicBtnClick = async (event) => {
     // Feb 12, 2022
     await sleep(1);
 
-    setTabColor();
+    let muted = await setTabColor();
 
-    setBtnColor();
+    setBtnColor(muted);
   } catch (error) {}
 };
 
@@ -595,9 +599,9 @@ const handleVidBtnClick = async (event) => {
 
     await sleep(1);
 
-    setTabColor();
+    let muted = await setTabColor();
 
-    setBtnColor();
+    setBtnColor(muted);
 
     // await chromeRuntimeSendMessage({
     //   action: "contentVid",
@@ -638,18 +642,24 @@ const handleSpkBtnClick3 = async (event) => {
     if (boolMuted) {
       l_mutedIconTrue.style.display = "flex";
       l_mutedIconFalse.style.display = "none";
+      l_btn.classList.add("av-mute");
+      l_btn.classList.add("breakout-mute");
+      l_btn.classList.remove("breakout-unmute");
 
       // New state is muted (Red)
     } else {
       l_mutedIconTrue.style.display = "none";
       l_mutedIconFalse.style.display = "flex";
+      l_btn.classList.remove("av-mute");
+      l_btn.classList.remove("breakout-mute");
+      l_btn.classList.add("breakout-unmute");
     }
 
     await sleep(1);
 
-    setBtnColor();
+    let muted = await setTabColor();
 
-    setTabColor();
+    setBtnColor(muted);
 
     await chromeRuntimeSendMessage({
       action: "contentSpk",
@@ -766,9 +776,9 @@ const handleSpkBtnClick = async (event) => {
 
     await sleep(500);
 
-    setBtnColor();
+    let muted = await setTabColor();
 
-    setTabColor();
+    setBtnColor(muted);
 
     // await chromeRuntimeSendMessage({
     //   action: "contentSpk",
@@ -780,35 +790,59 @@ const handleSpkBtnClick = async (event) => {
   } catch (error) {}
 };
 
-const setBtnColor = () => {
+const setBtnColor = (muted) => {
   // Feb 12, 2022 - commented this out, but not sure
   // await sleep(500);
   try {
     // Reset the white colors
     btnSpk = document.querySelector('[data-btn-breakout="spk"]');
-    btnMic = document.querySelector('[data-btn-breakout="mic"]');
-    btnVid = document.querySelector('[data-btn-breakout="vid"]');
+    // btnMic = document.querySelector('[data-btn-breakout="mic"]');
+    // btnVid = document.querySelector('[data-btn-breakout="vid"]');
 
-    btnSpk.style.boxShadow = "1px 1px 2px black";
-    btnSpk.style.borderRadius = "50%";
+    let btnMic = document.querySelector('[aria-label="Turn on microphone"], [aria-label="Turn off microphone"]');
 
-    btnMic.style.boxShadow = "1px 1px 2px black";
-    btnVid.style.boxShadow = "1px 1px 2px black";
+    if (btnMic) {
+      // Check the current state and perform actions accordingly
+      if (btnMic.getAttribute("aria-label") === "Turn on microphone") {
+        console.log("Microphone is off, turning it on...");
+      } else if (btnMic.getAttribute("aria-label") === "Turn off microphone") {
+        console.log("Microphone is on, turning it off...");
+      }
+    }
 
-    // ******* June 10 ********** Feb 12, 2022
-    // if (document.querySelector('[data-tooltip-id="tt-c6"]')) {
-    //   colors.green = "forestgreen";
-    //   colors.green = "#50fa7b";
-    // }
+    let btnVid = document.querySelector('[aria-label="Turn on camera"], [aria-label="Turn off camera"]');
 
-    if (btnSpk.dataset.isMuted == "true") {
-      btnSpk.style.backgroundColor = colors.red;
-      btnSpk.style.borderColor = colors.red;
-      btnSpk.style.color = "white";
-    } else {
-      btnSpk.style.backgroundColor = colors.green;
-      btnSpk.style.borderColor = colors.green;
-      btnSpk.style.color = "white";
+    if (btnVid) {
+      // Check the current state and perform actions accordingly
+      if (btnVid.getAttribute("aria-label") === "Turn on camera") {
+        console.log("Camera is off, turning it on...");
+      } else if (btnVid.getAttribute("aria-label") === "Turn off camera") {
+        console.log("Camera is on, turning it off...");
+      }
+    }
+
+    if (btnSpk) {
+      btnSpk.style.boxShadow = "1px 1px 2px black";
+      btnSpk.style.borderRadius = "50%";
+
+      btnMic.style.boxShadow = "1px 1px 2px black";
+      btnVid.style.boxShadow = "1px 1px 2px black";
+
+      // ******* June 10 ********** Feb 12, 2022
+      // if (document.querySelector('[data-tooltip-id="tt-c6"]')) {
+      //   colors.green = "forestgreen";
+      //   colors.green = "#50fa7b";
+      // }
+
+      if (muted.spk == "true") {
+        btnSpk.style.backgroundColor = colors.red;
+        btnSpk.style.borderColor = colors.red;
+        btnSpk.style.color = "white";
+      } else {
+        btnSpk.style.backgroundColor = colors.green;
+        btnSpk.style.borderColor = colors.green;
+        btnSpk.style.color = "white";
+      }
     }
 
     if (btnMic.dataset.isMuted == "true") {
@@ -958,6 +992,69 @@ const createSpeakerButton_old = async () => {
 
 // On
 
+// Function to send a message to the background script to get the tab's mute status
+const getTabMuteStatus = async () => {
+  try {
+    const tabInfo = await new Promise((resolve, reject) => {
+      chrome.runtime.sendMessage({ action: "getTabMuteStatus" }, (response) => {
+        if (chrome.runtime.lastError) {
+          return reject(chrome.runtime.lastError);
+        }
+        resolve(response); // Resolve with the full tab info
+      });
+    });
+
+    console.log("Tab Info:", tabInfo);
+    return tabInfo; // Full tab info, including mute status
+  } catch (error) {
+    console.error("Error getting tab mute status:", error);
+  }
+};
+
+// Example usage (call this function with the current tab ID)
+
+const getSpkMicVidState2 = async () => {
+  if (g_joinedFlag) {
+    let muted = {
+      spk: false,
+      mic: false,
+      vid: false,
+    };
+
+    let currentSpkMute = document.querySelector('[data-btn-breakout="spk"]');
+    let turnMicOn = document.querySelector('[aria-label="Turn on microphone"]');
+    let turnMicOff = document.querySelector('[aria-label="Turn off microphone"]');
+    let turnVidOn = document.querySelector('[aria-label="Turn on camera"]');
+    let turnVidOff = document.querySelector('[aria-label="Turn off camera"]');
+
+    let tabInfo = await getTabMuteStatus();
+    console.log("inside getSpkMicVidState2");
+    console.log(tabInfo);
+
+    if (tabInfo) {
+      muted.spk = tabInfo.mutedInfo.muted;
+    }
+
+    if (turnMicOn) {
+      muted.mic = true;
+    } else {
+      muted.mic = false;
+    }
+
+    if (turnVidOn) {
+      muted.vid = true;
+    } else {
+      muted.vid = false;
+    }
+
+    // muted.spk = btnSpk.dataset.isMuted === "true";
+    // muted.mic = btnMic.dataset.isMuted === "true";
+    // muted.vid = btnVid.dataset.isMuted === "true";
+
+    return muted;
+  }
+};
+
 const getSpkMicVidState = () => {
   if (g_joinedFlag) {
     let muted = {
@@ -1055,65 +1152,36 @@ const setTabTitle = async () => {
 //   document.title = roomName;
 // };
 
-const setTabColor = () => {
-  if (g_joinedFlag) {
-    // freeze stuff
-    let el = document.querySelector("[data-freeze-state]");
-    if (el && el.dataset.freezeState) {
-      freezeState = el.dataset.freezeState;
-      freezeState = freezeState == "true";
-    } else {
-      freezeState = false;
-    }
+const setTabColor = async () => {
+  let muted = { spk: true, mic: true, vid: true };
 
-    if (freezeState) {
-      return;
-    }
-    // freeze stuff
+  if (!g_joinedFlag) return muted;
 
-    let { spk, mic, vid } = getSpkMicVidState();
+  // Check freeze state
+  const el = document.querySelector("[data-freeze-state]");
+  const freezeState = el?.dataset.freezeState === "true";
 
-    let d1 = spk == true ? "0" : "1";
-    let d2 = mic == true ? "0" : "1";
-    let d3 = vid == true ? "0" : "1";
+  if (freezeState) return muted;
 
-    tabColor = `c${d1}${d2}${d3}.png`;
-    console.log(`${d1}${d2}${d3}.png`);
+  // Get speaker, microphone, and video states
+  const { spk, mic, vid } = await getSpkMicVidState2();
+  muted = { spk, mic, vid };
 
-    // if (mic) {
-    //   if (spk) {
-    //     if (vid) {
-    //       tabColor = "rx32.png";
-    //     } else {
-    //       tabColor = "rxc32.png";
-    //     }
-    //   } else {
-    //     if (vid) {
-    //       tabColor = "r32.png";
-    //     } else {
-    //       tabColor = "rc32.png";
-    //     }
-    //   }
-    // } else {
-    //   if (spk) {
-    //     if (vid) {
-    //       tabColor = "gx32.png";
-    //     } else {
-    //       tabColor = "gxc32.png";
-    //     }
-    //   } else {
-    //     if (vid) {
-    //       tabColor = "g32.png";
-    //     } else {
-    //       tabColor = "gc32.png";
-    //     }
-    //   }
-    // }
+  // Set tab color based on states
+  const d1 = spk ? "0" : "1";
+  const d2 = mic ? "0" : "1";
+  const d3 = vid ? "0" : "1";
+  const tabColor = `c${d1}${d2}${d3}.png`;
 
-    let link = chrome.runtime.getURL(`img/${tabColor}`);
+  console.log(`${d1}${d2}${d3}.png`);
 
-    [...document.querySelectorAll('link[rel="shortcut icon"]')].map((el) => (el.href = link));
-  }
+  // Update tab icon
+  const link = chrome.runtime.getURL(`img/${tabColor}`);
+  document.querySelectorAll('link[rel="shortcut icon"]').forEach((el) => {
+    el.href = link;
+  });
+
+  return muted;
 };
 
 const getParticipants2_new = () => {

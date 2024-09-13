@@ -80,6 +80,10 @@
   --settings-background-text: black;
 }
 
+.yellow {
+  color: var(--dracula-yellow);
+}
+
 a.href-help:hover {
   color: var(--dracula-yellow) !important;
 }

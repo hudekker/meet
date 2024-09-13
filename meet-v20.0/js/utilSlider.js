@@ -99,9 +99,11 @@ const handleSlider = async (evt) => {
     // Can't rely on this
     rooms = myBreakout.myRooms;
 
+    // Important section
     let openRooms2 = await chromeAllOpenRooms();
     openRooms2 = sortRoomsTabOrder(openRooms2);
     openRooms2 = filterExtensionRooms(openRooms2);
+    let currentTabId = parseInt(document.querySelector("#slider-title").dataset.tabId, 10);
 
     if (openRooms2.length < 1) {
       return;
@@ -235,13 +237,150 @@ const handleSlider = async (evt) => {
 
     menuItemThat = `that${getBoolDigit(btnOtherSpk)}${getBoolDigit(btnOtherMic)}${getBoolDigit(btnOtherVid)}`;
 
-    handleContextMenuClick(
-      {
-        pageUrl: url,
-        menuItemId: menuItemThis,
-      },
-      { windowId, id }
-    );
+    // >>>>>>>>>>>>> 9/13/2024 begin
+    // big change, don't use this method anymore
+    // handleContextMenuClick(
+    //   {
+    //     pageUrl: url,
+    //     menuItemId: menuItemThis,
+    //   },
+    //   { windowId, id }
+    // );
+
+    currentTabId = parseInt(sliderTitle.dataset.tabId, 10);
+
+    const muteSpkOtherRooms = async () => {
+      try {
+        // Get the list of all tabs
+        const tabs = await chrome.tabs.query({});
+
+        // Filter out the current tab and get the room ids from `openRooms2`
+        let allOtherRooms = openRooms2.filter((el) => el.id !== currentTabId);
+
+        // Create an array of promises to mute each room in parallel
+        const mutePromises = allOtherRooms.map(async (room) => {
+          const tab = tabs.find((t) => t.id === room.id);
+          if (tab) {
+            // Update the tab to mute the tab (set muted to true)
+            await chrome.tabs.update(tab.id, { muted: true });
+
+            // Send message to the tab to mute the speaker, mic, and video
+            return chrome.tabs.sendMessage(tab.id, {
+              action: "muteSpkMicVid",
+            });
+          }
+        });
+
+        // Wait for all mute actions to complete
+        await Promise.all(mutePromises);
+
+        console.log("All rooms muted successfully");
+      } catch (error) {
+        console.error("Error muting rooms:", error);
+      }
+    };
+
+    await muteSpkOtherRooms();
+
+    thisSpk = document.querySelector("#thisSpk");
+    thisMic = document.querySelector("#thisMic");
+    thisVid = document.querySelector("#thisVid");
+    thisSpkMute = thisSpk.classList.contains("av-mute");
+    thisMicMute = thisMic.classList.contains("av-mute");
+    thisVidMute = thisVid.classList.contains("av-mute");
+
+    await chrome.tabs.update(currentTabId, { muted: thisSpkMute });
+
+    const checkMuteSpkStateForRooms = async () => {
+      try {
+        // Loop through all rooms in openRooms2
+        const muteStates = await Promise.all(
+          openRooms2.map(async (room) => {
+            return new Promise((resolve, reject) => {
+              chrome.tabs.get(room.id, (tab) => {
+                if (chrome.runtime.lastError) {
+                  reject(chrome.runtime.lastError);
+                } else {
+                  resolve({ id: room.id, muted: tab.mutedInfo.muted, url: room.url, title: room.title });
+                }
+              });
+            });
+          })
+        );
+
+        // Log the mute states of each room
+        muteStates.forEach((state) => {
+          console.log(`Room ${state.id} ${state.title} is muted: ${state.muted}`);
+        });
+      } catch (error) {
+        console.error("Error checking mute state:", error);
+      }
+    };
+
+    await checkMuteSpkStateForRooms();
+
+    // loop thru openRooms2, if it is currentTabId then send a message to the content with the new state of the spk, mic, and vid.  If it is not the currentTabId then send a message to the content to mute spk, mic, and vid.  Note that the message to content for spk mute / unmute is ONLY for css / html update because the muting for the speaker is done using the chrome API to mute / unmute speaker.  As for the video and mic, that is done on the content side by actually clicking the buttons on the meet at the bottom
+
+    const updateRoomStates = async () => {
+      try {
+        // Create an array to store the promises for muting the other rooms
+        const mutePromises = [];
+
+        // Loop through openRooms2 and handle the currentTabId separately
+        for (let i = 0; i < openRooms2.length; i++) {
+          const room = openRooms2[i];
+
+          if (room.id === currentTabId) {
+            // If it's the current tab, send message to update the state (unmute or other actions)
+            await chrome.tabs.sendMessage(room.id, {
+              action: "updateSpkMicVidMuteState",
+              state: {
+                spkMute: thisSpkMute,
+                micMute: thisMicMute,
+                vidMute: thisVidMute,
+              },
+            });
+            console.log(
+              `Room ${room.id}, ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`
+            );
+          } else {
+            // For all other rooms, mute speaker, mic, and video, and add to the array of promises
+            mutePromises.push(
+              chrome.tabs
+                .sendMessage(room.id, {
+                  action: "updateSpkMicVidMuteState",
+                  state: {
+                    spkMute: true,
+                    micMute: true,
+                    vidMute: true,
+                  },
+                })
+                .then(() => {
+                  console.log(
+                    `Room ${room.id} ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`
+                  );
+                })
+                .catch((err) => {
+                  console.error(`Failed to mute room ${room.id}:`, err);
+                })
+            );
+          }
+        }
+
+        // Wait for all mute actions to complete in parallel for other rooms
+        await Promise.all(mutePromises);
+
+        console.log("All other rooms muted successfully");
+      } catch (error) {
+        console.error("Error updating room states:", error);
+      }
+    };
+
+    // Call this function when needed (for example, after some user interaction)
+    updateRoomStates();
+
+    // <<<<<<<<<<< 9/13/2024 end
+
     // end taken from here
 
     // New
@@ -336,16 +475,30 @@ const handleSliderMute = (evt, boolClick = true) => {
     sliderTitle = document.querySelector("#slider-title");
 
     let link = sliderTitle.dataset.link;
-    let id = sliderTitle.dataset.tabId;
+    let id = parseInt(sliderTitle.dataset.tabId, 10);
     let windowId = sliderTitle.dataset.winId;
+    let spkMute, micMute, vidMute;
 
     switch (btn.id) {
       case "thisSpk":
         if (btn.classList.contains("av-mute")) {
-          handleContextMenuClick({ pageUrl: link, menuItemId: "r0__" }, { windowId, id });
+          spkMute = true;
+          // handleContextMenuClick({ pageUrl: link, menuItemId: "r0__" }, { windowId, id });
         } else {
-          handleContextMenuClick({ pageUrl: link, menuItemId: "r1__" }, { windowId, id });
+          spkMute = false;
+          // handleContextMenuClick({ pageUrl: link, menuItemId: "r1__" }, { windowId, id });
         }
+
+        await chrome.tabs.update(id, { muted: spkMute });
+
+        await chrome.tabs.sendMessage(id, {
+          action: "updateSpkMicVidMuteState",
+          state: {
+            spkMute: spkMute,
+            micMute: null,
+            vidMute: null,
+          },
+        });
         break;
       case "thisMic":
         if (btn.classList.contains("av-mute")) {
@@ -383,11 +536,40 @@ const handleSliderMute = (evt, boolClick = true) => {
         }
         break;
       case "broadSpk":
+        // if (btn.classList.contains("av-mute")) {
+        //   handleContextMenuClick({ pageUrl: link, menuItemId: "g0__" }, { windowId, id });
+        // } else {
+        //   handleContextMenuClick({ pageUrl: link, menuItemId: "g1__" }, { windowId, id });
+        // }
+
         if (btn.classList.contains("av-mute")) {
-          handleContextMenuClick({ pageUrl: link, menuItemId: "g0__" }, { windowId, id });
+          spkMute = true;
+          // handleContextMenuClick({ pageUrl: link, menuItemId: "r0__" }, { windowId, id });
         } else {
-          handleContextMenuClick({ pageUrl: link, menuItemId: "g1__" }, { windowId, id });
+          spkMute = false;
+          // handleContextMenuClick({ pageUrl: link, menuItemId: "r1__" }, { windowId, id });
         }
+
+        // Here get all the room ids and loop thru them except for main room
+        let openRooms2 = await chromeAllOpenRooms();
+        openRooms2 = sortRoomsTabOrder(openRooms2);
+        openRooms2 = filterExtensionRooms(openRooms2);
+        openRooms2 = openRooms2.filter((room) => room.title !== "Main");
+
+        for (let i = 0; i < openRooms2.length; i++) {
+          const room = openRooms2[i];
+          await chrome.tabs.update(room.id, { muted: spkMute });
+
+          await chrome.tabs.sendMessage(room.id, {
+            action: "updateSpkMicVidMuteState",
+            state: {
+              spkMute: spkMute,
+              micMute: null,
+              vidMute: null,
+            },
+          });
+        }
+
         break;
       case "broadMic":
         if (btn.classList.contains("av-mute")) {

@@ -60,3 +60,12 @@
 .my-breakout-report-red {
   color: red;
 }
+
+.breakout-mute {
+  background-color: rgb(239,83,80) !important;
+  color: white !important;
+}
+.breakout-unmute {
+  background-color: rgb(102,187,106) !important;
+  color: white !important;
+}
