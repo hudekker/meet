@@ -69,12 +69,7 @@ const oneTimeClick_old = () => {
       // ********* June 10 **********Look for the revised verison June 10
 
       // *** Feb 5, 2022
-      let =
-        btnsCheck =
-        btns =
-          [...document.querySelectorAll("button")]?.filter((el) =>
-            el.querySelector("i")?.innerText.includes("call_end")
-          );
+      let = btnsCheck = btns = [...document.querySelectorAll("button")]?.filter((el) => el.querySelector("i")?.innerText.includes("call_end"));
 
       if (btnsCheck.length > 0) {
         btnCheck = btnsCheck[0];
@@ -84,8 +79,7 @@ const oneTimeClick_old = () => {
         btnCheck = document.querySelector('[data-tooltip-id="tt-c8"]');
         // flag40 = true;
       } else {
-        btnCheck =
-          btnMic.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector('[role="button"]');
+        btnCheck = btnMic.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector('[role="button"]');
       }
       // ***************
 
@@ -202,15 +196,14 @@ const oneTimeClick = async () => {
 
     let btnMic = document.querySelectorAll('[role="button"][data-is-muted]')[0];
     let btnVid = document.querySelectorAll('[role="button"][data-is-muted]')[1];
+    let btnCheck;
 
     // Look to see if hangup button exists.  If so then u are inside meeting
     // This line below will fail if not inside meeting.  Try/Catch
     // ********* June 10 **********Look for the revised verison June 10
 
     // *** Feb 5, 2022
-    let btnsCheck = [...document.querySelectorAll("button")]?.filter((el) =>
-      el.querySelector("i")?.innerText.includes("call_end")
-    );
+    let btnsCheck = [...document.querySelectorAll("button")]?.filter((el) => el.querySelector("i")?.innerText.includes("call_end"));
 
     if (btnsCheck.length > 0) {
       btnCheck = btnsCheck[0];
@@ -287,8 +280,6 @@ const oneTimeClick = async () => {
       if (g_myBreakout.settings.newMute == true) {
         console.log("new audio mute method");
         document.querySelector('[data-btn-breakout="spk"]').addEventListener("click", handleSpkBtnClick3);
-
-        debugger;
 
         //  Mute if not in the main room
         let rooms = [...g_myBreakout.myRooms];
@@ -1110,9 +1101,7 @@ const setTabTitle = async () => {
       let { breakout: test } = await chromeStorageLocalGet("breakout");
       myBreakout = test;
 
-      rooms = [...myBreakout.classes]
-        .filter((el) => el.name == myBreakout.settings.meetClassName)
-        .map((el) => el.rooms)[0];
+      rooms = [...myBreakout.classes].filter((el) => el.name == myBreakout.settings.meetClassName).map((el) => el.rooms)[0];
 
       // rooms = [...myBreakout.myClass.rooms];
     }
@@ -1221,9 +1210,7 @@ const getParticipants2_new = () => {
   };
 
   // Select the <i> tag with innerText 'visual_effects'
-  const visualEffectsIcon = Array.from(document.querySelectorAll("i")).find(
-    (element) => element.innerText === "visual_effects"
-  );
+  const visualEffectsIcon = Array.from(document.querySelectorAll("i")).find((element) => element.innerText === "visual_effects");
 
   // Traverse up the DOM tree to find the participant element
   let participantElement = visualEffectsIcon;
@@ -1314,9 +1301,7 @@ const getParticipants2 = () => {
   };
 
   // Select the <i> tag with innerText 'visual_effects'
-  const visualEffectsIcon = Array.from(document.querySelectorAll("i")).find(
-    (element) => element.innerText === "visual_effects"
-  );
+  const visualEffectsIcon = Array.from(document.querySelectorAll("i")).find((element) => element.innerText === "visual_effects");
 
   // Traverse up the DOM tree to find the participant element
   let participantElement = visualEffectsIcon;
@@ -1832,9 +1817,7 @@ const ElementUpdater = (function () {
 
   function getValueSetter(element) {
     if (!valueSetterCache.has(element)) {
-      const descriptor =
-        Object.getOwnPropertyDescriptor(Object.getPrototypeOf(element), "value") ||
-        Object.getOwnPropertyDescriptor(element, "value");
+      const descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(element), "value") || Object.getOwnPropertyDescriptor(element, "value");
       if (descriptor && descriptor.set) {
         valueSetterCache.set(element, descriptor.set);
       } else {

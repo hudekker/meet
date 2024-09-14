@@ -340,9 +340,7 @@ const handleSlider = async (evt) => {
                 vidMute: thisVidMute,
               },
             });
-            console.log(
-              `Room ${room.id}, ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`
-            );
+            console.log(`Room ${room.id}, ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`);
           } else {
             // For all other rooms, mute speaker, mic, and video, and add to the array of promises
             mutePromises.push(
@@ -356,9 +354,7 @@ const handleSlider = async (evt) => {
                   },
                 })
                 .then(() => {
-                  console.log(
-                    `Room ${room.id} ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`
-                  );
+                  console.log(`Room ${room.id} ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`);
                 })
                 .catch((err) => {
                   console.error(`Failed to mute room ${room.id}:`, err);
@@ -502,17 +498,38 @@ const handleSliderMute = (evt, boolClick = true) => {
         break;
       case "thisMic":
         if (btn.classList.contains("av-mute")) {
-          handleContextMenuClick({ pageUrl: link, menuItemId: "r_0_" }, { windowId, id });
+          // handleContextMenuClick({ pageUrl: link, menuItemId: "r_0_" }, { windowId, id });
+          micMute = true;
         } else {
-          handleContextMenuClick({ pageUrl: link, menuItemId: "r_1_" }, { windowId, id });
+          micMute = false;
+          // handleContextMenuClick({ pageUrl: link, menuItemId: "r_1_" }, { windowId, id });
         }
+        await chrome.tabs.sendMessage(id, {
+          action: "updateSpkMicVidMuteState",
+          state: {
+            spkMute: null,
+            micMute: micMute,
+            vidMute: null,
+          },
+        });
+
         break;
       case "thisVid":
         if (btn.classList.contains("av-mute")) {
-          handleContextMenuClick({ pageUrl: link, menuItemId: "r__0" }, { windowId, id });
+          // handleContextMenuClick({ pageUrl: link, menuItemId: "r__0" }, { windowId, id });
+          vidMute = true;
         } else {
-          handleContextMenuClick({ pageUrl: link, menuItemId: "r__1" }, { windowId, id });
+          // handleContextMenuClick({ pageUrl: link, menuItemId: "r__1" }, { windowId, id });
+          vidMute = false;
         }
+        await chrome.tabs.sendMessage(id, {
+          action: "updateSpkMicVidMuteState",
+          state: {
+            spkMute: null,
+            micMute: null,
+            vidMute: vidMute,
+          },
+        });
         break;
       case "thatSpk":
         if (btn.classList.contains("av-mute")) {
@@ -536,21 +553,86 @@ const handleSliderMute = (evt, boolClick = true) => {
         }
         break;
       case "broadSpk":
-        // if (btn.classList.contains("av-mute")) {
-        //   handleContextMenuClick({ pageUrl: link, menuItemId: "g0__" }, { windowId, id });
-        // } else {
-        //   handleContextMenuClick({ pageUrl: link, menuItemId: "g1__" }, { windowId, id });
-        // }
+        {
+          // if (btn.classList.contains("av-mute")) {
+          //   handleContextMenuClick({ pageUrl: link, menuItemId: "g0__" }, { windowId, id });
+          // } else {
+          //   handleContextMenuClick({ pageUrl: link, menuItemId: "g1__" }, { windowId, id });
+          // }
 
-        if (btn.classList.contains("av-mute")) {
-          spkMute = true;
-          // handleContextMenuClick({ pageUrl: link, menuItemId: "r0__" }, { windowId, id });
-        } else {
-          spkMute = false;
-          // handleContextMenuClick({ pageUrl: link, menuItemId: "r1__" }, { windowId, id });
+          if (btn.classList.contains("av-mute")) {
+            spkMute = true;
+            // handleContextMenuClick({ pageUrl: link, menuItemId: "r0__" }, { windowId, id });
+          } else {
+            spkMute = false;
+            // handleContextMenuClick({ pageUrl: link, menuItemId: "r1__" }, { windowId, id });
+          }
+
+          // Here get all the room ids and loop thru them except for main room
+          let openRooms2 = await chromeAllOpenRooms();
+          openRooms2 = sortRoomsTabOrder(openRooms2);
+          openRooms2 = filterExtensionRooms(openRooms2);
+          openRooms2 = openRooms2.filter((room) => room.title !== "Main");
+
+          for (let i = 0; i < openRooms2.length; i++) {
+            const room = openRooms2[i];
+            await chrome.tabs.update(room.id, { muted: spkMute });
+
+            await chrome.tabs.sendMessage(room.id, {
+              action: "updateSpkMicVidMuteState",
+              state: {
+                spkMute: spkMute,
+                micMute: null,
+                vidMute: null,
+              },
+            });
+          }
         }
 
-        // Here get all the room ids and loop thru them except for main room
+        break;
+      case "broadMic":
+        {
+          if (btn.classList.contains("av-mute")) {
+            // handleContextMenuClick({ pageUrl: link, menuItemId: "g_0_" }, { windowId, id });
+            micMute = true;
+          } else {
+            // handleContextMenuClick(
+            //   { pageUrl: link, menuItemId: "g_1_" }, // should this be g01_ ??
+            //   { windowId, id }
+            // );
+            micMute = false;
+          }
+          // Here get all the room ids and loop thru them except for main room
+          let openRooms2 = await chromeAllOpenRooms();
+          openRooms2 = sortRoomsTabOrder(openRooms2);
+          openRooms2 = filterExtensionRooms(openRooms2);
+          openRooms2 = openRooms2.filter((room) => room.title !== "Main");
+
+          for (let i = 0; i < openRooms2.length; i++) {
+            const room = openRooms2[i];
+            await chrome.tabs.update(room.id, { muted: spkMute });
+
+            await chrome.tabs.sendMessage(room.id, {
+              action: "updateSpkMicVidMuteState",
+              state: {
+                spkMute: null,
+                micMute: micMute,
+                vidMute: null,
+              },
+            });
+          }
+        }
+        break;
+      case "broadVid":
+        {
+          if (btn.classList.contains("av-mute")) {
+            // handleContextMenuClick({ pageUrl: link, menuItemId: "g__0" }, { windowId, id });
+            vidMute = true;
+          } else {
+            // handleContextMenuClick({ pageUrl: link, menuItemId: "g__1" }, { windowId, id });
+            vidMute = false;
+          }
+        }
         let openRooms2 = await chromeAllOpenRooms();
         openRooms2 = sortRoomsTabOrder(openRooms2);
         openRooms2 = filterExtensionRooms(openRooms2);
@@ -563,29 +645,11 @@ const handleSliderMute = (evt, boolClick = true) => {
           await chrome.tabs.sendMessage(room.id, {
             action: "updateSpkMicVidMuteState",
             state: {
-              spkMute: spkMute,
+              spkMute: null,
               micMute: null,
-              vidMute: null,
+              vidMute: vidMute,
             },
           });
-        }
-
-        break;
-      case "broadMic":
-        if (btn.classList.contains("av-mute")) {
-          handleContextMenuClick({ pageUrl: link, menuItemId: "g_0_" }, { windowId, id });
-        } else {
-          handleContextMenuClick(
-            { pageUrl: link, menuItemId: "g_1_" }, // should this be g01_ ??
-            { windowId, id }
-          );
-        }
-        break;
-      case "broadVid":
-        if (btn.classList.contains("av-mute")) {
-          handleContextMenuClick({ pageUrl: link, menuItemId: "g__0" }, { windowId, id });
-        } else {
-          handleContextMenuClick({ pageUrl: link, menuItemId: "g__1" }, { windowId, id });
         }
         break;
 

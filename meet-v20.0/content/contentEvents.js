@@ -93,7 +93,7 @@ document.body.addEventListener("dom-changed", async (evt) => {
       // })();
     }
 
-    // If haven't initialized...
+    // If haven't initialized... *** NOTE maybe change this, 09/14/2024 ???
     if (!g_joinedFlag && g_myBreakout) {
       // Open the meets in muted video and mic mode
       let btns = document.querySelectorAll('[role="button"][data-is-muted]');
@@ -112,15 +112,22 @@ document.body.addEventListener("dom-changed", async (evt) => {
 
       // Give yourself some time before trying to initialize
       // (async () => {
-      await sleep(5000);
+      // NOTE: 09/14/2024 change from 5000 to 1000
+      // await sleep(5000);
+      await sleep(1000);
 
       oneTimeClick();
       // })();
 
       // Always update the speaker audio if initialized
     } else {
-      // let muted = await setTabColor();
-      // setBtnColor(muted);
+      // NOTE do i need this? 09/14/2024
+      if (!document.querySelector('[data-btn-breakout="spk"]')) {
+        createSpeakerButton();
+        updateToolbarColors();
+      }
+      let muted = await setTabColor();
+      setBtnColor(muted);
     }
 
     // Auto enter flag
@@ -162,13 +169,11 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
 
   switch (payload.action) {
     case "hideBar":
-      meetBottomBar =
-        document.querySelector("[data-btn-breakout]").parentElement.parentElement.parentElement.parentElement;
+      meetBottomBar = document.querySelector("[data-btn-breakout]").parentElement.parentElement.parentElement.parentElement;
       meetBottomBar.style.display = "none";
       break;
     case "unHideBar":
-      meetBottomBar =
-        document.querySelector("[data-btn-breakout]").parentElement.parentElement.parentElement.parentElement;
+      meetBottomBar = document.querySelector("[data-btn-breakout]").parentElement.parentElement.parentElement.parentElement;
       meetBottomBar.style.display = "";
       break;
     case "updateUrl":
