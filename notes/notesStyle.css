@@ -24,3 +24,9 @@ span {
 span.red {
   color: red;
 }
+
+.list-title {
+  font-weight: bold;
+  list-style-type: none; /* Removes the bullet point */
+  margin-bottom: 0.5rem;
+}
