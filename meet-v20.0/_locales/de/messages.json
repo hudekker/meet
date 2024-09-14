@@ -805,5 +805,8 @@
   },
   "btnAutosend": {
     "message": "Gruppenaufgaben in den Chat senden"
+  },
+  "warning8Rooms": {
+    "message": "Das Google Meet-Mikrofon hat eine Begrenzung auf 7 Breakout-Räume"
   }
 }

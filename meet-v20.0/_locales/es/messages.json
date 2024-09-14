@@ -565,5 +565,8 @@
   },
   "btnAutosend": {
     "message": "Enviar asignaciones de salas de grupos al chat"
+  },
+  "warning8Rooms": {
+    "message": "El micrófono de Google Meet tiene un límite de 7 salas de grupos"
   }
 }

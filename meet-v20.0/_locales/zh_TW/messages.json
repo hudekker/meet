@@ -806,5 +806,8 @@
   },
   "btnAutosend": {
     "message": "發送分組任務到聊天室"
+  },
+  "warning8Rooms": {
+    "message": "Google Meet 麥克風限制為 7 個分組討論室"
   }
 }

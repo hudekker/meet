@@ -808,5 +808,8 @@
   },
   "btnAutosend": {
     "message": "ផ្ញើការចាត់ថ្នាក់បន្ទប់បែកទៅ Chat"
+  },
+  "warning8Rooms": {
+    "message": "មីក្រូហ្វូនរបស់ Google Meet មានកំណត់ 7 បន្ទប់បំបែក"
   }
 }

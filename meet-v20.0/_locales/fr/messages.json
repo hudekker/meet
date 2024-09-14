@@ -805,5 +805,8 @@
   },
   "btnAutosend": {
     "message": "Envoyer les tâches de groupe dans le chat"
+  },
+  "warning8Rooms": {
+    "message": "Le microphone de Google Meet est limité à 7 salles de sous-groupes"
   }
 }

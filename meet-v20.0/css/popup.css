@@ -1337,3 +1337,7 @@ span.span-course {
 .white {
   color: white;
 }
+
+#dropdown-meet-room-hook .dropdown-item:nth-child(n+8) {
+  color: red;
+}

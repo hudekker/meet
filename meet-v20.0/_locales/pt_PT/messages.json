@@ -808,5 +808,8 @@
   },
   "btnAutosend": {
     "message": "Enviar atribuições de breakout para o chat"
+  },
+  "warning8Rooms": {
+    "message": "O microfone do Google Meet tem um limite de 7 salas de grupos"
   }
 }

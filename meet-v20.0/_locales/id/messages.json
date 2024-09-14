@@ -807,5 +807,8 @@
   },
   "btnAutosend": {
     "message": "Kirim tugas breakout ke obrolan"
+  },
+  "warning8Rooms": {
+    "message": "Mikrofon Google Meet memiliki batas 7 ruang breakout"
   }
 }

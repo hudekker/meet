@@ -289,6 +289,7 @@ intlMsg("gen-auto-new-url2", "genAutoNewUrl2");
 intlMsg("gen-auto-new-url3", "genAutoNewUrl3");
 intlMsg("gen-auto-new-url-main", "genAutoNewUrlMain");
 intlMsg("gen-auto-new-url-break", "genAutoNewUrlBreak");
+intlMsg("warning-8-rooms", "warning8Rooms", "&nbsp");
 
 let toolTipRetile = chrome.i18n.getMessage("toolTipRetile") ? chrome.i18n.getMessage("toolTipRetile") : "Re-Tile";
 document.querySelector("#popup-retile").dataset.originalTitle = toolTipRetile;

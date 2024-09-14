@@ -805,5 +805,8 @@
   },
   "btnAutosend": {
     "message": "发送分组任务到聊天室"
+  },
+  "warning8Rooms": {
+    "message": "Google Meet 麦克风限制为 7 个分组讨论室"
   }
 }

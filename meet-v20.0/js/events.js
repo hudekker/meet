@@ -33,7 +33,6 @@ const setThemeHeadline = () => {
 
   let stub1 = document.querySelector("#try-themes-version");
   stub1.outerHTML = ` <a href=${hrefNotes} target="_blank" style="color:black">v${manifest.version}</a> &nbsp <span id="try-themes-click">Color Themes</span>`;
-  // stub1.outerHTML = ` <a href=${hrefNotes} target="_blank" style="color:black">v${manifest.version}</a> ${tryThemes} <span id="try-themes-click">Dracula</span> color themes!`;
 
   document.querySelector("#try-themes-click").addEventListener("click", (event) => {
     let tab4 = document.querySelector("#four-tab");
@@ -54,30 +53,8 @@ window.addEventListener("focus", async (e) => {
   await sleep(100);
 
   console.log("focused");
-
-  // // January 10
-  // let accountName = await getDefaultAccount();
-
-  // document.querySelector("[data-span-meet-account-name]").innerText = accountName;
-
-  // let msg = chrome.i18n.getMessage("defaultAccount");
-
-  // if (msg) {
-  //   document.querySelector("[data-msg-default-account]").innerHTML = `${msg} <span data-span-meet-account-name>${accountName}</span>`;
-  //   document.querySelector("[data-msg-default-account2]").innerHTML = `${msg} <span data-span-meet-account-name>${accountName}</span>`;
-  // }
-  // // January 10
-
-  // document.querySelector(
-  //   "[data-span-rooms-account-name]"
-  // ).innerText = accountName;
 });
 
-// window.addEventListener("load", async evt => {
-//   await sleep(500);
-//   // Update tab button for Start Class
-//   updateChooseCourseLabel();
-// })
 if (chrome.i18n.getMessage("@@ui_locale") == "zh_TW") {
   document.querySelector("a#gmbr-help").href = "https://hudektech.github.io/gmbr-help-zhTW/";
   document.title = "分組控制面板";
@@ -124,12 +101,6 @@ document.querySelector("#low-memory-option").addEventListener("click", async (ev
     document.querySelector("#open-main").classList.remove("col-12");
   }
 });
-
-// document
-//   .querySelector("#help-low-memory-option")
-//   .addEventListener("click", (event) => {
-//     debugger;
-//   });
 
 document.querySelector("#goto20").addEventListener("click", (event) => {
   document.querySelector("#my-help").style.display = "block";
@@ -431,10 +402,6 @@ document.querySelector("#hangup-main").parentElement.addEventListener("click", a
 });
 
 document.querySelector("#close-room").parentElement.addEventListener("click", async (event) => {
-  // await refreshControlPanel();
-  // debugger;
-  // document.querySelector('#meet-room-controls').classList.remove('collapse');
-
   try {
     handleCopyClipboardButtons({ currentTarget: event.currentTarget.querySelector("button") });
     let tabId = parseInt(document.querySelector("#slider-title").dataset.tabId);
@@ -468,11 +435,6 @@ document.querySelector("#close-room").parentElement.addEventListener("click", as
 document.addEventListener("DOMContentLoaded", (event) => {
   updateDropdownsLists();
 });
-
-// document.addEventListener('visibilitychange', event => {
-//   console.log('visibility changed');
-// })
-// 1) Event listener on meet tab
 
 document.querySelector("#dropdown-meet-class-hook").addEventListener("click", handleMeetChooseClass);
 
@@ -626,10 +588,6 @@ document.querySelector("#allow-simult").addEventListener("click", handleAllowSim
 
 // Bootstrap
 $(".alert").alert();
-
-// $(".nav-tabs a").on("show.bs.tab", function () {
-//   myBreakout.saveBreakout();
-// });
 
 $("#meet-main-ppt-pre").on("show.bs.collapse", function () {
   // Groups Links
@@ -1109,27 +1067,27 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
         cb({ msg: "popup is already open" });
         break;
 
-        // case "GETSPKSTATE":
-        //   // Get the current muted state
-        //   tabsQuery = await chromeTabsQuery2({ url: sender.tab.url });
-        //   boolMuted = tabsQuery[0].mutedInfo.muted;
+      // case "GETSPKSTATE":
+      //   // Get the current muted state
+      //   tabsQuery = await chromeTabsQuery2({ url: sender.tab.url });
+      //   boolMuted = tabsQuery[0].mutedInfo.muted;
 
-        //   // Return the current state
-        //   cb({ boolMuted: boolMuted });
-        //   break;
-        // case "SPKBTNCLICKED":
-        //   // Get the current muted state
-        //   tabsQuery = await chromeTabsQuery2({ url: sender.tab.url });
-        //   boolMuted = tabsQuery[0].mutedInfo.muted;
+      //   // Return the current state
+      //   cb({ boolMuted: boolMuted });
+      //   break;
+      // case "SPKBTNCLICKED":
+      //   // Get the current muted state
+      //   tabsQuery = await chromeTabsQuery2({ url: sender.tab.url });
+      //   boolMuted = tabsQuery[0].mutedInfo.muted;
 
-        //   // Toggle this state
-        //   tabsUpdated = await chromeTabsUpdate2(sender.tab.id, {
-        //     muted: !boolMuted,
-        //   });
+      //   // Toggle this state
+      //   tabsUpdated = await chromeTabsUpdate2(sender.tab.id, {
+      //     muted: !boolMuted,
+      //   });
 
-        // Return the new state
-        cb({ boolMutedNew: tabsUpdated.mutedInfo.muted });
-        break;
+      // // Return the new state
+      // cb({ boolMutedNew: tabsUpdated.mutedInfo.muted });
+      // break;
 
       default:
         break;

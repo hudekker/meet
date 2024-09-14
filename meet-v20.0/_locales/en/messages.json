@@ -808,5 +808,8 @@
   },
   "btnAutosend": {
     "message": "Send breakout assignments to the chat"
+  },
+  "warning8Rooms": {
+    "message": "Google Meet microphone has limit of 7 breakout rooms"
   }
 }

@@ -755,5 +755,8 @@
   },
   "btnAutosend": {
     "message": "Odoslať úlohy z breakout do chatu"
+  },
+  "warning8Rooms": {
+    "message": "Mikrofón Google Meet má limit na 7 skupinových miestností"
   }
 }

@@ -805,5 +805,8 @@
   },
   "btnAutosend": {
     "message": "채팅방으로 그룹 할당 전송"
+  },
+  "warning8Rooms": {
+    "message": "Google Meet 마이크는 7개의 소그룹 회의실로 제한됩니다"
   }
 }

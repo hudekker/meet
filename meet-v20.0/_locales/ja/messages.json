@@ -808,5 +808,8 @@
   },
   "btnAutosend": {
     "message": "ブレイクアウト割り当てをチャットに送信"
+  },
+  "warning8Rooms": {
+    "message": "Google Meetのマイクはブレイクアウトルームが7つまでに制限されています"
   }
 }
