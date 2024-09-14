@@ -29,147 +29,6 @@ const refreshBreakoutObject = async () => {
   g_myBreakout = test;
 };
 
-// old
-const oneTimeClick_old = () => {
-  (async () => {
-    try {
-      // let flag40 = false;
-
-      if (g_joinedFlag) {
-        return;
-      }
-
-      // sleep(5000);
-      // debugger;
-
-      // Set the auto admit g_flag_
-      let { breakout: test } = await chromeStorageLocalGet("breakout");
-      myBreakout = test;
-      g_myBreakout = myBreakout;
-
-      // Make sure this is relevant
-      if (isRelevant() == false) {
-        return;
-      }
-
-      // await sleep(5000);
-      let settings = myBreakout.settings;
-
-      g_autoEnterFlag = false;
-
-      if (settings.autoEnter) {
-        g_autoEnterFlag = true;
-      }
-
-      let btnMic = document.querySelectorAll('[role="button"][data-is-muted]')[0];
-      let btnVid = document.querySelectorAll('[role="button"][data-is-muted]')[1];
-
-      // Look to see if hangup button exists.  If so then u are inside meeting
-      // This line below will fail if not inside meeting.  Try/Catch
-      // ********* June 10 **********Look for the revised verison June 10
-
-      // *** Feb 5, 2022
-      let = btnsCheck = btns = [...document.querySelectorAll("button")]?.filter((el) => el.querySelector("i")?.innerText.includes("call_end"));
-
-      if (btnsCheck.length > 0) {
-        btnCheck = btnsCheck[0];
-      } else if (document.querySelector('[data-tooltip-id="tt-c6"]')) {
-        btnCheck = document.querySelector('[data-tooltip-id="tt-c6"]');
-      } else if (document.querySelector('[data-tooltip-id="tt-c8"]')) {
-        btnCheck = document.querySelector('[data-tooltip-id="tt-c8"]');
-        // flag40 = true;
-      } else {
-        btnCheck = btnMic.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector('[role="button"]');
-      }
-      // ***************
-
-      // Feb 3
-      let testSpk = document.querySelector('[data-btn-breakout="spk"]');
-      if (testSpk && btnCheck && btnCheck.dataset.isMuted) {
-        return;
-      }
-
-      // check
-      let btns = document.querySelectorAll('[role="button"][data-is-muted]');
-      btnMic = btns[0];
-      btnVid = btns[1];
-      micIsMuted = btnMic.dataset.isMuted == "true";
-      vidIsMuted = btnVid.dataset.isMuted == "true";
-      if (!micIsMuted) {
-        btnMic.click();
-      }
-      if (!vidIsMuted) {
-        btnVid.click();
-      }
-
-      // check
-
-      await sleep(2000);
-
-      btnHangup = btnCheck;
-      console.log("btnHangup is created");
-
-      // Wait for hangup button
-      if (btnMic && btnVid && !g_joinedFlag && btnHangup) {
-        g_joinedFlag = true;
-
-        createSpeakerButton();
-        btnHangup.dataset.btnBreakout = "hangup";
-
-        btnSpk = document.querySelector('[data-btn-breakout="spk"]');
-        btnMic = document.querySelector('[data-btn-breakout="mic"]');
-        btnBye = btnMic.nextElementSibling;
-        btnVid = document.querySelector('[data-btn-breakout="vid"]');
-
-        g_spk_classList.mutedFalse = [...document.querySelector('[data-btn-breakout="mic"]').classList];
-        g_spk_classList.muted = [...document.querySelector('[data-btn-breakout="mic"]').classList];
-
-        await sleep(1000);
-
-        // ********* June 10 **********Look for the revised verison June 10
-        // if (!document.querySelector('[data-tooltip-id="tt-c6"]')) {
-        // moveHangupBtn();
-        // }
-        // ******** June 10
-
-        updateToolbarColors();
-
-        let muted = await setTabColor();
-
-        setBtnColor(muted);
-
-        setTabTitle();
-
-        g_joinedFlag = true;
-
-        if (g_myBreakout.settings.newMute == true) {
-          console.log("new audio mute method");
-          document.querySelector('[data-btn-breakout="spk"]').addEventListener("click", handleSpkBtnClick3);
-          // Default is current method ("old")
-        } else {
-          console.log("old audio mute method");
-          document.querySelector('[data-btn-breakout="spk"]').addEventListener("click", handleSpkBtnClick);
-        }
-
-        document.querySelector('[data-btn-breakout="mic"]').addEventListener("click", handleMicBtnClick);
-        document.querySelector('[data-btn-breakout="vid"]').addEventListener("click", handleVidBtnClick);
-
-        // All non main rooms open with speaker off
-        // if (myBreakout.myRooms && myBreakout.myRooms.length > 0) {
-        //   if (myBreakout.myRooms[0].name != document.title) {
-        //     spkIsMuted = btnSpk.dataset.isMuted == "true";
-        //     if (!spkIsMuted) {
-        //       btnSpk.click();
-        //     }
-        //   }
-        // }
-      }
-    } catch (err) {
-      // console.log("Error in oneTimeClick");
-    }
-  })();
-  // } catch (err) {}
-};
 
 // Only click on button once, while outside
 const oneTimeClick = async () => {
@@ -293,7 +152,8 @@ const oneTimeClick = async () => {
 
         if (roomsTest.length > 0) {
           console.log("not in the main room, so mute");
-          document.querySelector('[data-btn-breakout="spk"]').click();
+          // test NOTE 09/14/2024 don't think i need this
+          // document.querySelector('[data-btn-breakout="spk"]').click();
         }
 
         // document.querySelector('[data-btn-breakout="spk"]').click();
@@ -443,6 +303,7 @@ const handleMutingFromContext = ({
 
     if (boolSpk) {
       if ((spkIsMuted && !muteSpk) || (!spkIsMuted && muteSpk)) {
+        console.log("click on btnSpk");
         btnSpk.click();
       }
     }
@@ -617,6 +478,8 @@ const handleSpkBtnClick3 = async (event) => {
     }
 
     // Call the background to mute
+    console.log("clicked btnSpk 3");
+    
     let { boolMuted } = await chromeRuntimeSendMessage({
       action: "SPKBTNCLICKED",
     });
@@ -721,65 +584,6 @@ const handleSpkBtnClick3 = async (event) => {
 
 //   return true;
 // };
-
-const handleSpkBtnClick = async (event) => {
-  try {
-    // let l_currentTarget = btn;
-    let l_currentTarget = event.currentTarget;
-    // Need to toggle state
-    // First send message SPKBTNCLICKED to popup (??? should mean background 08.03.2024)
-    // popup will:
-    // a) get current state
-    // b) toggle the state
-    // c) send the new state back to context
-    // Second, in the context once receive callback:
-    // a) change button state color here in context
-    // b) update on the element, the new state info (for info purposes only)
-    // c) call setTabColor here in the context
-
-    document.querySelector("[data-freeze-state]").dataset.freezeState = false;
-
-    // Get the current state
-    // let obj1 = await getSpeakerState();
-    let response = await chromeRuntimeSendMessage({
-      action: "SPKBTNCLICKED",
-    });
-
-    // This is the new state
-    boolMuted = response.boolMuted;
-    l_currentTarget.dataset.isMuted = boolMuted;
-
-    // l_currentTarget.classList.remove(...l_currentTarget.classList);
-
-    mutedIconEl = l_currentTarget.querySelector('[data-muted-icon="true"]');
-    mutedFalseIconEl = l_currentTarget.querySelector('[data-muted-icon="false"]');
-
-    if (boolMuted) {
-      // l_currentTarget.classList.add(...g_spk_classList.muted);
-      mutedIconEl.style.display = "flex";
-      mutedFalseIconEl.style.display = "none";
-    } else {
-      // l_currentTarget.classList.add(...g_spk_classList.mutedFalse);
-      mutedIconEl.style.display = "none";
-      mutedFalseIconEl.style.display = "flex";
-      //  mutedIconEl.classList.remove(".my-breakout-speaker-muted");
-    }
-
-    await sleep(500);
-
-    let muted = await setTabColor();
-
-    setBtnColor(muted);
-
-    // await chromeRuntimeSendMessage({
-    //   action: "contentSpk",
-    //   title: document.title,
-    //   boolMuted: boolMuted,
-    // });
-
-    return true;
-  } catch (error) {}
-};
 
 const setBtnColor = (muted) => {
   // Feb 12, 2022 - commented this out, but not sure

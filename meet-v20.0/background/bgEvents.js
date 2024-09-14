@@ -37,6 +37,9 @@ chrome.runtime.onMessage.addListener((payload, sender, callback) => {
             let tab = await chromeTabsGet(tabId);
             let boolMuted = !tab.mutedInfo.muted;
 
+            // Test it out 09/14/2024
+            // boolMuted = sender.mutedInfo.muted;
+
             console.log(`SPKBTNCLICKED for tabId ${tabId} from ${tab.mutedInfo.muted} to ${boolMuted}`, tab);
 
             chrome.tabs.update(tabId, { muted: boolMuted }, callback({ boolMuted }));

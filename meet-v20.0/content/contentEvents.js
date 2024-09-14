@@ -185,6 +185,7 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
       break;
 
     case "muting":
+      console.log("muting event received");
       handleMutingFromContext(payload);
       cb({ msg: "muting done" });
       break;
