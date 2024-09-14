@@ -340,7 +340,9 @@ const handleSlider = async (evt) => {
                 vidMute: thisVidMute,
               },
             });
-            console.log(`Room ${room.id}, ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`);
+            console.log(
+              `Room ${room.id}, ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`
+            );
           } else {
             // For all other rooms, mute speaker, mic, and video, and add to the array of promises
             mutePromises.push(
@@ -354,7 +356,9 @@ const handleSlider = async (evt) => {
                   },
                 })
                 .then(() => {
-                  console.log(`Room ${room.id} ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`);
+                  console.log(
+                    `Room ${room.id} ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`
+                  );
                 })
                 .catch((err) => {
                   console.error(`Failed to mute room ${room.id}:`, err);
@@ -479,10 +483,8 @@ const handleSliderMute = (evt, boolClick = true) => {
       case "thisSpk":
         if (btn.classList.contains("av-mute")) {
           spkMute = true;
-          // handleContextMenuClick({ pageUrl: link, menuItemId: "r0__" }, { windowId, id });
         } else {
           spkMute = false;
-          // handleContextMenuClick({ pageUrl: link, menuItemId: "r1__" }, { windowId, id });
         }
 
         await chrome.tabs.update(id, { muted: spkMute });
@@ -498,11 +500,9 @@ const handleSliderMute = (evt, boolClick = true) => {
         break;
       case "thisMic":
         if (btn.classList.contains("av-mute")) {
-          // handleContextMenuClick({ pageUrl: link, menuItemId: "r_0_" }, { windowId, id });
           micMute = true;
         } else {
           micMute = false;
-          // handleContextMenuClick({ pageUrl: link, menuItemId: "r_1_" }, { windowId, id });
         }
         await chrome.tabs.sendMessage(id, {
           action: "updateSpkMicVidMuteState",
@@ -516,10 +516,8 @@ const handleSliderMute = (evt, boolClick = true) => {
         break;
       case "thisVid":
         if (btn.classList.contains("av-mute")) {
-          // handleContextMenuClick({ pageUrl: link, menuItemId: "r__0" }, { windowId, id });
           vidMute = true;
         } else {
-          // handleContextMenuClick({ pageUrl: link, menuItemId: "r__1" }, { windowId, id });
           vidMute = false;
         }
         await chrome.tabs.sendMessage(id, {
@@ -554,18 +552,26 @@ const handleSliderMute = (evt, boolClick = true) => {
         break;
       case "broadSpk":
         {
-          // if (btn.classList.contains("av-mute")) {
-          //   handleContextMenuClick({ pageUrl: link, menuItemId: "g0__" }, { windowId, id });
-          // } else {
-          //   handleContextMenuClick({ pageUrl: link, menuItemId: "g1__" }, { windowId, id });
-          // }
-
           if (btn.classList.contains("av-mute")) {
             spkMute = true;
-            // handleContextMenuClick({ pageUrl: link, menuItemId: "r0__" }, { windowId, id });
           } else {
             spkMute = false;
-            // handleContextMenuClick({ pageUrl: link, menuItemId: "r1__" }, { windowId, id });
+          }
+
+          // New 09/14/2024 for keeping the this buttons in sync with broadcast buttons
+          let thisSpk = document.querySelector("#thisSpk");
+          let thisSpkIcon = thisSpk.querySelector("i");
+
+          if (sliderTitle.textContent !== "Main") {
+            if (spkMute) {
+              thisSpk.classList.add("av-mute");
+              thisSpkIcon.classList.remove("fa-volume-mute");
+              thisSpkIcon.classList.add("fa-volume-mute");
+            } else {
+              thisSpk.classList.remove("av-mute");
+              thisSpkIcon.classList.remove("fa-volume-up");
+              thisSpkIcon.classList.add("fa-volume-up");
+            }
           }
 
           // Here get all the room ids and loop thru them except for main room
@@ -593,15 +599,27 @@ const handleSliderMute = (evt, boolClick = true) => {
       case "broadMic":
         {
           if (btn.classList.contains("av-mute")) {
-            // handleContextMenuClick({ pageUrl: link, menuItemId: "g_0_" }, { windowId, id });
             micMute = true;
           } else {
-            // handleContextMenuClick(
-            //   { pageUrl: link, menuItemId: "g_1_" }, // should this be g01_ ??
-            //   { windowId, id }
-            // );
             micMute = false;
           }
+
+          // New 09/14/2024 keep thisMic in sync with broadcast
+          let thisMic = document.querySelector("#thisMic");
+          let thisMicIcon = thisMic.querySelector("i");
+
+          if (sliderTitle.textContent !== "Main") {
+            if (micMute) {
+              thisMic.classList.add("av-mute");
+              thisMicIcon.classList.remove("fa-microphone");
+              thisMicIcon.classList.add("fa-microphone-slash");
+            } else {
+              thisMic.classList.remove("av-mute");
+              thisMicIcon.classList.remove("fa-microphone-slash");
+              thisMicIcon.classList.add("fa-microphone");
+            }
+          }
+
           // Here get all the room ids and loop thru them except for main room
           let openRooms2 = await chromeAllOpenRooms();
           openRooms2 = sortRoomsTabOrder(openRooms2);
@@ -626,13 +644,28 @@ const handleSliderMute = (evt, boolClick = true) => {
       case "broadVid":
         {
           if (btn.classList.contains("av-mute")) {
-            // handleContextMenuClick({ pageUrl: link, menuItemId: "g__0" }, { windowId, id });
             vidMute = true;
           } else {
-            // handleContextMenuClick({ pageUrl: link, menuItemId: "g__1" }, { windowId, id });
             vidMute = false;
           }
         }
+
+        // New 09/14/2024 keep thisMic in sync with broadcast
+        let thisVid = document.querySelector("#thisVid");
+        let thisVidIcon = thisVid.querySelector("i");
+
+        if (sliderTitle.textContent !== "Main") {
+          if (vidMute) {
+            thisVid.classList.add("av-mute");
+            thisVidIcon.classList.remove("fa-video");
+            thisVidIcon.classList.add("fa-video-slash");
+          } else {
+            thisVid.classList.remove("av-mute");
+            thisVidIcon.classList.remove("fa-video-slash");
+            thisVidIcon.classList.add("fa-video");
+          }
+        }
+
         let openRooms2 = await chromeAllOpenRooms();
         openRooms2 = sortRoomsTabOrder(openRooms2);
         openRooms2 = filterExtensionRooms(openRooms2);
