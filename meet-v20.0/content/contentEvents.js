@@ -123,7 +123,7 @@ document.body.addEventListener("dom-changed", async (evt) => {
     } else {
       // NOTE do i need this? 09/14/2024
       if (!document.querySelector('[data-btn-breakout="spk"]')) {
-        createSpeakerButton();
+        await createSpeakerButton();
         updateToolbarColors();
       }
       let muted = await setTabColor();

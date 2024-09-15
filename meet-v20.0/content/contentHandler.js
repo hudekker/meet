@@ -593,8 +593,24 @@ const setBtnColor = (muted) => {
   }
 };
 
+const chromeRuntimeSendMessage2 = (message) => {
+  return new Promise((resolve, reject) => {
+    chrome.runtime.sendMessage(message, (response) => {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError));
+      } else {
+        resolve(response);
+      }
+    });
+  });
+};
+
 const createSpeakerButton = async () => {
   console.log("createSpeakerButton");
+  let test = document.querySelector('[data-btn-breakout="spk"]');
+  if (test) {
+    return;
+  }
 
   let mutedStyle = "my-breakout-speaker-muted";
   let btns = document.querySelectorAll('[role="button"][data-is-muted]');
@@ -620,6 +636,15 @@ const createSpeakerButton = async () => {
 
   let btnSpk = document.createElement("div");
   btnSpk.classList.add("my-breakout-speaker-btn");
+
+  // Get the speaker muted status
+  try {
+    // await sleep(10000);
+    // let muted = await chromeRuntimeSendMessage2("getSpkMuteStatus");
+    console.log(`create new speaker`);
+  } catch (error) {
+    console.log("Error in calling getSpkMuteStatus", error);
+  }
 
   mutedStyle = "";
   let micClassList = [...btns[0].classList];
@@ -654,12 +679,38 @@ const createSpeakerButton = async () => {
 
   // Select the element
   const spkButton = document.querySelector('[data-btn-breakout="spk"]');
+
   if (spkButton) {
     // Remove the event listener if it exists
     spkButton.removeEventListener("click", handleSpkBtnClick3);
 
     // Add the event listener
     spkButton.addEventListener("click", handleSpkBtnClick3);
+
+    // Handle styling
+    let { muted } = await chromeRuntimeSendMessage2({ action: "getSpkMuteStatus" });
+    console.log("speaker muted is ", muted);
+
+    // Get the speaker muted icons
+    let l_mutedIconTrue = spkButton.querySelector('[data-muted-icon="true"]');
+    let l_mutedIconFalse = spkButton.querySelector('[data-muted-icon="false"]');
+
+    // Already toggled
+    if (muted) {
+      l_mutedIconTrue.style.display = "flex";
+      l_mutedIconFalse.style.display = "none";
+      spkButton.classList.add("av-mute");
+      spkButton.classList.add("breakout-mute");
+      spkButton.classList.remove("breakout-unmute");
+
+      // New state is muted (Red)
+    } else {
+      l_mutedIconTrue.style.display = "none";
+      l_mutedIconFalse.style.display = "flex";
+      spkButton.classList.remove("av-mute");
+      spkButton.classList.remove("breakout-mute");
+      spkButton.classList.add("breakout-unmute");
+    }
   } else {
     console.log("Speaker button not found.");
   }

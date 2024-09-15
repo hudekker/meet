@@ -310,7 +310,7 @@ const handleSlider = async (evt) => {
 
         // Log the mute states of each room
         muteStates.forEach((state) => {
-          console.log(`Room ${state.id} ${state.title} is muted: ${state.muted}`);
+          // console.log(`Room ${state.id} ${state.title} is muted: ${state.muted}`);
         });
       } catch (error) {
         console.error("Error checking mute state:", error);
@@ -340,9 +340,7 @@ const handleSlider = async (evt) => {
                 vidMute: thisVidMute,
               },
             });
-            console.log(
-              `Room ${room.id}, ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`
-            );
+            console.log(`Room ${room.id}, ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`);
           } else {
             // For all other rooms, mute speaker, mic, and video, and add to the array of promises
             mutePromises.push(
@@ -356,9 +354,7 @@ const handleSlider = async (evt) => {
                   },
                 })
                 .then(() => {
-                  console.log(
-                    `Room ${room.id} ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`
-                  );
+                  // console.log(`Room ${room.id} ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`);
                 })
                 .catch((err) => {
                   console.error(`Failed to mute room ${room.id}:`, err);

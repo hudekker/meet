@@ -52,7 +52,7 @@ $(function () {
 window.addEventListener("focus", async (e) => {
   await sleep(100);
 
-  console.log("focused");
+  // console.log("focused");
 });
 
 if (chrome.i18n.getMessage("@@ui_locale") == "zh_TW") {
@@ -989,6 +989,25 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
     let boolMuted;
 
     switch (action) {
+      case "getSpkMuteStatus":
+        try {
+          console.log("inside getSpkMuteStatus");
+          debugger;
+
+          // Use the reusable function to get tab details
+          let tab = await getTabById(sender.tab.id);
+
+          // Access the mutedInfo property of the tab
+          let muted = tab.mutedInfo.muted;
+
+          // Return the current state
+          cb({ muted });
+        } catch (error) {
+          console.error("Failed to get tab details:", error);
+          cb({ error: "Failed to get tab details" });
+        }
+        return true;
+        break;
       case "contentSpk":
         {
           let tabId = sender.tab.id;
