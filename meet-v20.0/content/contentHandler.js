@@ -4,6 +4,7 @@ let g_openedFlag = false;
 let g_synced = false;
 let g_autoAdmitted = false;
 let g_relevant = false;
+let g_tabColorCode = "100";
 
 let g_spk_classList = {
   muted: [],
@@ -28,7 +29,6 @@ const refreshBreakoutObject = async () => {
   let { breakout: test } = await chromeStorageLocalGet("breakout");
   g_myBreakout = test;
 };
-
 
 // Only click on button once, while outside
 const oneTimeClick = async () => {
@@ -107,7 +107,7 @@ const oneTimeClick = async () => {
     if (btnMic && btnVid && !g_joinedFlag && btnHangup) {
       g_joinedFlag = true;
 
-      createSpeakerButton();
+      await createSpeakerButton();
       btnHangup.dataset.btnBreakout = "hangup";
 
       btnSpk = document.querySelector('[data-btn-breakout="spk"]');
@@ -159,22 +159,13 @@ const oneTimeClick = async () => {
         // document.querySelector('[data-btn-breakout="spk"]').click();
         // Default is current method ("old")
       } else {
-        console.log("old audio mute method");
-        document.querySelector('[data-btn-breakout="spk"]').addEventListener("click", handleSpkBtnClick);
+        // console.log("old audio mute method");
+        // document.querySelector('[data-btn-breakout="spk"]').addEventListener("click", handleSpkBtnClick);
       }
 
+      // document.querySelector('[aria-label="Turn on microphone"], [aria-label="Turn off microphone"]').addEventListener("click", handleMicBtnClick);
       document.querySelector('[data-btn-breakout="mic"]').addEventListener("click", handleMicBtnClick);
       document.querySelector('[data-btn-breakout="vid"]').addEventListener("click", handleVidBtnClick);
-
-      // All non main rooms open with speaker off
-      // if (myBreakout.myRooms && myBreakout.myRooms.length > 0) {
-      //   if (myBreakout.myRooms[0].name != document.title) {
-      //     spkIsMuted = btnSpk.dataset.isMuted == "true";
-      //     if (!spkIsMuted) {
-      //       btnSpk.click();
-      //     }
-      //   }
-      // }
     }
   } catch (err) {
     // console.log("Error in oneTimeClick");
@@ -397,28 +388,19 @@ const moveHangupBtn = () => {
 };
 
 const handleMicBtnClick = async (event) => {
+  // await sleep(1000);
+  if (!event.isTrusted) {
+    return;
+  }
+
   try {
     let boolMuted;
     let btnMic;
 
+    console.log("mic clicked");
+
     btnMic = document.querySelector("[data-btn-breakout='mic']");
     boolMuted = document.querySelector("[data-btn-breakout='mic']").dataset.isMuted;
-
-    // alert(`isMuted = ${boolMuted}`);
-
-    // if (boolMuted == "true") {
-    //   btnMic.classList.add("my-breakout-green");
-    //   btnMic.classList.remove("my-breakout-red");
-    // } else {
-    //   btnMic.classList.add("my-breakout-red");
-    //   btnMic.classList.remove("my-breakout-green");
-    // }
-
-    // await chromeRuntimeSendMessage({
-    //   action: "contentMic",
-    //   title: document.title,
-    //   boolMuted: boolMuted,
-    // });
 
     // Feb 12, 2022
     await sleep(1);
@@ -426,26 +408,29 @@ const handleMicBtnClick = async (event) => {
     let muted = await setTabColor();
 
     setBtnColor(muted);
+
+    await chromeRuntimeSendMessage({
+      action: "updateMicVidButtonState",
+      micMuted: muted.mic,
+      vidMuted: null,
+    });
   } catch (error) {}
 };
 
 const handleVidBtnClick = async (event) => {
-  let boolMuted;
-  let btnVid;
+  // await sleep(1000);
+  if (!event.isTrusted) {
+    return;
+  }
 
   try {
+    let boolMuted;
+    let btnVid;
+
+    console.log("vid clicked");
+
     btnVid = document.querySelector("[data-btn-breakout='vid']");
     boolMuted = document.querySelector("[data-btn-breakout='vid']").dataset.isMuted;
-
-    // alert(`isMuted = ${boolMuted}`);
-
-    // if (boolMuted == "true") {
-    //   btnVid.classList.add("my-breakout-green");
-    //   btnVid.classList.remove("my-breakout-red");
-    // } else {
-    //   btnVid.classList.add("my-breakout-red");
-    //   btnVid.classList.remove("my-breakout-green");
-    // }
 
     // Feb 12, 2022
 
@@ -455,11 +440,11 @@ const handleVidBtnClick = async (event) => {
 
     setBtnColor(muted);
 
-    // await chromeRuntimeSendMessage({
-    //   action: "contentVid",
-    //   title: document.title,
-    //   boolMuted: boolMuted,
-    // });
+    await chromeRuntimeSendMessage({
+      action: "updateMicVidButtonState",
+      micMuted: null,
+      vidMuted: muted.vid,
+    });
   } catch (error) {}
 };
 
@@ -479,7 +464,7 @@ const handleSpkBtnClick3 = async (event) => {
 
     // Call the background to mute
     console.log("clicked btnSpk 3");
-    
+
     let { boolMuted } = await chromeRuntimeSendMessage({
       action: "SPKBTNCLICKED",
     });
@@ -528,66 +513,7 @@ const handleSpkBtnClick3 = async (event) => {
   }
 };
 
-// const handleSpkBtnClick2 = async (event) => {
-//   // Feb 12, 2022 intentional 500 ms delay to be more in line with mic and vid delay
-//   // made this whole subroutine async (not sure)
-
-//   let l_currentTarget = event.currentTarget;
-
-//   // Get the button current state
-//   let l_btn = document.querySelector('[data-btn-breakout="spk"][data-is-muted]');
-
-//   if (!l_btn) {
-//     console.log("Cannot find the speaker button on click");
-//     return false;
-//   }
-
-//   // Get the speaker muted icons
-//   let l_mutedIconTrue = l_currentTarget.querySelector('[data-muted-icon="true"]');
-//   let l_mutedIconFalse = l_currentTarget.querySelector('[data-muted-icon="false"]');
-
-//   // Get the audio elems
-//   let lt_audio = document.querySelectorAll("audio");
-
-//   // Set the new state
-
-//   //Toggle: Current state muted so New state is not muted (Green)
-//   if (l_btn.dataset.isMuted == "true") {
-//     l_btn.dataset.isMuted = "false";
-//     l_mutedIconTrue.style.display = "none";
-//     l_mutedIconFalse.style.display = "flex";
-
-//     // Jan 10 add back in
-//     for (let i = 0; i < lt_audio.length; i++) {
-//       // lt_audio[i].volume = 1;
-//       lt_audio[i].muted = false;
-//     }
-
-//     // New state is muted (Red)
-//   } else {
-//     l_btn.dataset.isMuted = "true";
-//     l_mutedIconTrue.style.display = "flex";
-//     l_mutedIconFalse.style.display = "none";
-
-//     // Jan 10 add back in
-//     for (let i = 0; i < lt_audio.length; i++) {
-//       // lt_audio[i].volume = 0;
-//       lt_audio[i].muted = true;
-//     }
-//   }
-
-//   await sleep(1);
-
-//   setBtnColor();
-
-//   setTabColor();
-
-//   return true;
-// };
-
 const setBtnColor = (muted) => {
-  // Feb 12, 2022 - commented this out, but not sure
-  // await sleep(500);
   try {
     // Reset the white colors
     btnSpk = document.querySelector('[data-btn-breakout="spk"]');
@@ -599,9 +525,9 @@ const setBtnColor = (muted) => {
     if (btnMic) {
       // Check the current state and perform actions accordingly
       if (btnMic.getAttribute("aria-label") === "Turn on microphone") {
-        console.log("Microphone is off, turning it on...");
+        // console.log("Microphone is off, turning it on...");
       } else if (btnMic.getAttribute("aria-label") === "Turn off microphone") {
-        console.log("Microphone is on, turning it off...");
+        // console.log("Microphone is on, turning it off...");
       }
     }
 
@@ -610,9 +536,9 @@ const setBtnColor = (muted) => {
     if (btnVid) {
       // Check the current state and perform actions accordingly
       if (btnVid.getAttribute("aria-label") === "Turn on camera") {
-        console.log("Camera is off, turning it on...");
+        // console.log("Camera is off, turning it on...");
       } else if (btnVid.getAttribute("aria-label") === "Turn off camera") {
-        console.log("Camera is on, turning it off...");
+        // console.log("Camera is on, turning it off...");
       }
     }
 
@@ -667,26 +593,32 @@ const setBtnColor = (muted) => {
   }
 };
 
-const createSpeakerButton = () => {
-  // ******** June 10
-  let mutedStyle = "my-breakout-speaker-muted";
+const createSpeakerButton = async () => {
+  console.log("createSpeakerButton");
 
+  let mutedStyle = "my-breakout-speaker-muted";
   let btns = document.querySelectorAll('[role="button"][data-is-muted]');
 
-  if (btns.length < 1) {
-    console.log("problem in create speaker button");
-    // await sleep(2000);
-    btns = document.querySelectorAll('[role="button"][data-is-muted]');
+  if (btns.length < 2) {
+    console.log("Problem in create speaker button: Not enough buttons found.");
+    return; // Exit the function if not enough buttons are found
   }
 
+  // Assign the attributes
   btns[0].dataset.btnBreakout = "mic";
   btns[1].dataset.btnBreakout = "vid";
 
+  // Remove the event listeners to avoid duplication
+  btns[0].removeEventListener("click", handleMicBtnClick);
+  btns[1].removeEventListener("click", handleVidBtnClick);
+
+  // Add the event listeners again
+  btns[0].addEventListener("click", handleMicBtnClick);
+  btns[1].addEventListener("click", handleVidBtnClick);
+
   let topNode = btns[0].parentElement.parentElement.parentElement.parentElement.parentElement;
-  // let topNode = btns[0].parentElement.parentElement.parentElement.parentElement;
 
-  btnSpk = document.createElement("div");
-
+  let btnSpk = document.createElement("div");
   btnSpk.classList.add("my-breakout-speaker-btn");
 
   mutedStyle = "";
@@ -694,95 +626,108 @@ const createSpeakerButton = () => {
   for (let i = 0; i < micClassList.length; i++) {
     btnSpk.classList.add(micClassList[i]);
   }
+
   btnSpk.style.float = "left";
   btnSpk.style.position = "relative";
-
-  //******** June 10
-  // if (document.querySelector('[data-tooltip-id="tt-c6"]')) {
-  //   btnSpk.style.backgroundColor = "forestgreen";
-
-  //   // *** December 2021
-  // } else if (document.querySelector('[data-tooltip-id="tt-c8"]')) {
-  //   btnSpk.classList.add("my-breakout-speaker-40");
-  //   btnSpk.style.backgroundColor = `rgb(${105}, ${240}, ${174})`;
-  // } else {
-  // }
-
-  btnSpk.style.backgroundColor = colors.green;
+  btnSpk.style.backgroundColor = colors.green; // Ensure colors.green is defined
   btnSpk.style.color = "white";
 
-  // ******
-
   btnSpk.dataset.btnBreakout = "spk";
   btnSpk.dataset.isMuted = false;
-
   btnSpk.dataset.tooltip = "Turn off speaker";
-  btnSpk.dataset.ariaLabel = "Turn off speaker"; // used to be 2
-  // btnSpk.dataset.responseDelayMs = "250";
+  btnSpk.dataset.ariaLabel = "Turn off speaker";
   btnSpk.dataset.responseDelayMs = "0";
 
-  // ****** June 10 variable class
   btnSpk.innerHTML = `<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
-    <div>
-      <i style="display: none" class="fas fa-volume-mute my-breakout-speaker-icon ${mutedStyle}" data-muted-icon="true"></i>
-      <i style="display: flex" class="fas fa-volume-up my-breakout-speaker-icon" 
-      data-freeze-state=false
-      data-muted-icon="false"></i>
-    </div>`;
+  integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
+  <div>
+    <i style="display: none" class="fas fa-volume-mute my-breakout-speaker-icon ${mutedStyle}" data-muted-icon="true"></i>
+    <i style="display: flex" class="fas fa-volume-up my-breakout-speaker-icon" 
+    data-freeze-state="false"
+    data-muted-icon="false"></i>
+  </div>`;
 
   topNode.prepend(btnSpk);
-};
 
-const createSpeakerButton_old = async () => {
-  let btns = document.querySelectorAll('[role="button"][data-is-muted]');
+  // wait a few clicks so it updates
+  await sleep(10);
 
-  if (btns.length < 1) {
-    console.log("problem in create speaker button");
-    await sleep(2000);
-    btns = document.querySelectorAll('[role="button"][data-is-muted]');
+  // Select the element
+  const spkButton = document.querySelector('[data-btn-breakout="spk"]');
+  if (spkButton) {
+    // Remove the event listener if it exists
+    spkButton.removeEventListener("click", handleSpkBtnClick3);
+
+    // Add the event listener
+    spkButton.addEventListener("click", handleSpkBtnClick3);
+  } else {
+    console.log("Speaker button not found.");
   }
 
-  btns[0].dataset.btnBreakout = "mic";
-  btns[1].dataset.btnBreakout = "vid";
+  // console.log("createSpeakerButton");
 
-  let topNode = btns[0].parentElement.parentElement.parentElement.parentElement;
+  // let mutedStyle = "my-breakout-speaker-muted";
 
-  let newNode = topNode.firstChild.cloneNode(true);
+  // let btns = document.querySelectorAll('[role="button"][data-is-muted]');
 
-  let btnSpk = newNode.querySelector('[role="button"]');
+  // if (btns.length < 1) {
+  //   console.log("problem in create speaker button");
+  //   // await sleep(2000);
+  //   btns = document.querySelectorAll('[role="button"][data-is-muted]');
+  // }
 
-  // Strip out everything but the class
-  let classList = btnSpk.classList;
-  let arrClassList = [...classList];
+  // btns[0].dataset.btnBreakout = "mic";
+  // btns[1].dataset.btnBreakout = "vid";
 
-  while (btnSpk.attributes.length > 0) btnSpk.removeAttribute(btnSpk.attributes[0].name);
+  // let topNode = btns[0].parentElement.parentElement.parentElement.parentElement.parentElement;
+  // // let topNode = btns[0].parentElement.parentElement.parentElement.parentElement;
 
-  btnSpk.classList.add(...arrClassList);
-  // ***
+  // let btnSpk = document.createElement("div");
 
-  btnSpk.dataset.btnBreakout = "spk";
-  btnSpk.dataset.isMuted = false;
-  btnSpk.parentElement.setAttribute("jsmodel", "");
-  btnSpk.parentElement.setAttribute("jscontroller", "");
-  btnSpk.parentElement.setAttribute("jsaction", "");
-  btnSpk.parentElement.setAttribute("jsname", "");
-  btnSpk.dataset.tooltip = "Turn off speaker";
-  btnSpk.dataset.ariaLabel = "Turn off speaker"; // used to be 2
-  btnSpk.dataset.responseDelayMs = "250";
-  btnSpk.style.backgroundColor = colors.green;
-  btnSpk.style.borderColor = colors.green;
+  // btnSpk.classList.add("my-breakout-speaker-btn");
 
-  btnSpk.innerHTML = `<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
-    <div>
-      <i style="font-size: 20px; color: white; border-radius: 50%; display: none" class="fas fa-volume-mute" data-muted-icon="true"></i>
-      <i style="font-size: 20px" class="fas fa-volume-up" 
-      data-freeze-state=false
-      data-muted-icon="false"></i>
-    </div>`;
+  // mutedStyle = "";
+  // let micClassList = [...btns[0].classList];
+  // for (let i = 0; i < micClassList.length; i++) {
+  //   btnSpk.classList.add(micClassList[i]);
+  // }
+  // btnSpk.style.float = "left";
+  // btnSpk.style.position = "relative";
 
-  topNode.prepend(newNode);
+  // btnSpk.style.backgroundColor = colors.green;
+  // btnSpk.style.color = "white";
+
+  // btnSpk.dataset.btnBreakout = "spk";
+  // btnSpk.dataset.isMuted = false;
+
+  // btnSpk.dataset.tooltip = "Turn off speaker";
+  // btnSpk.dataset.ariaLabel = "Turn off speaker"; // used to be 2
+  // // btnSpk.dataset.responseDelayMs = "250";
+  // btnSpk.dataset.responseDelayMs = "0";
+
+  // // ****** June 10 variable class
+  // btnSpk.innerHTML = `<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+  //     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
+  //   <div>
+  //     <i style="display: none" class="fas fa-volume-mute my-breakout-speaker-icon ${mutedStyle}" data-muted-icon="true"></i>
+  //     <i style="display: flex" class="fas fa-volume-up my-breakout-speaker-icon"
+  //     data-freeze-state=false
+  //     data-muted-icon="false"></i>
+  //   </div>`;
+
+  // topNode.prepend(btnSpk);
+
+  // // wait a few clicks so it updates
+  // await sleep(10);
+
+  // // Select the element
+  // const spkButton = document.querySelector('[data-btn-breakout="spk"]');
+
+  // // Remove the event listener if it exists
+  // spkButton.removeEventListener("click", handleSpkBtnClick3);
+
+  // // Add the event listener
+  // spkButton.addEventListener("click", handleSpkBtnClick3);
 };
 
 // On
@@ -799,7 +744,7 @@ const getTabMuteStatus = async () => {
       });
     });
 
-    console.log("Tab Info:", tabInfo);
+    // console.log("Tab Info:", tabInfo);
     return tabInfo; // Full tab info, including mute status
   } catch (error) {
     console.error("Error getting tab mute status:", error);
@@ -823,8 +768,8 @@ const getSpkMicVidState2 = async () => {
     let turnVidOff = document.querySelector('[aria-label="Turn off camera"]');
 
     let tabInfo = await getTabMuteStatus();
-    console.log("inside getSpkMicVidState2");
-    console.log(tabInfo);
+    // console.log("inside getSpkMicVidState2");
+    // console.log(tabInfo);
 
     if (tabInfo) {
       muted.spk = tabInfo.mutedInfo.muted;
@@ -841,10 +786,6 @@ const getSpkMicVidState2 = async () => {
     } else {
       muted.vid = false;
     }
-
-    // muted.spk = btnSpk.dataset.isMuted === "true";
-    // muted.mic = btnMic.dataset.isMuted === "true";
-    // muted.vid = btnVid.dataset.isMuted === "true";
 
     return muted;
   }
@@ -947,6 +888,7 @@ const setTabTitle = async () => {
 
 const setTabColor = async () => {
   let muted = { spk: true, mic: true, vid: true };
+  let l_changed = false;
 
   if (!g_joinedFlag) return muted;
 
@@ -966,13 +908,50 @@ const setTabColor = async () => {
   const d3 = vid ? "0" : "1";
   const tabColor = `c${d1}${d2}${d3}.png`;
 
-  console.log(`${d1}${d2}${d3}.png`);
+  // Access individual characters of g_tabColorCode string
+  let d1_old = g_tabColorCode.charAt(0); // Get the first character
+  let d2_old = g_tabColorCode.charAt(1); // Get the second character
+  let d3_old = g_tabColorCode.charAt(2); // Get the third character
+
+  // Compare each d1, d2, and d3 with their corresponding characters
+  // Don't send anything for spk because that is handled differently
+  if (d1 !== d1_old) {
+    l_changed = true;
+    console.log("Spk clicked");
+  }
+  // Mic
+  if (d2 !== d2_old) {
+    l_changed = true;
+    // await chromeRuntimeSendMessage({
+    //   action: "updateMicVidButtonState",
+    //   micMute: d2,
+    //   vidMute: d3,
+    // });
+    // console.log("Mic clicked");
+  }
+  // Video
+  if (d3 !== d3_old) {
+    l_changed = true;
+    // await chromeRuntimeSendMessage({
+    //   action: "updateMicVidButtonState",
+    //   micMute: d2,
+    //   vidMute: d3,
+    // });
+    // console.log("Vid clicked");
+  }
+
+  // Update g_tabColorCode with new values using template literals
+  g_tabColorCode = `${d1}${d2}${d3}`;
 
   // Update tab icon
-  const link = chrome.runtime.getURL(`img/${tabColor}`);
-  document.querySelectorAll('link[rel="shortcut icon"]').forEach((el) => {
-    el.href = link;
-  });
+  if (l_changed) {
+    console.log(`Old colorcode = ${d1_old}${d2_old}${d3_old} and new is ${d1}${d2}${d3}`);
+
+    const link = chrome.runtime.getURL(`img/${tabColor}`);
+    document.querySelectorAll('link[rel="shortcut icon"]').forEach((el) => {
+      el.href = link;
+    });
+  }
 
   return muted;
 };

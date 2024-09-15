@@ -24,7 +24,7 @@ try {
         let rooms = [];
         let win = await chromeWindowsGetAll();
         let bk = await chromeStorageLocalGet("breakout");
-        let allTabs = await chromeTabsQuery({});
+        let lt_popup = [];
 
         for (let i = 0; i < win.length; i++) {
           let tabs = await chromeTabsQuery({ windowId: win[i].id });
@@ -58,7 +58,6 @@ try {
         }
 
         // make sure that previous popup (if any) is still active
-        lt_popup = [];
         rooms.forEach((el) => {
           for (let i = 0; i < gt_popup.length; i++) {
             const el2 = gt_popup[i];
@@ -70,11 +69,6 @@ try {
         });
 
         gt_popup = [...lt_popup];
-
-        //Test
-        // chromeRuntimeSendMessage({
-        //   action: "whoAmI",
-        // });
 
         let pingPopupObj;
 
@@ -100,28 +94,20 @@ try {
             state: "normal",
             width: 530,
             height: 1000,
-            // height: win[0].height,
 
-            // height: windowScreen.availHeight,
-            // height: window.screen.availHeight,
-            // height: 1000, // temp
             top: 0,
             left: win[0].width - 530,
-            // left: windowScreen.availWidth - 530,
-            // left: window.screen.availLeft + window.screen.availWidth - 530,
-            // left: 0, // temp
           };
 
           console.log(`left: window.screen.availLeft`);
 
           g_availHeight = payload.height;
           g_availWidth = payload.width;
-          // g_availHeight = window.screen.availHeight;
-          // g_availWidth = window.screen.availWidth;
 
           let tabsNew = await chromeWindowsCreate(payload);
 
-          await sleep(1000);
+          // Used to be 1000, 09/14/2024
+          await sleep(5);
 
           await chromeWindowsUpdate2(tabsNew.id, {
             state: "normal",
@@ -137,6 +123,7 @@ try {
           // Send popup a message to focus on slider
           let obj = await chromeRuntimeSendMessage({
             action: "updateSliderFocus",
+            newPopup: true,
           });
 
           // Otherwise focus on it
@@ -161,9 +148,11 @@ try {
           });
 
           await sleep(500);
+
           // Send popup to focus on slider
           let obj = await chromeRuntimeSendMessage({
             action: "updateSliderFocus",
+            newPopup: false,
           });
         }
       } catch (err) {}

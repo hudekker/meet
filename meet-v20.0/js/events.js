@@ -87,8 +87,7 @@ document.querySelector("#low-memory-option").addEventListener("click", async (ev
   if (myBreakout.settings.lowMemoryFlag) {
     document.querySelector("#open-breakouts").classList.add("d-none");
     document.querySelector("#open-both").classList.add("d-none");
-    document.querySelector("#open-main i").innerText =
-      "Open/Sync One Window for Main and Breakout Rooms, Use Slider to Move Through the Rooms";
+    document.querySelector("#open-main i").innerText = "Open/Sync One Window for Main and Breakout Rooms, Use Slider to Move Through the Rooms";
     intlMsg("btn-open-main", "btnRam", "&nbsp");
     document.querySelector("#open-main").classList.remove("col-3");
     document.querySelector("#open-main").classList.add("col-12");
@@ -1054,10 +1053,96 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
 
       // This is from the background
       case "updateSliderFocus":
+        // await sleep(5000);
+        let newPopup = payload.newPopup;
+        console.log(`newPopup = ${newPopup}`);
+
+        if (newPopup) {
+          let openRooms2 = await chromeAllOpenRooms();
+          let main = openRooms2.filter((el) => el.title === "Main");
+          if (main.length === 1) {
+            let mainTabId = parseInt(main[0].id, 10);
+            let thisMute = await chromeTabsSendMessage(mainTabId, {
+              action: "getSpkMicVidMuteState",
+            });
+
+            let thisSpk = document.querySelector("#thisSpk");
+            let thisMic = document.querySelector("#thisMic");
+            let thisVid = document.querySelector("#thisVid");
+
+            // Spk
+            if (thisMute.spk) {
+              thisSpk.classList.add("av-mute");
+              icn = thisSpk.querySelector("i");
+              icn.classList.remove("fa-volume-up");
+              icn.classList.add("fa-volume-mute");
+            } else {
+              thisSpk.classList.remove("av-mute");
+              icn = document.querySelector("#thisSpk").querySelector("i");
+              icn.classList.remove("fa-volume-mute");
+              icn.classList.add("fa-volume-up");
+            }
+            // Mic
+            if (thisMute.mic) {
+              thisMic.classList.add("av-mute");
+            } else {
+              thisMic.classList.remove("av-mute");
+            }
+            // Vid
+            if (thisMute.vid) {
+              thisVid.classList.add("av-mute");
+            } else {
+              thisVid.classList.remove("av-mute");
+            }
+            console.log(`For new popup, existing main mute status: ${thisMute}`);
+          }
+        }
+
         let obj = await chromeWindowsGetCurrent({});
         await chromeWindowsUpdate2(obj.id, { focused: true });
         document.querySelector("#slider").focus();
         cb({ msg: "focused on slider" });
+        break;
+
+      case "updateMicVidButtonState":
+        {
+          let thisMic = document.querySelector("#thisMic");
+          let thisVid = document.querySelector("#thisVid");
+
+          console.log(`mic: ${payload.micMute}, vid: ${payload.vidMute}`);
+
+          // Mic
+          if (payload.micMuted != null) {
+            if (payload.micMuted) {
+              thisMic.classList.add("av-mute");
+              icn = thisMic.querySelector("i");
+              icn.classList.remove("fa-microphone");
+              icn.classList.add("fa-microphone-slash");
+            } else {
+              thisMic.classList.remove("av-mute");
+              icn = thisMic.querySelector("i");
+              icn.classList.remove("fa-microphone-slash");
+              icn.classList.add("fa-microphone");
+            }
+          }
+          // Vid
+          if (payload.vidMuted != null) {
+            if (payload.vidMuted) {
+              thisVid.classList.add("av-mute");
+              icn = thisVid.querySelector("i");
+              icn.classList.remove("fa-video");
+              icn.classList.add("fa-video-slash");
+            } else {
+              thisVid.classList.remove("av-mute");
+              icn = thisVid.querySelector("i");
+              icn.classList.remove("fa-video-slash");
+              icn.classList.add("fa-video");
+            }
+          }
+
+          cb({ success: true });
+          return true;
+        }
         break;
 
       case "pingPopup":
@@ -1098,4 +1183,3 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
 $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
 });
-

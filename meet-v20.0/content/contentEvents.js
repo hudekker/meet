@@ -278,13 +278,50 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
       }
       break;
 
+    case "getSpkMicVidMuteState":
+      try {
+        let currentSpkMute = document.querySelector('[data-btn-breakout="spk"]');
+        let turnMicOn = document.querySelector('[aria-label="Turn on microphone"]');
+        // let turnMicOff = document.querySelector('[aria-label="Turn off microphone"]');
+        let turnVidOn = document.querySelector('[aria-label="Turn on camera"]');
+        // let turnVidOff = document.querySelector('[aria-label="Turn off camera"]');
+        let spkMute, micMute, vidMute;
+
+        if (currentSpkMute && currentSpkMute.classList.contains("av-mute")) {
+          spkMute = true;
+        } else {
+          spkMute = false;
+        }
+
+        if (turnMicOn) {
+          micMute = true;
+        } else {
+          micMute = false;
+        }
+
+        if (turnVidOn) {
+          vidMute = true;
+        } else {
+          vidMute = false;
+        }
+
+        mainStatus = {
+          spk: spkMute,
+          mic: micMute,
+          vid: vidMute,
+        };
+
+        cb(mainStatus);
+      } catch (error) {}
+      break;
+
     case "updateSpkMicVidMuteState":
       try {
         const spkMute = payload.state.spkMute;
         const micMute = payload.state.micMute;
         const vidMute = payload.state.vidMute;
 
-        console.log(`updateSpkMicVidMuteState spkMute: ${spkMute}, micMute: ${micMute}, vidMute: ${vidMute}`);
+        // console.log(`updateSpkMicVidMuteState spkMute: ${spkMute}, micMute: ${micMute}, vidMute: ${vidMute}`);
 
         // Get the current state for these
         let currentSpkMute = document.querySelector('[data-btn-breakout="spk"]');
@@ -331,7 +368,7 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
 
         let muted = await setTabColor();
         setBtnColor(muted);
-        console.log(muted);
+        // console.log(muted);
       } catch (error) {
         console.log("error in updateSpkMicVidMuteState", error);
       }
