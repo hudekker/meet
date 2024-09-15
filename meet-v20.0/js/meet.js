@@ -935,6 +935,18 @@ const handleMeetOpenAllRooms = async (evt) => {
       availHeight: availHeight,
       lowMemoryFlag: false,
     });
+
+    // focus on main
+    let openRooms2 = await chromeAllOpenRooms();
+    debugger;
+    try {
+      if (openRooms2.length > 0) {
+        let tab = await focusTabById(openRooms2[0].id);
+        console.log("Tab focused:", tab);
+      }
+    } catch (error) {
+      console.error("Failed to focus tab:", error);
+    }
   }
 };
 

@@ -70,6 +70,18 @@ const getTabById = (tabId) => {
   });
 };
 
+const focusTabById = (tabId) => {
+  return new Promise((resolve, reject) => {
+    chrome.tabs.update(tabId, { active: true }, (tab) => {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError));
+      } else {
+        resolve(tab);
+      }
+    });
+  });
+};
+
 const chromeTabsQuery2 = async (payload) => {
   return new Promise((resolve, reject) => {
     chrome.tabs.query(payload, (tab) => resolve(tab));
