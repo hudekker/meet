@@ -3,7 +3,7 @@
     "message": "Google Meet Breakout by 胡浩洋"
   },
   "extDesc": {
-    "message": "Voir tous les étudiants dans les salles de discussion en même temps, entièrement gratuit, pas de fuite de données, vidéo d'instructions en chinois, intégration avec Google Classroom, contrôle par curseur, panneau de contrôle, liens de surnoms"
+    "message": "Seul l'enseignant doit l'installer. Totalement gratuit et vos données sont privées. Intégration avec Google Classroom, contrôle par curseur, surnoms, tutoriels d'aide."
   },
   "title": {
     "message": "Groupes"
@@ -804,7 +804,7 @@
     "message": "Nouvelle fonctionnalité ! Envoyer automatiquement les tâches de groupe dans le chat Meet"
   },
   "btnAutosend": {
-    "message": "Envoyer les tâches de groupe dans le chat"
+    "message": "1. Envoyer au chat"
   },
   "warning8Rooms": {
     "message": "Le microphone de Google Meet est limité à 7 salles de sous-groupes"

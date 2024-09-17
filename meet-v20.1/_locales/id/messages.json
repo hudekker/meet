@@ -3,7 +3,7 @@
     "message": "Google Meet Breakout oleh Robert Hudek"
   },
   "extDesc": {
-    "message": "Sepenuhnya Gratis dan Data Anda Pribadi. Integrasi Google Classroom, Kontrol Slider, Nama Panggilan, Tutorial Bantuan"
+    "message": "Hanya guru yang perlu menginstal. Sepenuhnya Gratis dan Data Anda Privat. Integrasi Google Classroom, Kontrol Slider, Nama Panggilan, Tutorial Bantuan."
   },
   "title": {
     "message": "Breakout"
@@ -806,7 +806,7 @@
     "message": "Baru!!! Kirim tugas breakout secara otomatis ke obrolan meet"
   },
   "btnAutosend": {
-    "message": "Kirim tugas breakout ke obrolan"
+    "message": "1. Kirim ke obrolan"
   },
   "warning8Rooms": {
     "message": "Mikrofon Google Meet memiliki batas 7 ruang breakout"

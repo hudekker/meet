@@ -3,7 +3,7 @@
     "message": "Google Meet 分組 by 胡浩洋"
   },
   "extDesc": {
-    "message": "同時看所有討論室的學生，全面免費，資料不外洩，中文板的說明影片， 與谷歌教室整合, 滑桿控制, 控制面板，暱稱連結"
+    "message": "只有老師需要安裝。完全免費，並且您的數據是私密的。整合 Google Classroom、滑桿控制、暱稱、幫助教程。"
   },
   "title": {
     "message": "分組"
@@ -805,7 +805,7 @@
     "message": "新功能！自動將分組任務發送到 Meet 聊天室"
   },
   "btnAutosend": {
-    "message": "發送分組任務到聊天室"
+    "message": "1. 發送到聊天"
   },
   "warning8Rooms": {
     "message": "Google Meet 麥克風限制為 7 個分組討論室"

@@ -3,7 +3,7 @@
     "message": "Google Meet 分组 by 胡浩洋"
   },
   "extDesc": {
-    "message": "同时看所有讨论室的学生，全面免费，资料不外泄，中文版的说明影片， 与谷歌教室整合, 滑杆控制, 控制面板，昵称链接"
+    "message": "只有老师需要安装。完全免费，并且您的数据是私密的。集成 Google Classroom、滑块控制、昵称、帮助教程。"
   },
   "title": {
     "message": "分组"
@@ -804,7 +804,7 @@
     "message": "新功能！自动将分组任务发送到 Meet 聊天室"
   },
   "btnAutosend": {
-    "message": "发送分组任务到聊天室"
+    "message": "1. 发送到聊天"
   },
   "warning8Rooms": {
     "message": "Google Meet 麦克风限制为 7 个分组讨论室"

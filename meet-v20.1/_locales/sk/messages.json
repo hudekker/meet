@@ -3,7 +3,7 @@
     "message": "Samostatné miestnosti (Breakout Rooms) v Google Meet, Autor: Robert Hudek"
   },
   "extDesc": {
-    "message": "Úplne zadarmo a Vaše údaje sú súkromné. Integrácia Google Classroom, Slider Control, Prezývky, Návody"
+    "message": "Iba učiteľ musí nainštalovať. Úplne zadarmo a vaše údaje sú súkromné. Integrácia s Google Classroom, ovládanie posúvača, prezývky, pomocné tutoriály."
   },
   "title": {
     "message": "Samostatné miestnosti"
@@ -754,7 +754,7 @@
     "message": "Nové!!! Automaticky posielajte úlohy z breakout do chatu Meet"
   },
   "btnAutosend": {
-    "message": "Odoslať úlohy z breakout do chatu"
+    "message": "1. Odoslať do chatu"
   },
   "warning8Rooms": {
     "message": "Mikrofón Google Meet má limit na 7 skupinových miestností"

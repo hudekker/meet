@@ -3,7 +3,7 @@
     "message": "Google Meet 분할 그룹 by 胡浩洋"
   },
   "extDesc": {
-    "message": "모든 토론방의 학생을 동시에 확인, 완전 무료, 데이터 유출 없음, 한국어 설명 비디오, 구글 클래스룸 통합, 슬라이더 제어, 제어판, 별명 링크"
+    "message": "교사만 설치해야 합니다. 완전히 무료이며 귀하의 데이터는 비공개입니다. Google Classroom 통합, 슬라이더 제어, 별명, 도움말 튜토리얼."
   },
   "title": {
     "message": "분할 그룹"
@@ -804,7 +804,7 @@
     "message": "새로운 기능! 분할 그룹 할당을 Meet 채팅으로 자동 전송"
   },
   "btnAutosend": {
-    "message": "채팅방으로 그룹 할당 전송"
+    "message": "1. 채팅으로 보내기"
   },
   "warning8Rooms": {
     "message": "Google Meet 마이크는 7개의 소그룹 회의실로 제한됩니다"

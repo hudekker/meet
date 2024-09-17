@@ -3,7 +3,7 @@
     "message": "Google Meet Breakout di Robert Hudek"
   },
   "extDesc": {
-    "message": "Completamente gratuito e i tuoi dati sono privati. Integrazione con Google Classroom, controllo slider, soprannomi, tutorial di aiuto"
+    "message": "Solo l'insegnante deve installare. Completamente gratuito e i tuoi dati sono privati. Integrazione con Google Classroom, Controllo Slider, Soprannomi, Tutorial di aiuto."
   },
   "title": {
     "message": "Breakout"
@@ -807,7 +807,7 @@
     "message": "Nuovo!!! Invia automaticamente le assegnazioni dei breakout alla chat di meet"
   },
   "btnAutosend": {
-    "message": "Invia assegnazioni dei breakout alla chat"
+    "message": "1. Invia alla chat"
   },
   "warning8Rooms": {
     "message": "Il microfono di Google Meet ha un limite di 7 stanze di gruppo"

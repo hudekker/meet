@@ -3,7 +3,7 @@
     "message": "Google Meet Breakout by Robert Hudek"
   },
   "extDesc": {
-    "message": "Completamente grátis e seus dados são privados. Integração com Google Classroom, Controle deslizante, Apelidos, Tutoriais de ajuda"
+    "message": "Apenas o professor precisa instalar. Completamente grátis e seus dados são privados. Integração com o Google Classroom, controle deslizante, apelidos, tutoriais de ajuda."
   },
   "title": {
     "message": "Breakout"
@@ -807,7 +807,7 @@
     "message": "Novo!!! Envie automaticamente as atribuições de breakout para o chat do meet"
   },
   "btnAutosend": {
-    "message": "Enviar atribuições de breakout para o chat"
+    "message": "1. Enviar para o chat"
   },
   "warning8Rooms": {
     "message": "O microfone do Google Meet tem um limite de 7 salas de grupos"

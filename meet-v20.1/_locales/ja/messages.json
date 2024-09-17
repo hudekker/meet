@@ -3,7 +3,7 @@
     "message": "Google Meet ブレイクアウト by Robert Hudek"
   },
   "extDesc": {
-    "message": "完全に無料で、データはプライベートです。Google Classroomの統合、スライダーコントロール、ニックネーム、ヘルプチュートリアル"
+    "message": "教師だけがインストールする必要があります。完全に無料で、あなたのデータはプライベートです。Google Classroomとの統合、スライダーコントロール、ニックネーム、ヘルプチュートリアル。"
   },
   "title": {
     "message": "ブレイクアウト"
@@ -807,7 +807,7 @@
     "message": "新機能！ブレイクアウト割り当てをMeetチャットに自動送信"
   },
   "btnAutosend": {
-    "message": "ブレイクアウト割り当てをチャットに送信"
+    "message": "1. チャットに送信"
   },
   "warning8Rooms": {
     "message": "Google Meetのマイクはブレイクアウトルームが7つまでに制限されています"

@@ -3,7 +3,7 @@
     "message": "Google Meet Salas de Grupos por Alejandro (Robert) Hudek"
   },
   "extDesc": {
-    "message": "Completamente gratis y con privacidad de datos. Integración con Google Classroom, control deslizante, apodos, tutoriales de ayuda"
+    "message": "Solo el profesor necesita instalarlo. Completamente gratuito y tus datos son privados. Integración con Google Classroom, control deslizante, apodos, tutoriales de ayuda."
   },
   "title": {
     "message": "Salas de Grupos"
@@ -564,7 +564,7 @@
     "message": "¡Nuevo! Envía automáticamente las asignaciones de salas de grupos al chat de Meet"
   },
   "btnAutosend": {
-    "message": "Enviar asignaciones de salas de grupos al chat"
+    "message": "1. Enviar al chat"
   },
   "warning8Rooms": {
     "message": "El micrófono de Google Meet tiene un límite de 7 salas de grupos"

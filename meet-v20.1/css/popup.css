@@ -356,16 +356,14 @@ h5.sub-title {
   font-weight: 400;
   font-weight: 300;
   font-family: Sans-Serif;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .span-small {
   font-weight: 300;
   font-size: 16px;
   font-family: Sans-Serif;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .red {
@@ -559,6 +557,7 @@ input[type="text"] {
   /* background-color: #98ff98; */
   background-color: var(--dracula-green);
   border-color: grey;
+  text-align: left;
 }
 
 .btn.btn-autosend:hover {
@@ -630,6 +629,9 @@ input[type="text"] {
   margin-top: 10px;
   background-color: var(--dracula-dark-blue);
   color: white;
+  background-color: var(--dracula-green);
+  color: black;
+  text-align: left;
 }
 
 .btn[data-meet-assign] {
@@ -1338,6 +1340,6 @@ span.span-course {
   color: white;
 }
 
-#dropdown-meet-room-hook .dropdown-item:nth-child(n+8) {
+#dropdown-meet-room-hook .dropdown-item:nth-child(n + 8) {
   color: red;
 }

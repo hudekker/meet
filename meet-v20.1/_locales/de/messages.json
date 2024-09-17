@@ -3,7 +3,7 @@
     "message": "Google Meet Gruppen von 胡浩洋"
   },
   "extDesc": {
-    "message": "Zeigen Sie alle Schüler in den Gruppenräumen gleichzeitig an, völlig kostenlos, keine Datenweitergabe, Anleitungsvideo auf Chinesisch, Integration mit Google Classroom, Schiebereglersteuerung, Steuerungsfeld, Spitznamen-Links"
+    "message": "Nur der Lehrer muss es installieren. Komplett kostenlos und Ihre Daten sind privat. Google Classroom-Integration, Schieberegler-Steuerung, Spitznamen, Hilfe-Tutorials."
   },
   "title": {
     "message": "Gruppen"
@@ -804,7 +804,7 @@
     "message": "Neue Funktion! Gruppenaufgaben automatisch in den Meet-Chat senden"
   },
   "btnAutosend": {
-    "message": "Gruppenaufgaben in den Chat senden"
+    "message": "1. In den Chat senden"
   },
   "warning8Rooms": {
     "message": "Das Google Meet-Mikrofon hat eine Begrenzung auf 7 Breakout-Räume"
