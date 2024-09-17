@@ -942,7 +942,7 @@ const handleMeetOpenAllRooms = async (evt) => {
         console.log("Tab focused:", tab);
       }
     } catch (error) {
-      console.error("Failed to focus tab:", error);
+      console.log("Failed to focus tab:", error);
     }
   }
 };
