@@ -798,7 +798,7 @@ const getTabMuteStatus = async () => {
     // console.log("Tab Info:", tabInfo);
     return tabInfo; // Full tab info, including mute status
   } catch (error) {
-    console.error("Error getting tab mute status:", error);
+    console.log("Error getting tab mute status:", error);
   }
 };
 
@@ -1457,7 +1457,7 @@ const muteAll = async (myPptId) => {
     if (btn2) {
       simulateUserClick(btn2);
     } else {
-      console.error(`Mute button not found for list item ${i}`);
+      console.log(`Mute button not found for list item ${i}`);
       continue;
     }
 
@@ -1468,7 +1468,7 @@ const muteAll = async (myPptId) => {
     if (btn3) {
       simulateUserClick(btn3);
     } else {
-      console.error("Confirm button not found");
+      console.log("Confirm button not found");
     }
 
     await sleep(100);
@@ -1655,7 +1655,7 @@ const ElementUpdater = (function () {
       if (descriptor && descriptor.set) {
         valueSetterCache.set(element, descriptor.set);
       } else {
-        console.error("Unable to find value setter for the textarea/input element");
+        console.log("Unable to find value setter for the textarea/input element");
       }
     }
     return valueSetterCache.get(element);
