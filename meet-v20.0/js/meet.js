@@ -69,9 +69,7 @@ const buildMeetMainPptListing = async (event) => {
   });
 
   // Get just the uniques
-  ppt = pptAll.filter(
-    (el, index, self) => index === self.findIndex((t) => t.name === el.name && t.id === el.id && t.url === el.url)
-  );
+  ppt = pptAll.filter((el, index, self) => index === self.findIndex((t) => t.name === el.name && t.id === el.id && t.url === el.url));
   // End 09/13/2020
 
   // Filter on the main url
@@ -211,16 +209,10 @@ const buildBreakoutListing = async (ppt) => {
   //   };
   // });
 
-  rooms = rooms.filter(
-    (el) => !(el.dataset.link.startsWith("https://") && !el.dataset.link.startsWith("https://meet.google.com/"))
-  );
+  rooms = rooms.filter((el) => !(el.dataset.link.startsWith("https://") && !el.dataset.link.startsWith("https://meet.google.com/")));
 
   for (let i = 0; i < rooms.length; i++) {
-    rightHook.innerHTML =
-      rightHook.innerHTML +
-      `<h6 class="breakout-rooms mt-2 btn-sm text-left" style="height: 30px;"data-assign-room=${i + 1}>${rooms[
-        i
-      ].innerText.trim()}</h6>`;
+    rightHook.innerHTML = rightHook.innerHTML + `<h6 class="breakout-rooms mt-2 btn-sm text-left" style="height: 30px;"data-assign-room=${i + 1}>${rooms[i].innerText.trim()}</h6>`;
   }
 
   await sleep(1);
@@ -502,9 +494,7 @@ const buildMeetClassDropdown = (meetClassName, classes = []) => {
     if (el.name == meetClassName) {
       flagActive = "active";
     }
-    hook.innerHTML =
-      hook.innerHTML +
-      `<a class="dropdown-item ${flagActive}"  href="#" data-class-name-key="${el.name}">${el.name}</a>`;
+    hook.innerHTML = hook.innerHTML + `<a class="dropdown-item ${flagActive}"  href="#" data-class-name-key="${el.name}">${el.name}</a>`;
   });
 
   // Change this !!! from here on down....
@@ -853,9 +843,7 @@ const handleMeetOpenAllRooms = async (evt) => {
         }
 
         await sleep(100);
-        let msgMainSync = chrome.i18n.getMessage("msgMainSync")
-          ? chrome.i18n.getMessage("msgMainSync")
-          : "Main room synced";
+        let msgMainSync = chrome.i18n.getMessage("msgMainSync") ? chrome.i18n.getMessage("msgMainSync") : "Main room synced";
         return alert(msgMainSync);
 
         // document.querySelector("#slider-right").click();
@@ -881,20 +869,18 @@ const handleMeetOpenAllRooms = async (evt) => {
         await sleep(100);
         document.querySelector("#slider-left").click();
         await sleep(100);
-        let msgBreakoutSync = chrome.i18n.getMessage("msgBreakoutSync")
-          ? chrome.i18n.getMessage("msgBreakoutSync")
-          : "Breakout room synced";
+        let msgBreakoutSync = chrome.i18n.getMessage("msgBreakoutSync") ? chrome.i18n.getMessage("msgBreakoutSync") : "Breakout room synced";
         return alert(msgBreakoutSync);
       }
       break;
 
     case "open-both":
       rooms = await getNicknameLinks(rooms, className);
-      console.log("nicknames ok");
+      // console.log("nicknames ok");
       rooms = await openCheckForDupes(rooms, lowMemoryFlag);
-      console.log("dupes ok");
+      // console.log("dupes ok");
       rooms = await getRefreshLinks(rooms, className);
-      console.log("refresh ok");
+      // console.log("refresh ok");
 
       // numRoomsOrig = numRooms;
       if (rooms.length < 1) {
@@ -906,9 +892,7 @@ const handleMeetOpenAllRooms = async (evt) => {
         await sleep(100);
         document.querySelector("#slider-left").click();
         await sleep(100);
-        let msgAllSync = chrome.i18n.getMessage("msgAllSync")
-          ? chrome.i18n.getMessage("msgAllSync")
-          : "All rooms synced";
+        let msgAllSync = chrome.i18n.getMessage("msgAllSync") ? chrome.i18n.getMessage("msgAllSync") : "All rooms synced";
         return alert(msgAllSync);
         // return alert();
         // `Main room and ${numRooms} Breakout rooms already all open`
@@ -951,6 +935,18 @@ const handleMeetOpenAllRooms = async (evt) => {
       availHeight: availHeight,
       lowMemoryFlag: false,
     });
+
+    // focus on main
+    let openRooms2 = await chromeAllOpenRooms();
+    debugger;
+    try {
+      if (openRooms2.length > 0) {
+        let tab = await focusTabById(openRooms2[0].id);
+        console.log("Tab focused:", tab);
+      }
+    } catch (error) {
+      console.error("Failed to focus tab:", error);
+    }
   }
 };
 
