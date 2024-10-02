@@ -763,6 +763,7 @@ const popupRetileTabs = async (currentTarget, currentTab) => {
   }
 
   let openRooms2 = await chromeAllOpenRooms();
+  openRooms2 = filterHashRooms(openRooms2);
   openRooms2 = sortRoomsTabOrder(openRooms2);
   openRooms2 = filterExtensionRooms(openRooms2);
   let currentTabId = parseInt(document.querySelector("#slider-title").dataset.tabId, 10);
@@ -796,8 +797,15 @@ const popupRetile = async (currentTarget) => {
       // return alert("Re-Tile is only available for Tiled breakouts. Tabs breakout rooms option is selected in the Settings.");
     }
     // Get all the rooms
-    let rooms = await chromeAllOpenRooms((boolOpen = false), (tabId = 0), (boolFilter = false), (boolGetReferrer = false), (boolExpand = false));
+    let rooms = await chromeAllOpenRooms(
+      (boolOpen = false),
+      (tabId = 0),
+      (boolFilter = false),
+      (boolGetReferrer = false),
+      (boolExpand = false)
+    );
 
+    rooms = filterHashRooms(rooms);
     rooms = filterExtensionRooms(rooms);
     rooms = sortRoomsTabOrder(rooms);
 
@@ -848,8 +856,15 @@ const popupRetile = async (currentTarget) => {
     // Get the revised rooms
     // rooms = await chromeAllOpenRooms((boolOpen = false), (tabId = 0), (boolFilter = false));
 
-    rooms = await chromeAllOpenRooms((boolOpen = false), (tabId = 0), (boolFilter = false), (boolGetReferrer = false), (boolExpand = false));
+    rooms = await chromeAllOpenRooms(
+      (boolOpen = false),
+      (tabId = 0),
+      (boolFilter = false),
+      (boolGetReferrer = false),
+      (boolExpand = false)
+    );
 
+    rooms = filterHashRooms(rooms);
     rooms = filterExtensionRooms(rooms);
 
     // Sort the rooms
@@ -894,6 +909,11 @@ const popupRetile = async (currentTarget) => {
   } catch (err) {}
 };
 
+const filterHashRooms = (rooms) => {
+  rooms = rooms.filter((room) => !room.url.includes("#breakout_testing"));
+  return rooms;
+};
+
 const sortRoomsTabOrder = (rooms) => {
   try {
     if (rooms.length < 0) {
@@ -925,20 +945,6 @@ const sortRoomsTabOrder = (rooms) => {
         rooms2.push(room[0]);
       }
     }
-
-    // rooms.map(
-    //   (el) =>
-    //     (el.sortNum =
-    //       list.indexOf(el.url.toLowerCase()) == -1
-    //         ? 999999
-    //         : list.indexOf(el.url.toLowerCase()))
-    // );
-    // rooms.sort((a, b) =>
-    //   a.sortNum > b.sortNum ? 1 : b.sortNum > a.sortNum ? -1 : 0
-    // );
-
-    // // Limit the number to rooms selectedCourse (zero index, but main plus breakouts)
-    // rooms = rooms.filter((el) => el.sortNum < numRooms);
 
     return rooms2;
   } catch (err) {

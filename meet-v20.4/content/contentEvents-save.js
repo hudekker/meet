@@ -1,39 +1,13 @@
-const throttle = (func, limit) => {
-  let inThrottle;
-  return function () {
-    const args = arguments;
-    const context = this;
-    if (!inThrottle) {
-      func.apply(context, args);
-      inThrottle = true;
-      setTimeout(() => (inThrottle = false), limit);
-    }
-  };
-};
-
-const observerCallback = throttle((list) => {
+const observer = new MutationObserver((list) => {
   const evt = new CustomEvent("dom-changed", { detail: list });
   document.body.dispatchEvent(evt);
-}, 1000); // Limit execution to once per second
-
-const observer = new MutationObserver(observerCallback);
+});
 
 observer.observe(document.body, {
   attributes: true,
   childList: true,
   subtree: true,
 });
-
-// const observer = new MutationObserver((list) => {
-//   const evt = new CustomEvent("dom-changed", { detail: list });
-//   document.body.dispatchEvent(evt);
-// });
-
-// observer.observe(document.body, {
-//   attributes: true,
-//   childList: true,
-//   subtree: true,
-// });
 
 const waitForJoinButton = setInterval(() => {
   // 2023-08-30

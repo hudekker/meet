@@ -268,7 +268,13 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
 
     case "clickChatButton":
       try {
-        const chatButton = document.querySelector('[aria-label="Chat with everyone"]');
+        // const chatButton = document.querySelector('[aria-label="Chat with everyone"]');
+        const chatButton = Array.from(document.querySelectorAll("button")).find(
+          (btn) => btn.textContent.trim() === "chatchat_bubble"
+        );
+
+        console.log("inside clickChatButton");
+
         if (chatButton.ariaPressed == "true") {
           chatButton.click();
           cb({ status: "success" });

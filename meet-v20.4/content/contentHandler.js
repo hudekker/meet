@@ -25,6 +25,7 @@ let colors = {
 
 // let { breakout: myBreakout } = await chromeStorageLocalGet("breakout");
 //
+
 const getRemoveLI = () => {
   const listItems = document.querySelectorAll("li");
 
@@ -46,13 +47,19 @@ const getMoreActionsButtons = () => {
 };
 
 const getChatButton = () => {
-  const buttons = document.querySelectorAll("button");
+  // const buttons = document.querySelectorAll("button");
 
-  return (
-    Array.from(buttons).find((button) =>
-      Array.from(button.querySelectorAll("i")).some((icon) => icon.textContent.trim() === "chat_bubble")
-    ) || null
+  // return (
+  //   Array.from(buttons).find((button) =>
+  //     Array.from(button.querySelectorAll("i")).some((icon) => icon.textContent.trim() === "chatchat_bubble")
+  //   ) || null
+  // );
+
+  const chatButton = Array.from(document.querySelectorAll("button")).find(
+    (btn) => btn.textContent.trim() === "chatchat_bubble"
   );
+
+  return chatButton;
 };
 
 const getSendButton = () => {
@@ -220,9 +227,9 @@ const oneTimeClick = async () => {
           return el?.link === document.URL && i > 0;
         });
 
-        console.log(document.URL);
-        console.log(rooms);
-        console.log(roomsTest);
+        // console.log(document.URL);
+        // console.log(rooms);
+        // console.log(roomsTest);
 
         if (roomsTest.length > 0) {
           console.log("not in the main room, so mute");
@@ -741,71 +748,6 @@ const createSpeakerButton = async () => {
   } else {
     console.log("Speaker button not found.");
   }
-
-  // console.log("createSpeakerButton");
-
-  // let mutedStyle = "my-breakout-speaker-muted";
-
-  // let btns = document.querySelectorAll('[role="button"][data-is-muted]');
-
-  // if (btns.length < 1) {
-  //   console.log("problem in create speaker button");
-  //   // await sleep(2000);
-  //   btns = document.querySelectorAll('[role="button"][data-is-muted]');
-  // }
-
-  // btns[0].dataset.btnBreakout = "mic";
-  // btns[1].dataset.btnBreakout = "vid";
-
-  // let topNode = btns[0].parentElement.parentElement.parentElement.parentElement.parentElement;
-  // // let topNode = btns[0].parentElement.parentElement.parentElement.parentElement;
-
-  // let btnSpk = document.createElement("div");
-
-  // btnSpk.classList.add("my-breakout-speaker-btn");
-
-  // mutedStyle = "";
-  // let micClassList = [...btns[0].classList];
-  // for (let i = 0; i < micClassList.length; i++) {
-  //   btnSpk.classList.add(micClassList[i]);
-  // }
-  // btnSpk.style.float = "left";
-  // btnSpk.style.position = "relative";
-
-  // btnSpk.style.backgroundColor = colors.green;
-  // btnSpk.style.color = "white";
-
-  // btnSpk.dataset.btnBreakout = "spk";
-  // btnSpk.dataset.isMuted = false;
-
-  // btnSpk.dataset.tooltip = "Turn off speaker";
-  // btnSpk.dataset.ariaLabel = "Turn off speaker"; // used to be 2
-  // // btnSpk.dataset.responseDelayMs = "250";
-  // btnSpk.dataset.responseDelayMs = "0";
-
-  // // ****** June 10 variable class
-  // btnSpk.innerHTML = `<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-  //     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
-  //   <div>
-  //     <i style="display: none" class="fas fa-volume-mute my-breakout-speaker-icon ${mutedStyle}" data-muted-icon="true"></i>
-  //     <i style="display: flex" class="fas fa-volume-up my-breakout-speaker-icon"
-  //     data-freeze-state=false
-  //     data-muted-icon="false"></i>
-  //   </div>`;
-
-  // topNode.prepend(btnSpk);
-
-  // // wait a few clicks so it updates
-  // await sleep(10);
-
-  // // Select the element
-  // const spkButton = document.querySelector('[data-btn-breakout="spk"]');
-
-  // // Remove the event listener if it exists
-  // spkButton.removeEventListener("click", handleSpkBtnClick3);
-
-  // // Add the event listener
-  // spkButton.addEventListener("click", handleSpkBtnClick3);
 };
 
 // On
@@ -951,32 +893,23 @@ const setTabTitle = async () => {
         // if (rooms[i].link == link) {
         // if (roomLink[0] == url[0]) {
         if (rooms[i].linkFetchedUrl == url) {
-          // document.title = "hi";
-          // if (document.title != rooms[i].name) {
-          //   debugger;
           document.title = "updating...";
           document.title = rooms[i].name;
-          // }
+        }
+        if (chrome.extension.inIncognitoContext) {
+          // Prefix title with # if it's not already prefixed
+          if (!document.title.startsWith("#")) {
+            document.title = `#${document.title}`;
+          }
         }
       }
     }
   } catch (err) {}
 };
 
-// const setTabTitle2 = (payload, sender) => {
-//   let className = payload.className;
-//   let roomName = payload.roomName;
-
-//   console.log(
-//     `Inside context, received from background: ${className} ${roomName} ${JSON.stringify(
-//       sender
-//     )}`
-//   );
-
-//   document.title = roomName;
-// };
-
 const setTabColor = async () => {
+  await sleep(10);
+
   let muted = { spk: true, mic: true, vid: true };
   let l_changed = false;
 
@@ -1163,15 +1096,38 @@ const getParticipants2_new = () => {
 
 const getParticipants2 = () => {
   // Function to get the innerText excluding elements with role="tooltip"
+
+  // const getFilteredText = (element) => {
+  //   let text = "";
+  //   element.childNodes.forEach((child) => {
+  //     if (child.nodeType === Node.TEXT_NODE) {
+  //       text += child.textContent;
+  //     } else if (child.nodeType === Node.ELEMENT_NODE && child.getAttribute("role") !== "tooltip") {
+  //       text += getFilteredText(child);
+  //     }
+  //   });
+  //   return text;
+  // };
   const getFilteredText = (element) => {
     let text = "";
-    element.childNodes.forEach((child) => {
-      if (child.nodeType === Node.TEXT_NODE) {
-        text += child.textContent;
-      } else if (child.nodeType === Node.ELEMENT_NODE && child.getAttribute("role") !== "tooltip") {
-        text += getFilteredText(child);
+
+    try {
+      // Check if element has childNodes
+      if (!element || !element.childNodes || element.childNodes.length === 0) {
+        return text; // If no childNodes, return empty string
       }
-    });
+
+      element.childNodes.forEach((child) => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          text += child.textContent;
+        } else if (child.nodeType === Node.ELEMENT_NODE && child.getAttribute("role") !== "tooltip") {
+          text += getFilteredText(child); // Recursively get text from child elements
+        }
+      });
+    } catch (error) {
+      console.warn("Error while getting filtered text:", error);
+    }
+
     return text;
   };
 
@@ -1696,11 +1652,11 @@ const isRelevant = () => {
 
 // 2024.10.02
 const simulateStudents = async () => {
-  console.log("inside simulateStudents" + window.location.hash);
+  // console.log("inside simulateStudents" + window.location.hash);
 
   // Check if the URL contains #breakout_testing
   if (window.location.hash === "#breakout_testing") {
-    console.log("Running breakout testing script");
+    // console.log("Running breakout testing script");
 
     // Step 1: Extract the student's name from the URL parameters
     const urlParams = new URLSearchParams(window.location.search);
@@ -1716,9 +1672,9 @@ const simulateStudents = async () => {
         const event = new Event("input", { bubbles: true });
         nameField.dispatchEvent(event);
 
-        console.log("Student name set to:", studentName);
+        // console.log("Student name set to:", studentName);
       } else {
-        console.log("Name input field not found.");
+        // console.log("Name input field not found.");
         return; // Stop if no input field is found
       }
 
@@ -1735,7 +1691,7 @@ const simulateStudents = async () => {
         joinButton.click();
         console.log("Join button clicked.");
       } else {
-        console.log("Join button not found or already enabled.");
+        // console.log("Join button not found or already enabled.");
       }
     } else {
       console.log("Student name not found in the URL.");
@@ -1783,6 +1739,8 @@ const handleSendAssignments = async (messages) => {
   // let btn = document.querySelector('button[aria-label="Chat with everyone"]');
   let btn = getChatButton();
 
+  console.log("inside handleSendAssignments " + messages);
+
   if (btn.ariaPressed == "false") {
     btn.click();
     await sleep(1000);
@@ -1803,7 +1761,7 @@ const handleSendAssignments = async (messages) => {
     btnSend.click();
 
     // Wait for one second before sending the next message
-    setTimeout(callback, 1000); // 1000 milliseconds = 1 second
+    setTimeout(callback, 1000);
   }
 
   function sendAllMessages(messages, index = 0) {
@@ -1816,7 +1774,7 @@ const handleSendAssignments = async (messages) => {
   sendAllMessages(messages);
 
   // Scroll to bottom
-  await sleep(100);
+  // await sleep(100);
   let chatContainer = document.querySelector('div[aria-live="polite"]');
   if (chatContainer) {
     chatContainer.scrollTo({

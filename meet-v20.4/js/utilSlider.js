@@ -101,6 +101,8 @@ const handleSlider = async (evt) => {
 
     // Important section
     let openRooms2 = await chromeAllOpenRooms();
+    // filter out the hash #breakout_testing
+    openRooms2 = filterHashRooms(openRooms2);
     openRooms2 = sortRoomsTabOrder(openRooms2);
     openRooms2 = filterExtensionRooms(openRooms2);
     let currentTabId = parseInt(document.querySelector("#slider-title").dataset.tabId, 10);
@@ -340,7 +342,9 @@ const handleSlider = async (evt) => {
                 vidMute: thisVidMute,
               },
             });
-            console.log(`Room ${room.id}, ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`);
+            console.log(
+              `Room ${room.id}, ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`
+            );
           } else {
             // For all other rooms, mute speaker, mic, and video, and add to the array of promises
             mutePromises.push(
@@ -418,9 +422,6 @@ const filterExtensionRooms = (myArray) => {
           if (getMeetUrlBase(el.url) == rooms[i].linkFetchedUrl) {
             bool = true;
           }
-          // if (el.url.startsWith("https://meet.google.com/")) {
-          //   bool = true;
-          // }
         }
 
         return bool;
