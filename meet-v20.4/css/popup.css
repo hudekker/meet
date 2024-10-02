@@ -1343,3 +1343,11 @@ span.span-course {
 #dropdown-meet-room-hook .dropdown-item:nth-child(n + 8) {
   color: red;
 }
+.p-inherit {
+  font-size: inherit; /* Inherit font size from the parent */
+  line-height: inherit; /* Inherit line height */
+  color: inherit; /* Inherit text color */
+  font-weight: inherit; /* Inherit font weight, if needed */
+  font-family: inherit; /* Inherit font family */
+  /* Add more inherited styles if required */
+}

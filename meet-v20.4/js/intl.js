@@ -291,6 +291,24 @@ intlMsg("gen-auto-new-url-main", "genAutoNewUrlMain");
 intlMsg("gen-auto-new-url-break", "genAutoNewUrlBreak");
 intlMsg("warning-8-rooms", "warning8Rooms", "&nbsp");
 
+intlMsg("sim-1", "sim1");
+intlMsg("sim-2", "sim2");
+intlMsg("sim-3", "sim3");
+intlMsg("sim-4", "sim4");
+intlMsg("sim-5", "sim5", "&nbsp");
+intlMsg("sim-6", "sim6");
+intlMsg("sim-7", "sim7");
+intlMsg("sim-7a", "sim7a");
+intlMsg("sim-8", "sim8");
+intlMsg("sim-9", "sim9");
+intlMsg("sim-10", "sim10");
+intlMsg("sim-11", "sim11");
+intlMsg("sim-12", "sim12");
+intlMsg("sim-13", "sim13");
+intlMsg("sim-14", "sim14");
+intlMsg("sim-15", "sim15");
+intlMsg("sim-16", "sim16");
+
 let toolTipRetile = chrome.i18n.getMessage("toolTipRetile") ? chrome.i18n.getMessage("toolTipRetile") : "Re-Tile";
 document.querySelector("#popup-retile").dataset.originalTitle = toolTipRetile;
 

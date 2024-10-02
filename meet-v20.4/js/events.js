@@ -435,17 +435,24 @@ document.querySelector("#close-room").parentElement.addEventListener("click", as
 const updateSimulateStudentsDropdownList = () => {
   const dropdown = document.getElementById("student-count");
 
+  // Populate the dropdown with student count options from 1 to 24
   for (let i = 1; i <= 24; i++) {
     const option = document.createElement("option");
     option.value = i;
     option.text = i;
     dropdown.appendChild(option);
   }
+
+  // Retrieve the saved student count from local storage, if available
+  chrome.storage.local.get(["savedStudentCount"], (result) => {
+    const savedStudentCount = result.savedStudentCount || 6; // Default to 6 if not found
+    dropdown.value = savedStudentCount;
+  });
 };
 
-// 2024.10.02 Function to pad student numbers to 2 digits (e.g., "01", "02", ..., "24")
-function formatStudentNumber(num) {
-  return num.toString().padStart(2, "0");
+// 2024.10.02 Function to map student numbers to letters (A, B, C, ..., Z)
+function getStudentLetter(num) {
+  return String.fromCharCode(64 + num); // 65 is 'A', 66 is 'B', and so on
 }
 
 // Event listener on start up
@@ -461,7 +468,6 @@ async function isStudentTabOpen(studentName) {
   // Search for tabs with URLs from meet.google.com across all windows
   const tabs = await chrome.tabs.query({
     url: "*://meet.google.com/*",
-    // windowId: chrome.windows.WINDOW_ID_NONE,
   });
 
   // Manually check if any of the tabs contain the specific student name and breakout_testing hash
@@ -469,8 +475,12 @@ async function isStudentTabOpen(studentName) {
 }
 
 // 2024.10.02 Event listener for adding simulated students
+// 2024.10.02 Event listener for adding simulated students
 document.getElementById("btn-simulate-students").addEventListener("click", async function () {
-  const studentCount = document.getElementById("student-count").value;
+  const studentCount = parseInt(document.getElementById("student-count").value);
+
+  // Save the selected number of students to local storage
+  chrome.storage.local.set({ savedStudentCount: studentCount });
 
   try {
     // Check for "Main" Meet tab by URL and title (adjust query as needed)
@@ -501,21 +511,16 @@ document.getElementById("btn-simulate-students").addEventListener("click", async
     // Loop through the student count and create tabs only if they aren't already open
     const urlsToOpen = [];
 
-    // testing only
-    // await sleep(7000);
-    // debugger;
-
     for (let i = 1; i <= studentCount; i++) {
-      // const studentName = `S${formatStudentNumber(i)}`;
-      const studentName = formatStudentNumber(i);
-      const studentUrl = `${mainRoomUrl}?student=${studentName}#breakout_testing`;
+      const studentLetter = getStudentLetter(i); // Get the letter corresponding to the student number
+      const studentUrl = `${mainRoomUrl}?student=${studentLetter}#breakout_testing`;
 
       // Check if the tab for the student is already open
-      const isOpen = await isStudentTabOpen(studentName);
+      const isOpen = await isStudentTabOpen(studentLetter);
       if (!isOpen) {
         urlsToOpen.push(studentUrl); // Add to the list of URLs to be opened
       } else {
-        console.log(`Tab for ${studentName} is already open.`);
+        console.log(`Tab for ${studentLetter} is already open.`);
       }
     }
 
@@ -534,6 +539,11 @@ document.getElementById("btn-simulate-students").addEventListener("click", async
           console.log(`${urlsToOpen.length} new student tabs added to the Main room.`);
         }
       );
+
+      let btnMeet = document.querySelector("#one-tab");
+      if (btnMeet) {
+        btnMeet.click();
+      }
     } else {
       console.log("No new student tabs were added.");
     }

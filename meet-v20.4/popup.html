@@ -1303,29 +1303,139 @@
           </div>
         </form>
 
-
         <!-- Simulate Students -->
         <!-- Add the student simulation meets here -->
-        <form id="student-simulation-form" class="border mt-2 settings-background">
-          <div class="container px-0 mx-0">
-            <h5 class="col-12 mt-3">Simulate Students for "Main" Meet</h5>
-
-            <!-- Dropdown to select number of students -->
-            <div class="form-group col-12">
-              <label for="student-count">Number of Simulated Students:</label>
-              <select id="student-count" class="form-control">
-                <!-- Options will be populated dynamically via JavaScript -->
-              </select>
+        <form id="student-simulation-form" class="border mt-4 p-4 rounded settings-background">
+          <div class="container-fluid">
+            <h5 class="mb-3" data-msg-sim-1>Practice using the Extension</h5>
+        
+            <p data-msg-sim-2>If you're new to this extension and want to get a feel for how it works, you can try it out using
+              simulated students. This simulation can be done entirely on your computer using incognito mode for the simulated
+              students.
+            </p>
+        
+            <p><strong data-msg-sim-3>Reminder:</strong> <span class="p-inherit" data-msg-sim-4>
+                When using this extension to teach your class, only you,
+                as the teacher, need to install it. Students do not need to install the extension as they won't be using it.
+              </span>
+            </p>
+        
+            <hr>
+            <!-- Accordion Button -->
+            <div class="text-center mt-4">
+              <button id="simulation-setup-accordion" class="text-left btn col-12 flex-fill btn-info" type="button"
+                data-toggle="collapse" data-target="#simulationSetupInstructions" aria-expanded="false"
+                aria-controls="simulationSetupInstructions">
+                <i style="font-size:20px" class="fas fa-info-circle shadow-lg"></i>
+                <span data-msg-sim-5>&nbsp;Simulation Setup Instructions</span>
+              </button>
             </div>
+        
+            <!-- Accordion Content -->
+            <div id="simulationSetupInstructions" class="collapse mt-3" aria-labelledby="simulation-setup-accordion">
+              <div class="card card-body">
+                <p><strong data-msg-sim-6>Step 1:</strong><span class="p-inherit" data-msg-sim-7> Go to your Chrome extensions
+                    page at </span><code>chrome://extensions/</code>&nbsp</strong><span class="p-inherit" data-msg-sim-7a>
+                    Find the
+                    Google Meet Breakout extension, click on the Details button, and scroll down to turn on the "Allow
+                    in
+                    Incognito" option.</span>
+                </p>
+        
+                <p><strong data-msg-sim-8>Note:</strong><span class="p-inherit" data-msg-sim-9> Once you're done
+                    practicing, you can turn off the "Allow
+                    in Incognito" setting. In
+                    normal use of this extension, you won't need to use incognito mode for your students. If you forget to turn
+                    it
+                    off, the extension will still work as expected, so no need to worry.</span>
+                </p>
+        
+                <p><strong data-msg-sim-10>Step 2:</strong>
+                  <span class="p-inherit" data-msg-sim-11>
+                    On the Meet tab of this control panel, open the Main
+                    room and your Breakout Rooms
+                    (for example, 3 breakout rooms). If you haven’t created your breakout room links yet, go to the Rooms tab
+                    and create your rooms and links there.</span>
+                </p>
+        
+                <p><strong data-msg-sim-12>Step 3:</strong>
+                  <span class="p-inherit" data-msg-sim-13>Select the number of
+                    simulated students. If you're
+                    just trying it out, we recommend
+                    opening 3 breakout rooms with a total of 6 simulated students, assigning 2 students to each breakout
+                    room.</span>
+                </p>
+        
+                <p><strong data-msg-sim-14>Note:</strong>
+                  <span class="p-inherit" data-msg-sim-15>
+                    Google Meet has recently implemented a restriction that limits the number of active Meets with an
+                    operational microphone to 8 on a single computer. This means that on your computer, you can open 1 Main
+                    room and up to 7 Breakout rooms and still have a working microphone in each of these rooms. You can,
+                    however, have as many students as you want in your Main room or Breakout Rooms, such as 50 or more
+                    students, without affecting the microphone functionality.</span>
+                </p>
+        
+                <p data-msg-sim-16>For this simulation, which is all done on your one computer, if you open 1 Main room, 3
+                  Breakouts, and 6
+                  simulated students, some of the simulated students will not have operational microphones, but this is
+                  perfectly fine for testing purposes. Since all the Meets are running on the same computer, you likely won’t be
+                  using your microphone due to potential feedback issues. However, you can still experiment with the control
+                  panel buttons and see how they control the different Meets.</p>
+              </div>
+            </div>
+        
+        
+            <!-- <p><strong>Step 1:</strong> Go to your Chrome extensions page at <code>chrome://extensions/</code>. Find the Google
+                                                                                                                                                                                                                                                                                                                                                              Meet Breakout extension, click on the <em>Details</em> button, and scroll down to turn on the "Allow in Incognito"
+                                                                                                                                                                                                                                                                                                                                                              option.</p>
+                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                            <p><strong>Note:</strong> Once you're done practicing, you can turn off the "Allow in Incognito" setting. In normal
+                                                                                                                                                                                                                                                                                                                                                              use of this extension, you won't need to use incognito mode for your students. If you forget to turn it off, the
+                                                                                                                                                                                                                                                                                                                                                              extension will still work as expected, so no need to worry.</p>
+                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                            <hr>
+                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                            <p><strong>Step 2:</strong> On the Meet tab of this control panel, open the Main room and your Breakout Rooms (for
+                                                                                                                                                                                                                                                                                                                                                              example, 3 breakout rooms). If you haven’t created your breakout room links yet, go to the Rooms tab and create
+                                                                                                                                                                                                                                                                                                                                                              your rooms and links there.</p>
+                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                            <p><strong>Step 3:</strong> Select the number of simulated students. If you're just trying it out, we recommend
+                                                                                                                                                                                                                                                                                                                                                              opening 3 breakout rooms with a total of 6 simulated students, assigning 2 students to each breakout room.</p>
+                                                                                                                                                                                                                                                                                                                                                            <p><strong>Note:</strong> Google Meet has recently implemented a restriction that limits the number of active Meets
+                                                                                                                                                                                                                                                                                                                                                              with
+                                                                                                                                                                                                                                                                                                                                                              an operational microphone to 8 on a single computer. This means that on your computer, you can open 1 Main room
+                                                                                                                                                                                                                                                                                                                                                              and up
+                                                                                                                                                                                                                                                                                                                                                              to 7 Breakout rooms and still have a working microphone in each of these rooms. You can, however, have as many
+                                                                                                                                                                                                                                                                                                                                                              students as you want in your Main room or Breakout Rooms, such as 50 or more students, without affecting the
+                                                                                                                                                                                                                                                                                                                                                              microphone functionality.</p>
 
+              <p>For this simulation, which is all done on your one computer, if you open 1 Main room, 3 Breakouts, and 6 simulated
+                students, some of the simulated students will not have operational microphones, but this is perfectly fine for testing
+                purposes. Since all the Meets are running on the same computer, you likely won’t be using your microphone due to
+                potential feedback issues. However, you can still experiment with the control panel buttons and see how they control
+                the different Meets.</p> -->
+            <!-- Dropdown to select number of students -->
+            <div class="form-group row">
+              <label for="student-count" class="col-form-label col-12 font-weight-bold">Number of Simulated Students:</label>
+              <div class="col-12">
+                <select id="student-count" class="form-control">
+                  <!-- Options will be populated dynamically via JavaScript -->
+                </select>
+              </div>
+            </div>
+        
             <!-- Button to add students -->
-            <div class="form-group col-12">
-              <button id="btn-simulate-students" type="button" class="btn btn-primary">Add Simulated Students to Main
-                Room</button>
+            <div class="form-group row mt-3">
+              <div class="col-12">
+                <button id="btn-simulate-students" type="button" class="btn btn-primary btn-block">
+                  Add Simulated Students to Main Room
+                </button>
+              </div>
             </div>
           </div>
         </form>
-
+        
+        
         <!-- Toolbar Colors -->
         <form id="toolbar-colors" class="border mt-2 settings-background">
           <div class="container px-0 mx-0" data-general-click data-general-toolbar>
