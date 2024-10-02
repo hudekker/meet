@@ -111,7 +111,7 @@ const simulateStudentsChangeHref = async () => {
 
     // Get the current student number from the URL, default to "01" if not present
     const urlParams = new URLSearchParams(window.location.search);
-    const studentNumber = urlParams.get("student") || "01";
+    const studentNumber = urlParams.get("student") || "A";
 
     // Select all anchor tags pointing to meet.google.com
     const chatLinks = document.querySelectorAll('a[href*="meet.google.com"]');
