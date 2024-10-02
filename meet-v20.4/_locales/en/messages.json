@@ -840,7 +840,7 @@
     "message": "Note:"
   },
   "sim9": {
-    "message": "On the Meet tab of this control panel, open the Main room and your Breakout Rooms (for example, 3 breakout rooms). If you have not created your breakout room links yet, go to the Rooms tab and create your rooms and links there."
+    "message": "Once you're done practicing, you can turn off the 'Allow in Incognito' setting. In normal use of this extension, you will not need to use incognito mode for your students."
   },
   "sim10": {
     "message": "Step 2:"
@@ -862,5 +862,11 @@
   },
   "sim16": {
     "message": "For this simulation, which is all done on your one computer, if you open 1 Main room, 3 Breakouts, and 6 simulated students, some of the simulated students will not have operational microphones, but this is perfectly fine for testing purposes. Since all the Meets are running on the same computer, you likely will not be using your microphone due to potential feedback issues. However, you can still experiment with the control panel buttons and see how they control the different Meets."
+  },
+  "sim17": {
+    "message": "Tip:"
+  },
+  "sim18": {
+    "message": "For these practice sessions, since you'll have many meetings open on your screen, we recommend selecting the Breakout Format as Tabs instead of the default Tiles. You can choose this using the radio button in the 'Breakout Room Format' section just above. This will help organize your 'teacher' meetings on the left side of the screen in a single window with tabs, while the right side will display the simulated student meetings in a single window with multiple tabs. When teaching your actual class, you can select either Tiles or Tabs, depending on your preference, since your screen will only display your teacher meetings, giving you more space to work with."
   }
 }

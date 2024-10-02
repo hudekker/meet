@@ -308,6 +308,8 @@ intlMsg("sim-13", "sim13");
 intlMsg("sim-14", "sim14");
 intlMsg("sim-15", "sim15");
 intlMsg("sim-16", "sim16");
+intlMsg("sim-17", "sim17");
+intlMsg("sim-18", "sim18");
 
 let toolTipRetile = chrome.i18n.getMessage("toolTipRetile") ? chrome.i18n.getMessage("toolTipRetile") : "Re-Tile";
 document.querySelector("#popup-retile").dataset.originalTitle = toolTipRetile;
