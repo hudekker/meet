@@ -810,5 +810,62 @@
   },
   "warning8Rooms": {
     "message": "Mikrofon Google Meet memiliki batas 7 ruang breakout"
+  },
+  "sim1": {
+    "message": "Latihan menggunakan Ekstensi"
+  },
+  "sim2": {
+    "message": "Jika Anda baru menggunakan ekstensi ini dan ingin memahami cara kerjanya, Anda bisa mencobanya menggunakan siswa simulasi. Simulasi ini dapat dilakukan sepenuhnya di komputer Anda."
+  },
+  "sim3": {
+    "message": "Pengingat:"
+  },
+  "sim4": {
+    "message": "Saat menggunakan ekstensi ini untuk mengajar kelas Anda, hanya Anda, sebagai guru, yang perlu menginstalnya. Siswa tidak perlu menginstal ekstensi ini karena mereka tidak akan menggunakannya."
+  },
+  "sim5": {
+    "message": "Instruksi Pengaturan Simulasi"
+  },
+  "sim6": {
+    "message": "Langkah 1:"
+  },
+  "sim7": {
+    "message": "Buka halaman ekstensi Chrome Anda"
+  },
+  "sim7a": {
+    "message": "Temukan ekstensi Google Meet Breakout, klik tombol 'Detail', dan gulir ke bawah untuk mengaktifkan opsi 'Izinkan dalam Mode Penyamaran'."
+  },
+  "sim8": {
+    "message": "Catatan:"
+  },
+  "sim9": {
+    "message": "Setelah selesai berlatih, Anda dapat mematikan pengaturan 'Izinkan dalam Mode Penyamaran'. Dalam penggunaan normal ekstensi ini, Anda tidak perlu menggunakan mode penyamaran untuk siswa Anda."
+  },
+  "sim10": {
+    "message": "Langkah 2:"
+  },
+  "sim11": {
+    "message": "Di tab Meet pada panel kontrol ini, buka Ruang Utama dan Ruang Breakout Anda (misalnya, 3 ruang breakout). Jika Anda belum membuat tautan ruang breakout, buka tab 'Ruang' dan buat ruang serta tautan di sana."
+  },
+  "sim12": {
+    "message": "Langkah 3:"
+  },
+  "sim13": {
+    "message": "Pilih jumlah siswa simulasi. Jika Anda hanya mencoba, kami menyarankan untuk membuka 3 ruang breakout dengan total 6 siswa simulasi, menugaskan 2 siswa di setiap ruang breakout."
+  },
+  "sim14": {
+    "message": "Catatan:"
+  },
+  "sim15": {
+    "message": "Google Meet baru-baru ini menerapkan pembatasan yang membatasi jumlah pertemuan aktif dengan mikrofon yang berfungsi menjadi 8 pada satu komputer. Ini berarti di komputer Anda, Anda dapat membuka 1 Ruang Utama dan hingga 7 Ruang Breakout dan masih memiliki mikrofon yang berfungsi di masing-masing ruangan ini. Namun, Anda dapat memiliki sebanyak mungkin siswa di Ruang Utama atau Ruang Breakout Anda, misalnya 50 siswa atau lebih, tanpa memengaruhi fungsi mikrofon."
+  },
+  "sim16": {
+    "message": "Untuk simulasi ini, yang semuanya dilakukan pada satu komputer, jika Anda membuka 1 Ruang Utama, 3 Ruang Breakout, dan 6 siswa simulasi, beberapa siswa simulasi tidak akan memiliki mikrofon yang berfungsi, tetapi ini sepenuhnya dapat diterima untuk tujuan pengujian. Karena semua pertemuan dijalankan pada komputer yang sama, Anda mungkin tidak akan menggunakan mikrofon Anda karena masalah umpan balik potensial. Namun, Anda masih dapat bereksperimen dengan tombol panel kontrol dan melihat bagaimana mereka mengontrol berbagai pertemuan."
+  },
+  "sim17": {
+    "message": "Tip:"
+  },
+  "sim18": {
+    "message": "Untuk sesi latihan ini, karena Anda akan memiliki banyak pertemuan yang terbuka di layar Anda, kami sarankan untuk memilih format Ruang Breakout sebagai 'Tab' daripada 'Kotak' yang default. Anda dapat memilihnya menggunakan tombol radio di bagian 'Format Ruang Breakout' tepat di atas. Ini akan membantu mengatur pertemuan 'guru' Anda di sisi kiri layar dalam satu jendela dengan tab, sementara sisi kanan akan menampilkan pertemuan siswa simulasi dalam satu jendela dengan beberapa tab. Saat mengajar kelas Anda yang sebenarnya, Anda dapat memilih 'Kotak' atau 'Tab', tergantung pada preferensi Anda, karena hanya pertemuan guru yang akan ditampilkan di layar Anda, memberi Anda lebih banyak ruang kerja."
   }
 }

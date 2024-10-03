@@ -758,5 +758,62 @@
   },
   "warning8Rooms": {
     "message": "Mikrofón Google Meet má limit na 7 skupinových miestností"
+  },
+  "sim1": {
+    "message": "Cvičte používanie rozšírenia"
+  },
+  "sim2": {
+    "message": "Ak ste v tomto rozšírení noví a chcete zistiť, ako funguje, môžete si ho vyskúšať pomocou simulovaných študentov. Táto simulácia sa dá úplne vykonať na vašom počítači."
+  },
+  "sim3": {
+    "message": "Pripomienka:"
+  },
+  "sim4": {
+    "message": "Keď používate toto rozšírenie na vyučovanie vašej triedy, iba vy ako učiteľ si ho musíte nainštalovať. Študenti nemusia toto rozšírenie inštalovať, pretože ho nebudú používať."
+  },
+  "sim5": {
+    "message": "Pokyny na nastavenie simulácie"
+  },
+  "sim6": {
+    "message": "Krok 1:"
+  },
+  "sim7": {
+    "message": "Prejdite na svoju stránku rozšírení Chrome"
+  },
+  "sim7a": {
+    "message": "Nájdite rozšírenie Google Meet Breakout, kliknite na tlačidlo 'Podrobnosti' a prejdite nadol, aby ste zapli možnosť 'Povoliť v anonymnom režime'."
+  },
+  "sim8": {
+    "message": "Poznámka:"
+  },
+  "sim9": {
+    "message": "Po dokončení cvičenia môžete vypnúť nastavenie 'Povoliť v anonymnom režime'. Pri bežnom používaní tohto rozšírenia nebudete musieť používať anonymný režim pre svojich študentov."
+  },
+  "sim10": {
+    "message": "Krok 2:"
+  },
+  "sim11": {
+    "message": "Na karte Meet tohto ovládacieho panela otvorte Hlavnú miestnosť a svoje rozdeľovacie miestnosti (napríklad 3 rozdeľovacie miestnosti). Ak ste ešte nevytvorili odkazy na rozdeľovacie miestnosti, prejdite na kartu 'Miestnosti' a tam vytvorte miestnosti a odkazy."
+  },
+  "sim12": {
+    "message": "Krok 3:"
+  },
+  "sim13": {
+    "message": "Vyberte počet simulovaných študentov. Ak si to len skúšate, odporúčame otvoriť 3 rozdeľovacie miestnosti a priradiť celkovo 6 simulovaných študentov, pričom do každej rozdeľovacej miestnosti umiestnite 2 študentov."
+  },
+  "sim14": {
+    "message": "Poznámka:"
+  },
+  "sim15": {
+    "message": "Google Meet nedávno zaviedol obmedzenie, ktoré obmedzuje počet aktívnych stretnutí s funkčným mikrofónom na 8 na jednom počítači. To znamená, že na svojom počítači môžete otvoriť 1 hlavnú miestnosť a až 7 rozdeľovacích miestností a v každej z týchto miestností bude fungovať mikrofón. Môžete však mať toľko študentov, koľko chcete, v hlavnej miestnosti alebo v rozdeľovacích miestnostiach, napríklad 50 alebo viac študentov, bez toho, aby to ovplyvnilo funkčnosť mikrofónu."
+  },
+  "sim16": {
+    "message": "V tejto simulácii, ktorá prebieha na jednom počítači, ak otvoríte 1 hlavnú miestnosť, 3 rozdeľovacie miestnosti a 6 simulovaných študentov, niektorí simulovaní študenti nebudú mať funkčný mikrofón, ale na účely testovania je to úplne v poriadku. Pretože všetky stretnutia prebiehajú na rovnakom počítači, pravdepodobne nebudete používať svoj mikrofón, aby ste sa vyhli možným problémom s ozvenou. Môžete však stále experimentovať s tlačidlami na ovládacom paneli a zistiť, ako ovládajú rôzne stretnutia."
+  },
+  "sim17": {
+    "message": "Tip:"
+  },
+  "sim18": {
+    "message": "Pri týchto cvičeniach, pretože budete mať na obrazovke otvorených veľa stretnutí, odporúčame zvoliť formát rozdeľovacích miestností ako 'Karty' namiesto predvoleného formátu 'Dlaždice'. Môžete to zvoliť pomocou prepínača v sekcii 'Formát rozdeľovacích miestností' priamo vyššie. Toto vám pomôže usporiadať vaše 'učiteľské' stretnutia na ľavej strane obrazovky v jednom okne s kartami, zatiaľ čo na pravej strane sa zobrazia stretnutia simulovaných študentov v jednom okne s viacerými kartami. Pri vyučovaní skutočnej triedy si môžete vybrať buď 'Dlaždice' alebo 'Karty' podľa svojich preferencií, pretože na vašej obrazovke budú zobrazené iba stretnutia učiteľa, čo vám poskytne viac pracovného priestoru."
   }
 }
