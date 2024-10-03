@@ -87,8 +87,7 @@ document.querySelector("#low-memory-option").addEventListener("click", async (ev
   if (myBreakout.settings.lowMemoryFlag) {
     document.querySelector("#open-breakouts").classList.add("d-none");
     document.querySelector("#open-both").classList.add("d-none");
-    document.querySelector("#open-main i").innerText =
-      "Open/Sync One Window for Main and Breakout Rooms, Use Slider to Move Through the Rooms";
+    document.querySelector("#open-main i").innerText = "Open/Sync One Window for Main and Breakout Rooms, Use Slider to Move Through the Rooms";
     intlMsg("btn-open-main", "btnRam", "&nbsp");
     document.querySelector("#open-main").classList.remove("col-3");
     document.querySelector("#open-main").classList.add("col-12");
