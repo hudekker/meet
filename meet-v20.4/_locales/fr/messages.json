@@ -808,5 +808,62 @@
   },
   "warning8Rooms": {
     "message": "Le microphone de Google Meet est limité à 7 salles de sous-groupes"
+  },
+  "sim1": {
+    "message": "Exercez-vous à utiliser l'extension"
+  },
+  "sim2": {
+    "message": "Si vous êtes nouveau dans cette extension et que vous souhaitez découvrir son fonctionnement, vous pouvez l'essayer en utilisant des élèves simulés. Cette simulation peut être effectuée entièrement sur votre ordinateur."
+  },
+  "sim3": {
+    "message": "Rappel :"
+  },
+  "sim4": {
+    "message": "Lorsque vous utilisez cette extension pour enseigner votre cours, seul vous, en tant que professeur, avez besoin de l'installer. Les élèves n'ont pas besoin d'installer l'extension car ils ne l'utiliseront pas."
+  },
+  "sim5": {
+    "message": "Instructions de configuration de la simulation"
+  },
+  "sim6": {
+    "message": "Étape 1 :"
+  },
+  "sim7": {
+    "message": "Accédez à votre page d'extensions Chrome"
+  },
+  "sim7a": {
+    "message": "Trouvez l'extension Google Meet Breakout, cliquez sur le bouton « Détails » et faites défiler vers le bas pour activer l'option « Autoriser en mode navigation privée »."
+  },
+  "sim8": {
+    "message": "Remarque :"
+  },
+  "sim9": {
+    "message": "Une fois que vous avez terminé la pratique, vous pouvez désactiver l'option « Autoriser en mode navigation privée ». Lors de l'utilisation normale de cette extension, vous n'aurez pas besoin d'utiliser le mode navigation privée pour vos élèves."
+  },
+  "sim10": {
+    "message": "Étape 2 :"
+  },
+  "sim11": {
+    "message": "Dans l'onglet Meet de ce panneau de contrôle, ouvrez la salle principale et vos salles de sous-groupes (par exemple, 3 salles de sous-groupes). Si vous n'avez pas encore créé vos liens de salles de sous-groupes, accédez à l'onglet « Salles » et créez vos salles et liens à cet endroit."
+  },
+  "sim12": {
+    "message": "Étape 3 :"
+  },
+  "sim13": {
+    "message": "Sélectionnez le nombre d'élèves simulés. Si vous faites simplement un essai, nous vous recommandons d'ouvrir 3 salles de sous-groupes avec un total de 6 élèves simulés, en assignant 2 élèves à chaque salle."
+  },
+  "sim14": {
+    "message": "Remarque :"
+  },
+  "sim15": {
+    "message": "Google Meet a récemment mis en place une restriction limitant le nombre de réunions actives avec un microphone fonctionnel à 8 sur un seul ordinateur. Cela signifie que sur votre ordinateur, vous pouvez ouvrir 1 salle principale et jusqu'à 7 salles de sous-groupes et avoir un microphone fonctionnel dans chacune de ces salles. Vous pouvez toutefois avoir autant d'élèves que vous le souhaitez dans votre salle principale ou vos salles de sous-groupes, par exemple 50 élèves ou plus, sans affecter le fonctionnement du microphone."
+  },
+  "sim16": {
+    "message": "Pour cette simulation, qui est effectuée entièrement sur un seul ordinateur, si vous ouvrez 1 salle principale, 3 salles de sous-groupes et 6 élèves simulés, certains élèves simulés n'auront pas de microphone fonctionnel, mais cela est tout à fait acceptable à des fins de test. Étant donné que toutes les réunions sont exécutées sur le même ordinateur, vous n'utiliserez probablement pas votre microphone en raison des problèmes de retour de son. Cependant, vous pouvez toujours expérimenter avec les boutons du panneau de contrôle et voir comment ils contrôlent les différentes réunions."
+  },
+  "sim17": {
+    "message": "Conseil :"
+  },
+  "sim18": {
+    "message": "Pour ces sessions d'entraînement, comme vous aurez de nombreuses réunions ouvertes sur votre écran, nous vous recommandons de sélectionner le format des salles de sous-groupes comme « Onglets » au lieu du format par défaut « Grilles ». Vous pouvez le sélectionner à l'aide du bouton radio dans la section « Format des salles de sous-groupes » juste au-dessus. Cela permettra d'organiser vos réunions « professeur » sur le côté gauche de l'écran dans une seule fenêtre avec des onglets, tandis que le côté droit affichera les réunions des élèves simulés dans une seule fenêtre avec plusieurs onglets. Lorsque vous donnerez votre cours réel, vous pourrez choisir « Grilles » ou « Onglets », selon votre préférence, car votre écran n'affichera que vos réunions de professeur, vous offrant ainsi plus d'espace pour travailler."
   }
 }

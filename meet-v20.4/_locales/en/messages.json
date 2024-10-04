@@ -867,6 +867,6 @@
     "message": "Tip:"
   },
   "sim18": {
-    "message": "For these practice sessions, since you'll have many meetings open on your screen, we recommend selecting the Breakout Format as Tabs instead of the default Tiles. You can choose this using the radio button in the 'Breakout Room Format' section just above. This will help organize your 'teacher' meetings on the left side of the screen in a single window with tabs, while the right side will display the simulated student meetings in a single window with multiple tabs. When teaching your actual class, you can select either Tiles or Tabs, depending on your preference, since your screen will only display your teacher meetings, giving you more space to work with."
+    "message": "For these practice sessions, since you'll have many meetings open on your screen, we recommend selecting the Breakout Format as 'Tabs' instead of the default 'Tiles'. You can choose this using the radio button in the 'Breakout Room Format' section just above. This will help organize your 'teacher' meetings on the left side of the screen in a single window with tabs, while the right side will display the simulated student meetings in a single window with multiple tabs. When teaching your actual class, you can select either 'Tiles' or 'Tabs', depending on your preference, since your screen will only display your teacher meetings, giving you more space to work with."
   }
 }

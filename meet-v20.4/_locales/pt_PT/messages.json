@@ -811,5 +811,62 @@
   },
   "warning8Rooms": {
     "message": "O microfone do Google Meet tem um limite de 7 salas de grupos"
+  },
+  "sim1": {
+    "message": "Pratique usando a extensão"
+  },
+  "sim2": {
+    "message": "Se você é novo nesta extensão e quer entender como ela funciona, pode experimentá-la usando estudantes simulados. Esta simulação pode ser feita inteiramente no seu computador."
+  },
+  "sim3": {
+    "message": "Lembrete:"
+  },
+  "sim4": {
+    "message": "Ao usar esta extensão para ensinar sua aula, apenas você, como professor, precisa instalá-la. Os estudantes não precisam instalar a extensão, pois não a usarão."
+  },
+  "sim5": {
+    "message": "Instruções de configuração da simulação"
+  },
+  "sim6": {
+    "message": "Passo 1:"
+  },
+  "sim7": {
+    "message": "Vá para a página de extensões do Chrome"
+  },
+  "sim7a": {
+    "message": "Encontre a extensão Google Meet Breakout, clique no botão 'Detalhes' e role para baixo para ativar a opção 'Permitir no modo de navegação anônima'."
+  },
+  "sim8": {
+    "message": "Nota:"
+  },
+  "sim9": {
+    "message": "Depois de terminar de praticar, você pode desativar a configuração 'Permitir no modo de navegação anônima'. No uso normal desta extensão, não será necessário usar o modo anônimo para os estudantes."
+  },
+  "sim10": {
+    "message": "Passo 2:"
+  },
+  "sim11": {
+    "message": "Na aba Meet deste painel de controle, abra a sala principal e suas salas de discussão (por exemplo, 3 salas de discussão). Se você ainda não criou os links das salas de discussão, vá para a aba 'Salas' e crie as salas e links lá."
+  },
+  "sim12": {
+    "message": "Passo 3:"
+  },
+  "sim13": {
+    "message": "Selecione o número de estudantes simulados. Se você estiver apenas experimentando, recomendamos abrir 3 salas de discussão com um total de 6 estudantes simulados, atribuindo 2 estudantes a cada sala."
+  },
+  "sim14": {
+    "message": "Nota:"
+  },
+  "sim15": {
+    "message": "O Google Meet implementou recentemente uma restrição que limita a 8 o número de reuniões ativas com um microfone operacional em um único computador. Isso significa que no seu computador, você pode abrir 1 sala principal e até 7 salas de discussão e ainda ter um microfone funcional em cada uma dessas salas. No entanto, você pode ter quantos estudantes desejar na sala principal ou nas salas de discussão, como 50 ou mais, sem afetar a funcionalidade do microfone."
+  },
+  "sim16": {
+    "message": "Para esta simulação, que é feita inteiramente em um único computador, se você abrir 1 sala principal, 3 salas de discussão e 6 estudantes simulados, alguns dos estudantes simulados não terão microfones operacionais, mas isso é perfeitamente aceitável para fins de teste. Como todas as reuniões estão rodando no mesmo computador, provavelmente você não usará o seu microfone devido a possíveis problemas de eco. No entanto, você ainda pode experimentar os botões do painel de controle e ver como eles controlam as diferentes reuniões."
+  },
+  "sim17": {
+    "message": "Dica:"
+  },
+  "sim18": {
+    "message": "Para essas sessões de prática, como você terá muitas reuniões abertas na sua tela, recomendamos selecionar o formato das salas de discussão como 'Abas' em vez do formato padrão 'Grades'. Você pode selecionar isso usando o botão de opção na seção 'Formato das salas de discussão' logo acima. Isso ajudará a organizar as suas reuniões de 'professor' no lado esquerdo da tela em uma única janela com abas, enquanto o lado direito exibirá as reuniões dos estudantes simulados em uma única janela com várias abas. Ao ensinar sua aula real, você pode selecionar 'Grades' ou 'Abas', dependendo da sua preferência, já que sua tela mostrará apenas as reuniões do professor, dando a você mais espaço para trabalhar."
   }
 }

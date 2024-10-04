@@ -811,5 +811,62 @@
   },
   "warning8Rooms": {
     "message": "Il microfono di Google Meet ha un limite di 7 stanze di gruppo"
+  },
+  "sim1": {
+    "message": "Esercitati usando l'estensione"
+  },
+  "sim2": {
+    "message": "Se sei nuovo a questa estensione e vuoi capire come funziona, puoi provarla utilizzando studenti simulati. Questa simulazione può essere eseguita interamente sul tuo computer."
+  },
+  "sim3": {
+    "message": "Promemoria:"
+  },
+  "sim4": {
+    "message": "Quando utilizzi questa estensione per insegnare alla tua classe, solo tu, in quanto insegnante, devi installarla. Gli studenti non devono installare l'estensione poiché non la utilizzeranno."
+  },
+  "sim5": {
+    "message": "Istruzioni per la configurazione della simulazione"
+  },
+  "sim6": {
+    "message": "Passaggio 1:"
+  },
+  "sim7": {
+    "message": "Vai alla tua pagina delle estensioni di Chrome"
+  },
+  "sim7a": {
+    "message": "Trova l'estensione Google Meet Breakout, fai clic sul pulsante 'Dettagli' e scorri verso il basso per attivare l'opzione 'Consenti in modalità incognito'."
+  },
+  "sim8": {
+    "message": "Nota:"
+  },
+  "sim9": {
+    "message": "Una volta terminata la pratica, puoi disattivare l'impostazione 'Consenti in modalità incognito'. Durante l'uso normale di questa estensione, non sarà necessario utilizzare la modalità incognito per i tuoi studenti."
+  },
+  "sim10": {
+    "message": "Passaggio 2:"
+  },
+  "sim11": {
+    "message": "Nella scheda Meet di questo pannello di controllo, apri la stanza principale e le tue stanze di breakout (ad esempio, 3 stanze di breakout). Se non hai ancora creato i link delle stanze di breakout, vai alla scheda 'Stanze' e crea lì le stanze e i link."
+  },
+  "sim12": {
+    "message": "Passaggio 3:"
+  },
+  "sim13": {
+    "message": "Seleziona il numero di studenti simulati. Se stai solo provando, ti consigliamo di aprire 3 stanze di breakout con un totale di 6 studenti simulati, assegnando 2 studenti a ciascuna stanza."
+  },
+  "sim14": {
+    "message": "Nota:"
+  },
+  "sim15": {
+    "message": "Google Meet ha recentemente implementato una limitazione che riduce il numero di riunioni attive con un microfono funzionante a 8 su un singolo computer. Ciò significa che sul tuo computer puoi aprire 1 stanza principale e fino a 7 stanze di breakout e avere ancora un microfono funzionante in ciascuna di queste stanze. Tuttavia, puoi avere quanti studenti vuoi nella stanza principale o nelle stanze di breakout, ad esempio 50 o più, senza influenzare la funzionalità del microfono."
+  },
+  "sim16": {
+    "message": "Per questa simulazione, che si svolge tutta su un singolo computer, se apri 1 stanza principale, 3 stanze di breakout e 6 studenti simulati, alcuni degli studenti simulati non avranno un microfono funzionante, ma questo è perfettamente accettabile ai fini del test. Poiché tutte le riunioni si svolgono sullo stesso computer, è probabile che non utilizzerai il tuo microfono a causa di potenziali problemi di feedback. Tuttavia, puoi ancora sperimentare i pulsanti del pannello di controllo e vedere come controllano le diverse riunioni."
+  },
+  "sim17": {
+    "message": "Suggerimento:"
+  },
+  "sim18": {
+    "message": "Per queste sessioni di pratica, dato che avrai molte riunioni aperte sul tuo schermo, ti consigliamo di selezionare il formato della stanza di breakout come 'Schede' invece che 'Griglie', che è il predefinito. Puoi selezionarlo utilizzando il pulsante di opzione nella sezione 'Formato stanza di breakout' appena sopra. Questo aiuterà a organizzare le riunioni 'insegnante' sul lato sinistro dello schermo in una singola finestra con schede, mentre sul lato destro verranno visualizzate le riunioni degli studenti simulati in una singola finestra con più schede. Quando insegni alla tua classe reale, puoi selezionare 'Griglie' o 'Schede', a seconda delle tue preferenze, poiché sullo schermo verranno visualizzate solo le riunioni dell'insegnante, dandoti più spazio di lavoro."
   }
 }

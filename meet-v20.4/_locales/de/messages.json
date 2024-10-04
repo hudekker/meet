@@ -808,5 +808,62 @@
   },
   "warning8Rooms": {
     "message": "Das Google Meet-Mikrofon hat eine Begrenzung auf 7 Breakout-Räume"
+  },
+  "sim1": {
+    "message": "Üben Sie die Verwendung der Erweiterung"
+  },
+  "sim2": {
+    "message": "Wenn Sie neu bei dieser Erweiterung sind und ein Gefühl dafür bekommen möchten, wie sie funktioniert, können Sie es mit simulierten Schülern ausprobieren. Diese Simulation kann vollständig auf Ihrem Computer durchgeführt werden."
+  },
+  "sim3": {
+    "message": "Erinnerung:"
+  },
+  "sim4": {
+    "message": "Wenn Sie diese Erweiterung für den Unterricht verwenden, müssen nur Sie als Lehrer sie installieren. Die Schüler müssen die Erweiterung nicht installieren, da sie sie nicht verwenden werden."
+  },
+  "sim5": {
+    "message": "Anweisungen zur Simulationseinrichtung"
+  },
+  "sim6": {
+    "message": "Schritt 1:"
+  },
+  "sim7": {
+    "message": "Gehen Sie zu Ihrer Chrome-Erweiterungsseite"
+  },
+  "sim7a": {
+    "message": "Suchen Sie die Google Meet Breakout-Erweiterung, klicken Sie auf die Schaltfläche „Details“ und scrollen Sie nach unten, um die Option „Im Inkognito-Modus zulassen“ zu aktivieren."
+  },
+  "sim8": {
+    "message": "Hinweis:"
+  },
+  "sim9": {
+    "message": "Sobald Sie mit dem Üben fertig sind, können Sie die Einstellung „Im Inkognito-Modus zulassen“ deaktivieren. Bei normaler Verwendung dieser Erweiterung müssen Sie den Inkognito-Modus für Ihre Schüler nicht verwenden."
+  },
+  "sim10": {
+    "message": "Schritt 2:"
+  },
+  "sim11": {
+    "message": "Öffnen Sie auf der Meet-Registerkarte dieses Kontrollpanels den Hauptraum und Ihre Breakout-Räume (z. B. 3 Breakout-Räume). Wenn Sie Ihre Breakout-Raums-Links noch nicht erstellt haben, gehen Sie zur Registerkarte „Räume“ und erstellen Sie dort Ihre Räume und Links."
+  },
+  "sim12": {
+    "message": "Schritt 3:"
+  },
+  "sim13": {
+    "message": "Wählen Sie die Anzahl der simulierten Schüler aus. Wenn Sie es nur ausprobieren möchten, empfehlen wir, 3 Breakout-Räume mit insgesamt 6 simulierten Schülern zu öffnen, wobei Sie 2 Schüler jedem Breakout-Raum zuweisen."
+  },
+  "sim14": {
+    "message": "Hinweis:"
+  },
+  "sim15": {
+    "message": "Google Meet hat kürzlich eine Einschränkung eingeführt, die die Anzahl der aktiven Meets mit funktionierendem Mikrofon auf 8 auf einem einzelnen Computer beschränkt. Das bedeutet, dass Sie auf Ihrem Computer 1 Hauptraum und bis zu 7 Breakout-Räume öffnen können, wobei in jedem dieser Räume ein funktionierendes Mikrofon vorhanden ist. Sie können jedoch beliebig viele Schüler in Ihrem Hauptraum oder Ihren Breakout-Räumen haben, z. B. 50 oder mehr Schüler, ohne die Mikrofonfunktion zu beeinträchtigen."
+  },
+  "sim16": {
+    "message": "Bei dieser Simulation, die vollständig auf einem einzigen Computer durchgeführt wird, haben einige der simulierten Schüler kein funktionierendes Mikrofon, wenn Sie 1 Hauptraum, 3 Breakout-Räume und 6 simulierte Schüler öffnen, aber das ist für Testzwecke völlig in Ordnung. Da alle Meetings auf demselben Computer laufen, werden Sie wahrscheinlich Ihr Mikrofon aufgrund möglicher Rückkopplungsprobleme nicht verwenden. Sie können jedoch weiterhin mit den Schaltflächen des Kontrollpanels experimentieren und sehen, wie sie die verschiedenen Meetings steuern."
+  },
+  "sim17": {
+    "message": "Tipp:"
+  },
+  "sim18": {
+    "message": "Für diese Übungseinheiten empfehlen wir, das Breakout-Format als „Tabs“ anstelle des Standardformats „Tiles“ auszuwählen, da viele Meetings auf Ihrem Bildschirm geöffnet sind. Sie können dies mit der Optionsschaltfläche im Bereich „Breakout-Raumformat“ direkt darüber auswählen. Dies hilft, Ihre „Lehrer“-Meetings auf der linken Seite des Bildschirms in einem einzigen Fenster mit Tabs zu organisieren, während auf der rechten Seite die Meetings der simulierten Schüler in einem einzigen Fenster mit mehreren Tabs angezeigt werden. Beim Unterrichten Ihrer eigentlichen Klasse können Sie entweder „Tiles“ oder „Tabs“ wählen, je nach Ihren Vorlieben, da auf Ihrem Bildschirm nur Ihre Lehrer-Meetings angezeigt werden, wodurch Sie mehr Platz haben."
   }
 }
