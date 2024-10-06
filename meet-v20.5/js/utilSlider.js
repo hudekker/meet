@@ -342,9 +342,7 @@ const handleSlider = async (evt) => {
                 vidMute: thisVidMute,
               },
             });
-            console.log(
-              `Room ${room.id}, ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`
-            );
+            console.log(`Room ${room.id}, ${room.title} spkMute:${thisSpkMute}, micMute:${thisMicMute}, vidMute: ${thisVidMute}`);
           } else {
             // For all other rooms, mute speaker, mic, and video, and add to the array of promises
             mutePromises.push(
@@ -573,6 +571,7 @@ const handleSliderMute = (evt, boolClick = true) => {
 
           // Here get all the room ids and loop thru them except for main room
           let openRooms2 = await chromeAllOpenRooms();
+          openRooms2 = filterExtensionRooms(openRooms2);
           openRooms2 = sortRoomsTabOrder(openRooms2);
           openRooms2 = filterExtensionRooms(openRooms2);
           openRooms2 = openRooms2.filter((room) => room.title !== "Main");
@@ -619,6 +618,7 @@ const handleSliderMute = (evt, boolClick = true) => {
 
           // Here get all the room ids and loop thru them except for main room
           let openRooms2 = await chromeAllOpenRooms();
+          openRooms2 = filterExtensionRooms(openRooms2);
           openRooms2 = sortRoomsTabOrder(openRooms2);
           openRooms2 = filterExtensionRooms(openRooms2);
           openRooms2 = openRooms2.filter((room) => room.title !== "Main");
@@ -664,6 +664,7 @@ const handleSliderMute = (evt, boolClick = true) => {
         }
 
         let openRooms2 = await chromeAllOpenRooms();
+        openRooms2 = filterExtensionRooms(openRooms2);
         openRooms2 = sortRoomsTabOrder(openRooms2);
         openRooms2 = filterExtensionRooms(openRooms2);
         openRooms2 = openRooms2.filter((room) => room.title !== "Main");

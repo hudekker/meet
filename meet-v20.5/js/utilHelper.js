@@ -132,7 +132,7 @@ const chromeAllOpenRooms = async (boolOpen = false, tabId = 0, boolFilter = true
     let win = await chromeWindowsGetAll({ windowTypes: ["normal"] });
     // let win = await chromeWindowsGetAll({ windowTypes: ["normal"] });
     let tabCurrent = await chromeTabsGetCurrent();
-    console.log(`tabCurrent `, tabCurrent);
+    // console.log(`tabCurrent `, tabCurrent);
 
     for (let i = 0; i < win.length; i++) {
       let tabs = await chromeTabsQuery({ windowId: win[i].id });
@@ -797,13 +797,7 @@ const popupRetile = async (currentTarget) => {
       // return alert("Re-Tile is only available for Tiled breakouts. Tabs breakout rooms option is selected in the Settings.");
     }
     // Get all the rooms
-    let rooms = await chromeAllOpenRooms(
-      (boolOpen = false),
-      (tabId = 0),
-      (boolFilter = false),
-      (boolGetReferrer = false),
-      (boolExpand = false)
-    );
+    let rooms = await chromeAllOpenRooms((boolOpen = false), (tabId = 0), (boolFilter = false), (boolGetReferrer = false), (boolExpand = false));
 
     rooms = filterHashRooms(rooms);
     rooms = filterExtensionRooms(rooms);
@@ -856,13 +850,7 @@ const popupRetile = async (currentTarget) => {
     // Get the revised rooms
     // rooms = await chromeAllOpenRooms((boolOpen = false), (tabId = 0), (boolFilter = false));
 
-    rooms = await chromeAllOpenRooms(
-      (boolOpen = false),
-      (tabId = 0),
-      (boolFilter = false),
-      (boolGetReferrer = false),
-      (boolExpand = false)
-    );
+    rooms = await chromeAllOpenRooms((boolOpen = false), (tabId = 0), (boolFilter = false), (boolGetReferrer = false), (boolExpand = false));
 
     rooms = filterHashRooms(rooms);
     rooms = filterExtensionRooms(rooms);
