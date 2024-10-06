@@ -181,14 +181,15 @@ document.body.addEventListener("dom-changed", async (evt) => {
       // (async () => {
       // NOTE: 09/14/2024 change from 5000 to 1000
       // await sleep(5000);
-      await sleep(1000);
 
+      await sleep(1000);
       oneTimeClick();
+
       // })();
 
       // Always update the speaker audio if initialized
     } else {
-      // NOTE do i need this? 09/14/2024
+      // 2024, i need this
       if (!document.querySelector('[data-btn-breakout="spk"]')) {
         await createSpeakerButton();
         updateToolbarColors();
@@ -225,13 +226,11 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
 
   switch (payload.action) {
     case "hideBar":
-      meetBottomBar =
-        document.querySelector("[data-btn-breakout]").parentElement.parentElement.parentElement.parentElement;
+      meetBottomBar = document.querySelector("[data-btn-breakout]").parentElement.parentElement.parentElement.parentElement;
       meetBottomBar.style.display = "none";
       break;
     case "unHideBar":
-      meetBottomBar =
-        document.querySelector("[data-btn-breakout]").parentElement.parentElement.parentElement.parentElement;
+      meetBottomBar = document.querySelector("[data-btn-breakout]").parentElement.parentElement.parentElement.parentElement;
       meetBottomBar.style.display = "";
       break;
     case "updateUrl":
@@ -328,9 +327,7 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
     case "clickChatButton":
       try {
         // const chatButton = document.querySelector('[aria-label="Chat with everyone"]');
-        const chatButton = Array.from(document.querySelectorAll("button")).find(
-          (btn) => btn.textContent.trim() === "chatchat_bubble"
-        );
+        const chatButton = Array.from(document.querySelectorAll("button")).find((btn) => btn.textContent.trim() === "chatchat_bubble");
         if (chatButton.ariaPressed == "true") {
           chatButton.click();
           cb({ status: "success" });
@@ -382,6 +379,9 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
 
     case "updateSpkMicVidMuteState":
       try {
+        if (!document.querySelector('[data-btn-breakout="spk"]')) {
+          await sleep(1000);
+        }
         const spkMute = payload.state.spkMute;
         const micMute = payload.state.micMute;
         const vidMute = payload.state.vidMute;

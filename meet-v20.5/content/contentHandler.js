@@ -41,9 +41,7 @@ const getRemoveLI = () => {
 const getMoreActionsButtons = () => {
   const buttons = document.querySelectorAll(`div[role="list"] button`);
 
-  return Array.from(buttons).filter((button) =>
-    Array.from(button.querySelectorAll("i")).some((icon) => icon.textContent.trim() === "more_vert")
-  );
+  return Array.from(buttons).filter((button) => Array.from(button.querySelectorAll("i")).some((icon) => icon.textContent.trim() === "more_vert"));
 };
 
 const getChatButton = () => {
@@ -55,9 +53,7 @@ const getChatButton = () => {
   //   ) || null
   // );
 
-  const chatButton = Array.from(document.querySelectorAll("button")).find(
-    (btn) => btn.textContent.trim() === "chatchat_bubble"
-  );
+  const chatButton = Array.from(document.querySelectorAll("button")).find((btn) => btn.textContent.trim() === "chatchat_bubble");
 
   return chatButton;
 };
@@ -65,11 +61,7 @@ const getChatButton = () => {
 const getSendButton = () => {
   const buttons = document.querySelectorAll("button");
 
-  return (
-    Array.from(buttons).find((button) =>
-      Array.from(button.querySelectorAll("i")).some((icon) => icon.textContent.trim() === "send")
-    ) || null
-  );
+  return Array.from(buttons).find((button) => Array.from(button.querySelectorAll("i")).some((icon) => icon.textContent.trim() === "send")) || null;
 };
 
 const getMicVidElements = () => {
@@ -143,9 +135,7 @@ const oneTimeClick = async () => {
     // ********* June 10 **********Look for the revised verison June 10
 
     // *** Feb 5, 2022
-    let btnsCheck = [...document.querySelectorAll("button")]?.filter((el) =>
-      el.querySelector("i")?.innerText.includes("call_end")
-    );
+    let btnsCheck = [...document.querySelectorAll("button")]?.filter((el) => el.querySelector("i")?.innerText.includes("call_end"));
 
     if (btnsCheck.length > 0) {
       btnCheck = btnsCheck[0];
@@ -782,10 +772,10 @@ const getSpkMicVidState2 = async () => {
     };
 
     let btns = getMicVidElements();
+    console.log(btns);
+
     let turnMicOn = btns.btnMicTurnOn;
-    let turnMicOff = btns.btnMicTurnOff;
     let turnVidOn = btns.btnVidTurnOn;
-    let turnVidOff = btns.btnVidTurnOff;
 
     // spk: use the gold standard, use query
     let tabInfo = await getTabMuteStatus();
@@ -876,9 +866,7 @@ const setTabTitle = async () => {
       let { breakout: test } = await chromeStorageLocalGet("breakout");
       myBreakout = test;
 
-      rooms = [...myBreakout.classes]
-        .filter((el) => el.name == myBreakout.settings.meetClassName)
-        .map((el) => el.rooms)[0];
+      rooms = [...myBreakout.classes].filter((el) => el.name == myBreakout.settings.meetClassName).map((el) => el.rooms)[0];
 
       // rooms = [...myBreakout.myClass.rooms];
     }
@@ -1016,9 +1004,7 @@ const getParticipants2_new = () => {
   };
 
   // Select the <i> tag with innerText 'visual_effects'
-  const visualEffectsIcon = Array.from(document.querySelectorAll("i")).find(
-    (element) => element.innerText === "visual_effects"
-  );
+  const visualEffectsIcon = Array.from(document.querySelectorAll("i")).find((element) => element.innerText === "visual_effects");
 
   // Traverse up the DOM tree to find the participant element
   let participantElement = visualEffectsIcon;
@@ -1132,9 +1118,7 @@ const getParticipants2 = () => {
   };
 
   // Select the <i> tag with innerText 'visual_effects'
-  const visualEffectsIcon = Array.from(document.querySelectorAll("i")).find(
-    (element) => element.innerText === "visual_effects"
-  );
+  const visualEffectsIcon = Array.from(document.querySelectorAll("i")).find((element) => element.innerText === "visual_effects");
 
   // Traverse up the DOM tree to find the participant element
   let participantElement = visualEffectsIcon;
@@ -1707,9 +1691,7 @@ const ElementUpdater = (function () {
 
   function getValueSetter(element) {
     if (!valueSetterCache.has(element)) {
-      const descriptor =
-        Object.getOwnPropertyDescriptor(Object.getPrototypeOf(element), "value") ||
-        Object.getOwnPropertyDescriptor(element, "value");
+      const descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(element), "value") || Object.getOwnPropertyDescriptor(element, "value");
       if (descriptor && descriptor.set) {
         valueSetterCache.set(element, descriptor.set);
       } else {
