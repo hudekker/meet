@@ -380,7 +380,7 @@ chrome.runtime.onMessage.addListener(async (payload, sender, cb) => {
     case "updateSpkMicVidMuteState":
       try {
         if (!document.querySelector('[data-btn-breakout="spk"]')) {
-          await sleep(1000);
+          await sleep(2000);
         }
         const spkMute = payload.state.spkMute;
         const micMute = payload.state.micMute;
